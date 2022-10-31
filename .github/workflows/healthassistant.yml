@@ -1,0 +1,37 @@
+name: health-assistant
+on:
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+env:
+  DB_NAME: healthassistant
+  DB_USERNAME: healthassistant
+  DB_PASSWORD: healthassistant!!
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          yarn install 
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: ssh to pull latest version
+      uses: fifsky/ssh-action@master
+      with:
+        command: |
+          cd healthassistant
+          git pull origin main
+          yarn jest
+          yarn install
+          forever restart -c 'yarn start' .
+        host: healthassistant.frankieyip.world
+        user: ubuntu
+        key: ${{secrets.SSH_PRIVATE_KEY}}
