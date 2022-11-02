@@ -32,7 +32,8 @@
                     <button id="stroke" role="button" class="test-button">STROKE</button>
                 </div>
                 <div class="col-4 btn-container">
-                    <button id="diabetes" role="button" class="test-button">DIABETES</button>
+                    <button id="diabetes" role="button" class="test-button" data-bs-toggle="modal"
+                        data-bs-target="#diabetes-modal">DIABETES</button>
                 </div>
                 <div class="col-4 btn-container">
                     <button id="mentla-wellness" role="button" class="test-button">MENTAL WELLNESS</button>
@@ -61,13 +62,16 @@
                     </div>
                 </div>
                 <div id="greeting" class="form-text">Welcome to our AI powered Health Assistant!
-                </div><hr>
+                </div>
+                <hr>
                 <div class="form-text">Please choose and click one of the tests below and input the information
                     required. Our AI powered machine will calculate a score which will be translated into a likelihood
                     of getting that condition in later part of lives. Please note that the purpose of this programme is
-                    purely academic. The result should in no way be taken consideration as formal diagnoses. More explanation
+                    purely academic. The result should in no way be taken consideration as formal diagnoses. More
+                    explanation
                     for test result can be found under the "(test result) --> Explanation"
-                </div><hr>
+                </div>
+                <hr>
                 <div class="form-text">Please note that none of your information will be saved without your permission,
                     however it is optional by checking "save my info" before submitting your information for testing.
                 </div>
@@ -90,24 +94,25 @@
                     <div class="input-group">
                         <form id="start-form" class="form">
                             <div class="form-text">For test accuracy, please try and input all the info required below
-                            </div><hr>
+                            </div>
+                            <hr>
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Your name?</label>
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Input Your Name" value=""/>
+                                    placeholder="Input Your Name" value="" />
                             </div>
 
                             <div class="mb-3">
                                 <label for="height" class="form-label">Your height? (cm)</label>
-                                <input type="number" class="form-control" name="height" id="height"
-                                    min="0" max="300" value="" required />
+                                <input type="number" class="form-control" name="height" id="height" min="0" max="300"
+                                    value="" required />
                             </div>
 
                             <div class="mb-3">
                                 <label for="height" class="form-label">Your weight? (kg)</label>
-                                <input type="number" class="form-control" name="height" id="height"
-                                    min="0" max="300" value="" required />
+                                <input type="number" class="form-control" name="height" id="height" min="0" max="300"
+                                    value="" required />
                             </div>
 
                             <div class="input-panel mb-3">
@@ -145,8 +150,8 @@
 
                             <div class="mb-3">
                                 <label for="height" class="form-label">How long do you sleep per day? (hour)</label>
-                                <input type="number" class="form-control" name="height" id="height"
-                                    min="0" max="24" value="" required/>
+                                <input type="number" class="form-control" name="height" id="height" min="0" max="24"
+                                    value="" required />
                             </div>
 
                             <div class="input-panel mb-3"></div>
@@ -160,7 +165,7 @@
                             <div class="input-panel mb-3"></div>
                             <input type="checkbox" id="smoke" name="smoke" unchecked />
                             <label for="smoke">Do you smoke regularly?</label><br />
-                                               
+
                             <div class="modal-footer">
                                 <div>
                                     <input type="checkbox" id="save-info" name="save-info" unchecked />
@@ -176,11 +181,53 @@
             </div>
         </div>
     </div>
+    <!-- diabetes modal -->
+
+    <div class="modal fade" id="diabetes-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div></div>
+                    <h5 class="modal-title">Checking Diabetes</h5>
+                    <div class="exit-modal">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group-diabetes">
+                        <form class="form">
+                            <div class="mb-3">
+                                <label for="user-name" class="form-label">Your name?</label>
+                                <input type="text" class="form-control" id="user-name" placeholder="Input Your Name"
+                                    value="">
+                                <div id="emailHelp" class="form-text">///
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">///</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <input type="checkbox" id="save-info" name="save-info" unchecked />
+                        <label for="save-info">Save My Info</label><br />
+                    </div>
+                    <button id="submit-diabetes" type="submit" class="submit-button">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
-    </script>
+        </script>
     <script type="module" src="./landing-page.js"></script>
 </body>
 
