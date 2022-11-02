@@ -9,7 +9,7 @@ app = Sanic("Python-Hosted-Model")
 
 model = tf.saved_model.load('./')
 
-@app.post("/")
+@app.post("/heart")
 def callModel(request):
     content = request.json
     predict_dataset = tf.convert_to_tensor(content)

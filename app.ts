@@ -3,7 +3,6 @@ import expressSession from 'express-session';
 import path from 'path';
 import dontenv from 'dotenv';
 import Knex from 'knex';
-import { isLoggedIn } from './util/guard';
 
 dontenv.config();
 
@@ -27,8 +26,7 @@ declare module 'express-session' {
 	}
 }
 
-app.use(express.json(), sessionMiddleware, express.static('public'), grantExpress as express.RequestHandler);
-app.use(isLoggedIn, express.static('private'));
+app.use(express.json(), sessionMiddleware, express.static('public'));
 
 
 app.use((req, res) => {
