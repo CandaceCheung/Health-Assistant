@@ -2,7 +2,6 @@ import express from 'express';
 import expressSession from 'express-session';
 import path from 'path';
 import dontenv from 'dotenv';
-import grant from 'grant';
 import Knex from 'knex';
 import { isLoggedIn } from './util/guard';
 
@@ -27,20 +26,6 @@ declare module 'express-session' {
 		user?: number;
 	}
 }
-
-const grantExpress = grant.express({
-	defaults: {
-		origin: 'https://localhost:8080',
-		transport: 'session',
-		state: true
-	},
-	google: {
-		key: process.env.GOOGLE_CLIENT_ID || '',
-		secret: process.env.GOOGLE_CLIENT_SECRET || '',
-		scope: ['profile', 'email'],
-		callback: '/login/google'
-	}
-});
 
 app.use(express.json(), sessionMiddleware, express.static('public'), grantExpress as express.RequestHandler);
 app.use(isLoggedIn, express.static('private'));

@@ -113,3 +113,7 @@ users.json
 .DS_Store
 .idea
 
+# Python module
+myenv
+
+
