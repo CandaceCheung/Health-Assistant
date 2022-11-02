@@ -25,6 +25,8 @@ body {
 header {
     text-align: center;
     padding-top: 20px;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .col-12 {
