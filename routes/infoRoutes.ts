@@ -14,7 +14,7 @@ async function saveInfo(req: Request, res: Response) {
 
         const name = req.body.name
         const height = req.body.height
-        const weight = req.body.height
+        const weight = req.body.weight
         const ageGroup = req.body.ageGroup
         const gender = req.body.gender
         const smoke = req.body?.smoke
@@ -53,6 +53,8 @@ async function saveInfo(req: Request, res: Response) {
             }).into('users')
         }
 
+        res.json({ status: true });
+
     } catch (e) {
         logger.error(e)
         res.status(500).json({ msg: 'ERR002: Failed Save User Info' })
@@ -68,6 +70,8 @@ async function deleteInfo(req: Request, res: Response) {
         await knex('users')
             .where('session_id', cookieID)
             .delete()
+
+        res.json({ status: true });
 
     } catch (e) {
         logger.error(e)

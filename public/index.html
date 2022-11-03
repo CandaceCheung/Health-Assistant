@@ -13,15 +13,15 @@
 
 <body>
 
-    <button type='button' id="delete-button">Delete User Info</button>
-
+    <button type='button' id="delete-button" class="special-button">Delete User Info</button>
+    <div id="notification-box" class="notification"></div>
 
     <div id="conetent-container">
         <header>HEALTH ASSISTANT</header>
         <div id="central-panel">
             <div class="row btn-panel">
                 <div class="col-12 btn-container">
-                    <button id="start-button" role="button" class="start-button" data-bs-toggle="modal"
+                    <button id="start-button" role="button" class="special-button" data-bs-toggle="modal"
                         data-bs-target="#start-modal">Get Started</button>
 
                 </div>
@@ -179,7 +179,8 @@
                                     <input type="checkbox" value="heart-form" id="save-info" name="save-info" unchecked />
                                     <label for="save-info">Save My Info</label><br />
                                 </div>
-                                <button id="submit-heart" type="submit" class="submit-button">
+                                <button id="submit-heart" type="submit" class="submit-button" data-bs-toggle="modal"
+                                data-bs-target="#heart-modal">
                                     Submit
                                 </button>
                             </div>

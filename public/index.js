@@ -1,4 +1,9 @@
-let username = ''
+function showNotification (msg, time){
+    const notification = document.querySelector('#notification-box')
+    notification.innerHTML = msg
+    notification.style.display = 'block'
+    setTimeout(()=>{notification.style.display = 'none'}, time)
+}
 
 document.querySelector('#heart-form').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -15,7 +20,6 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
     const exercise = form['exercise'].checked ? 1 : 0;
     const alcohol = form['alcohol'].checked ? 1 : 0;
     const BMI = parseFloat((weight / ((height / 100) ** 2)).toFixed(2))
-    username = name
 
     testData.push(BMI, smoke, alcohol, gender, ageGroup, exercise, sleep)
     console.log(testData)
@@ -40,8 +44,11 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
             body: JSON.stringify(obj)
         });
 
+        const msg = 'User Info Saved'
+        showNotification(msg, 5000)
+
         if (res.status !== 200) {
-            console.log(res.msg)
+            alert(res.msg)
         }
     }
 
@@ -53,13 +60,13 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
     //     body: JSON.stringify(testData)
     // });
 
-    const result = await res.json();
-    if (result.status !== 200) {
-        alert('ERR001: Failed to post test data')
-        document.location.reload()
-    } else {
-        console.log(result)
-    }
+    // const result = await res.json();
+    // if (result.status !== 200) {
+    //     alert('ERR001: Failed to post test data')
+    //     document.location.reload()
+    // } else {
+    //     console.log(result)
+    // }
 });
 
 document.querySelector('#delete-button').addEventListener('click', async (e)=>{
@@ -67,6 +74,9 @@ document.querySelector('#delete-button').addEventListener('click', async (e)=>{
     const res = await fetch('/test', {
         method: 'DELETE'
     });
+
+    const msg = 'User Info Deleted'
+    showNotification(msg, 5000)
 
     if (res.status !== 200){
         alert(res.msg)
