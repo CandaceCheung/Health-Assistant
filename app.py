@@ -2,7 +2,6 @@ from sanic import Sanic
 from sanic.response import json
 import tensorflow as tf
 import numpy as np
-from heart import test_heart_disease
 
 app = Sanic("Python-Hosted-Model")
 
