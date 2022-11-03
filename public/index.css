@@ -8,7 +8,13 @@ body {
 }
 
 .selection {
-    min-width: 120px;
+  min-width: 120px;
+}
+
+#delete-button {
+  position:fixed;
+  bottom: 30px;
+  left: 30px;
 }
 
 .modal-footer{

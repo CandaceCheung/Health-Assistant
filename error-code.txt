@@ -1,0 +1,4 @@
+ERR001: Failed to Post Test Data // infoRoutes/ saveInfo
+ERR002: Failed Save User Info // infoRoutes/ saveInfo
+ERR003: Cannot Find User Data // infoRoutes/ deleteInfo
+ERR004: Unable to Delete User Info // infoRoutes/ deleteInfo
