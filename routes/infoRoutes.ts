@@ -68,6 +68,7 @@ async function saveInfo(req: Request, res: Response) {
         const exercise = req.body?.exercise
         const alcohol = req.body?.alcohol
         // diabetes
+        
         const cookieID = req.cookies['connect.sid']
 
 

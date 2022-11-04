@@ -264,8 +264,17 @@ document
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
             body: JSON.stringify(testData),
         });
+
+        const result = await res.json();
+        if (res.status !== 200) {
+            alert("ERR002: Failed to post test data");
+            document.location.reload();
+        } else {
+            const testResult = result.result.data[0];
+            const diabetes = testResult[""]
+        }
 
     });
