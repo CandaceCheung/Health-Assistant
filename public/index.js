@@ -94,7 +94,7 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
     testData.push(BMI, smoke, alcohol, gender, ageGroup, exercise, sleep)
     console.log(testData)
 
-    if (saveInfo) {
+    if (saveInfo) {  
         const obj = {
             name: name,
             height: height,
@@ -193,8 +193,45 @@ document.querySelector('#delete-button').addEventListener('click', async (e)=>{
     }
 })
 
-document.querySelector('#close-test-result')
-    .addEventListener('click', ()=>{
-        const resultBox = document.querySelector('#test-result-container')
-        resultBox.style.display = 'none' 
-    })
+
+document.querySelector("#diabetes-form").addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target
+    const saveInfo = form['save-info'].checked ? 1 : 0
+    const name = form['name'].value;
+    const pregnancies = form['pregnancies'].value;
+    const glucose = form['glucose'].value;
+    const bloodPressure = form['blood-pressure'].value;
+    const skinThickness = form['skin-thickness'].value;
+    const insulin = form['insulin'].value;
+    const bmi = form['bmi'].value;
+    const pedigree = form['pedigree'].value;
+    const age = form['age'].value;
+
+    // save info ??
+    if (saveInfo) {
+    const obj = {
+        name: name,
+        glucose: glucose,
+        pregnancies: pregnancies,
+        bloodPressure: bloodPressure,
+        skinThickness: skinThickness,
+        insulin: insulin, 
+        bmi: bmi,
+        pedigree: pedigree,
+        age: age
+    }
+
+    const res = await fetch('http://127.0.0.1:5000/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    });
+
+    const collection = document.getElementsByClassName("card-text");
+    collection[0].innerHTML = await res.text()
+    }
+
+});
