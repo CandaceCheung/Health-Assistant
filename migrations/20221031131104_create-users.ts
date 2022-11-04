@@ -13,7 +13,12 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('sleep')
         table.integer('exercise')
         table.integer('alcohol')
-        table.integer('smoke')
+        table.integer('smoke');
+        table.integer('glucose');
+        table.integer('blood-pressure');
+        table.integer('insulin');
+        table.integer('pedigree');
+        table.integer('actual-age')
         table.string('session_id');
     })
 

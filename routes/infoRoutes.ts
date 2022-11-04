@@ -31,7 +31,8 @@ async function getInfo(req: Request, res: Response) {
                 smoke: result.smoke,
                 sleep: result.sleep,
                 exercise: result.exercise,
-                alcohol: result.alcohol
+                alcohol: result.alcohol,
+
             }
 
             res.json({
@@ -66,7 +67,10 @@ async function saveInfo(req: Request, res: Response) {
         const sleep = req.body?.sleep
         const exercise = req.body?.exercise
         const alcohol = req.body?.alcohol
+        // diabetes
         const cookieID = req.cookies['connect.sid']
+
+
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
 
