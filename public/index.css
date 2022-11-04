@@ -140,7 +140,7 @@ header {
 }
 
 .test-button {
-    min-width: 200px;
+    min-width: 350px;
     font-weight:800;
   --b: 3px;   /* border thickness */
   --s: .45em; /* size of the corner */
