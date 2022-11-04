@@ -53,7 +53,8 @@
                     <button id="pending1" role="button" class="test-button">PENDING</button>
                 </div>
                 <div class="col-4 btn-container">
-                    <button id="pending2" role="button" class="test-button">LIVER</button>
+                    <button id="liver-disease" role="button" class="test-button" data-bs-toggle="modal"
+                    data-bs-target="#liver-modal">LIVER DISEASE</button>
                 </div>
 
             </div>
@@ -390,7 +391,57 @@
     </div>
 
     <!-- liver modal -->
-
+    <div class="modal fade" id="liver-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div></div>
+                    <h5 class="modal-title">Liver Disease Prediction</h5>
+                    <div class="exit-modal">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group-diabetes">
+                        <form id="liver-form">
+                            <div class="mb-3">
+                                <label for="user-name" class="form-label">Your name?</label>
+                                <input name="name" type="text" class="form-control" id="user-name" placeholder="Input Your Name"
+                                    value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pregnancies-input" class="form-label">Pregnancies</label>
+                                <input name="pregnancies" type="number" class="form-control" id="pregnancies-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="blood-pressure-input" class="form-label">Blood Pressure</label>
+                                <input name="blood-pressure" type="number" class="form-control" id="blood-pressure-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pedigree-function-input" class="form-label">Pedigree
+                                    Function</label>
+                                <input name="pedigree" type="number" class="form-control" id="pedigree-function-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="age-input" class="form-label">Age</label>
+                                <input name="age" type="number" class="form-control" id="age-input">
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <input type="checkbox" id="save-info" name="save-info" unchecked />
+                                    <label for="save-info">Save My Info</label><br />
+                                </div>
+                                <button id="submit-diabetes" type="submit" class="submit-button">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

@@ -196,6 +196,7 @@ document.querySelector('#delete-button').addEventListener('click', async (e)=>{
 
 document.querySelector("#diabetes-form").addEventListener('submit', async (e) => {
     e.preventDefault();
+    const testData = []
     const form = e.target
     const saveInfo = form['save-info'].checked ? 1 : 0
     const name = form['name'].value;
@@ -221,7 +222,7 @@ document.querySelector("#diabetes-form").addEventListener('submit', async (e) =>
         age: age
     }
 
-    const res = await fetch('http://127.0.0.1:5000/', {
+    const res = await fetch('http://', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
