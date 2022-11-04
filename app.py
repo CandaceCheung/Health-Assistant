@@ -6,7 +6,7 @@ import numpy as np
 app = Sanic("Python-Hosted-Model")
 
 heart_model = tf.saved_model.load('./heart/notebook/model')
-# diabetes_model = tf.saved_model.load('./diabetes/notebook/model')
+diabetes_model = tf.saved_model.load('./diabetes/notebook/model')
 
 @app.post("/index/test/heart")
 def callModel(request):
