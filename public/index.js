@@ -208,7 +208,6 @@ document.querySelector("#diabetes-form").addEventListener('submit', async (e) =>
     const pedigree = form['pedigree'].value;
     const age = form['age'].value;
 
-    // save info ??
     if (saveInfo) {
     const obj = {
         name: name,
