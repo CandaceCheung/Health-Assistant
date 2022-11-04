@@ -453,7 +453,61 @@
         </div>
     </div>
 
-
+    <!-- stroke modal -->
+    <div class="modal fade" id="stroke-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div></div>
+                    <h5 class="modal-title">Stroke Prediction</h5>
+                    <div class="exit-modal">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group-stroke">
+                        <form id="stroke-form">
+                            <div class="mb-3">
+                                <label for="user-name" class="form-label">Your name?</label>
+                                <input name="name" type="text" class="form-control" id="user-name"
+                                    placeholder="Input Your Name" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="age-input" class="form-label">Age</label>
+                                <input name="age" type="number" class="form-control" id="age-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="height-input" class="form-label">Age</label>
+                                <input name="height" type="number" class="form-control" id="height-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="weight-input" class="form-label">Age</label>
+                                <input name="weight" type="number" class="form-control" id="weight-input">
+                            </div>
+                            <div class="input-panel mb-3">
+                                <div class="form-header">Sex</div>
+                                <select name="gender" id="stroke-gender" class="selection">
+                                    <option value="null">Select</option>
+                                    <option value="0">Female</option>
+                                    <option value="1">Male</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <input type="checkbox" id="save-info" name="save-info" unchecked />
+                                    <label for="save-info">Save My Info</label><br />
+                                </div>
+                                <button id="submit-stroke" type="submit" class="submit-button">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">

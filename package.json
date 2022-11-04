@@ -7,7 +7,7 @@
 		"start": "ts-node-dev app.ts"
 	},
 	"repository": "git+https://github.com/cmyip6/Health-Assistant.git",
-	"author": "",
+	"author": "Ryan Ho <coldryan84@gmail.com>",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/cmyip6/Health-Assistant/issues"
@@ -27,7 +27,7 @@
 		"cross-fetch": "^3.1.5",
 		"date-fns": "^2.29.3",
 		"dotenv": "^16.0.3",
-		"express": "^4.18.1",
+		"express": "^4.18.2",
 		"express-session": "^1.17.3",
 		"grant": "^5.4.21",
 		"jsonfile": "^6.1.0",
