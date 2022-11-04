@@ -79,3 +79,4 @@ async function deleteInfo(req: Request, res: Response) {
     }
 
 }
+
