@@ -115,6 +115,7 @@ users.json
 
 # Python module
 myenv
+haenv
 
 tf_python
 

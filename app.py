@@ -5,12 +5,15 @@ import numpy as np
 
 app = Sanic("Python-Hosted-Model")
 
-@app.post("/heart")
+heart_model = tf.saved_model.load('./heart/notebook/model')
+
+@app.post("/index/test/heart")
 def callModel(request):
-    model = tf.saved_model.load('./heart/notebook/model/saved_model.pb')
     content = request.json
+    print (content)
+    
     predict_dataset = tf.convert_to_tensor(content)
-    predictions = model(predict_dataset, training=False)
+    predictions = heart_model(predict_dataset, training=False)
     probs = tf.nn.softmax(predictions)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
@@ -21,6 +24,8 @@ def callModel(request):
         else: 
             decision = "No" 
         results.append({"Heart Disease": decision,"probability": float(p)})
+    
+    print(results)
     return json({"data":results})
 
 
