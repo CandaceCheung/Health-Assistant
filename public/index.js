@@ -169,7 +169,7 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
-                Your risk for developing a Heart Disease is : <div id='heart-disease-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
+                Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
             `
             
         resultBox.style.display = 'block'
