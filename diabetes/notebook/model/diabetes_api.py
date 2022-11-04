@@ -25,4 +25,3 @@ def diabetes():
     print(request.json.get('pregnancies'))
     # a = model.predict(np.array(x).reshape((1,8)))
     return "<strong>Prediction:</strong> %s"
-
