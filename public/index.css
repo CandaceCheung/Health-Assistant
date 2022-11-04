@@ -9,8 +9,8 @@ body {
 }
 
 #conetent-container{
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 #test-result-container {
@@ -28,7 +28,6 @@ body {
   transform: translate(-50%, -50%);
   animation-name: fade;
 }
-
 @keyframes fade {
 	0% {
 		opacity: 0;
@@ -37,6 +36,11 @@ body {
 	100% {
 		opacity: 1;
 	}
+}
+
+#split-container{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 #test-result {
@@ -57,7 +61,7 @@ body {
 
 .notification {
   display: none;
-  font-size: 20px;
+  font-size: 16;
   text-align: center;
   outline-color: #FF6314;
   outline-width: 10px;

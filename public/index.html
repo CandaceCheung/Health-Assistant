@@ -118,44 +118,46 @@
 
                             <div class="mb-3">
                                 <label for="height" class="form-label">Your height? (cm)</label>
-                                <input type="number" class="form-control" name="height" id="heart-height" min="0" max="300"
-                                    value="" required />
+                                <input type="number" class="form-control" name="height" id="heart-height" min="0"
+                                    max="300" value="" required />
                             </div>
 
                             <div class="mb-3">
                                 <label for="weight" class="form-label">Your weight? (kg)</label>
-                                <input type="number" class="form-control" name="weight" id="heart-weight" min="0" max="300"
-                                    value="" required />
-                            </div>
-                            
-                            <div class="input-panel mb-3">
-                                <div class="form-header">Age Group</div>
-                                <select name="age" id="heart-age" class="selection">
-                                    <option value="null">Select</option>
-                                    <option value="0">0 - 17</option>
-                                    <option value="1">18 - 24</option>
-                                    <option value="2">25 - 29</option>
-                                    <option value="3">30 - 34</option>
-                                    <option value="4">35 - 39</option>
-                                    <option value="5">40 - 44</option>
-                                    <option value="6">45 - 49</option>
-                                    <option value="7">50 - 54</option>
-                                    <option value="8">55 - 59</option>
-                                    <option value="9">60 - 64</option>
-                                    <option value="10">65 - 69</option>
-                                    <option value="11">70 - 74</option>
-                                    <option value="12">75 - 79</option>
-                                    <option value="13">80 or older</option>
-                                </select>
+                                <input type="number" class="form-control" name="weight" id="heart-weight" min="0"
+                                    max="300" value="" required />
                             </div>
 
-                            <div class="input-panel mb-3">
-                                <div class="form-header">Sex</div>
-                                <select name="gender" id="heart-gender" class="selection">
-                                    <option value="null">Select</option>
-                                    <option value="0">Female</option>
-                                    <option value="1">Male</option>
-                                </select>
+                            <div id="split-container">
+                                <div class="input-panel mb-3">
+                                    <div class="form-header">Age Group</div>
+                                    <select name="age" id="heart-age" class="selection">
+                                        <option value="null">Select</option>
+                                        <option value="0">0 - 17</option>
+                                        <option value="1">18 - 24</option>
+                                        <option value="2">25 - 29</option>
+                                        <option value="3">30 - 34</option>
+                                        <option value="4">35 - 39</option>
+                                        <option value="5">40 - 44</option>
+                                        <option value="6">45 - 49</option>
+                                        <option value="7">50 - 54</option>
+                                        <option value="8">55 - 59</option>
+                                        <option value="9">60 - 64</option>
+                                        <option value="10">65 - 69</option>
+                                        <option value="11">70 - 74</option>
+                                        <option value="12">75 - 79</option>
+                                        <option value="13">80 or older</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-panel mb-3">
+                                    <div class="form-header">Sex</div>
+                                    <select name="gender" id="heart-gender" class="selection">
+                                        <option value="null">Select</option>
+                                        <option value="0">Female</option>
+                                        <option value="1">Male</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <hr>
@@ -169,15 +171,20 @@
 
                             <div class="input-panel mb-3"></div>
                             <input type="checkbox" id="heart-exercise" name="exercise" unchecked />
-                            <label for="exercise">Do you do exercise regularly?</label><br />
+                            <label for="exercise"
+                                title="Doing physical activity or exercise during the past 30 days other than regular jobs">Do
+                                you do exercise regularly?</label><br />
 
                             <div class="input-panel mb-3"></div>
                             <input type="checkbox" id="heart-alcohol" name="alcohol" unchecked />
-                            <label for="alcohol">Do you drink alcohol regularly?</label><br />
+                            <label for="alcohol"
+                                title="Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week">Are
+                                you a heavy drinker?</label><br />
 
                             <div class="input-panel mb-3"></div>
                             <input type="checkbox" id="heart-smoke" name="smoke" unchecked />
-                            <label for="smoke">Do you smoke regularly?</label><br />
+                            <label for="smoke" title="[Note: 5 packs = 100 cigarettes]">Have you ever smoked ? ( No less than 100
+                                cigarettes )</label><br />
 
                             <div class="modal-footer">
                                 <div>
