@@ -53,6 +53,9 @@ async function getUserInfo() {
         .innerHTML = `
             Hello ! <b>${name}</b> , Which Test Would You Like To Take ?
         `
+    
+    const msg = `Hello, ${name}. Welcome back.`
+    showNotification(msg, 5000)
 
     //prefill heart disease form
 
@@ -166,7 +169,7 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
-                Your chance for developing a Heart Disease is : <div id='heart-disease-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
+                Your risk for developing a Heart Disease is : <div id='heart-disease-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
             `
             
         resultBox.style.display = 'block'
