@@ -216,7 +216,7 @@ document
         const insulin = form["insulin"].value;
         const pedigree = form["pedigree"].value;
         const weight = parseFloat(form["weight-input"].value);
-        const height = parseInt(from["height-input"]).value;
+        const height = parseInt(form["height-input"]).value;
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const age = form["actual-age"].value;
 
@@ -281,18 +281,46 @@ document
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
-            let level = "";
+            let likelihood = "";
+            let greet = "";
+            if  (diabetes === "Yes"){
+                greet = "Unfortunately"
+                likelihood = "Likely";
+            } else {
+                greet = "Good!";
+                likelihood = "Unlikely";
+            }
+
+
+            let severity = "";
             if (
                 testResult["probability"] <= 1 &&
                 testResult["probability"] >= 0.8
             ) {
-                level = "Extremely";
+                severity = "Extremely";
             }
             if (
                 testResult["probability"] < 0.8 &&
                 testResult["probability"] >= 0.6
             ) {
-                level = "";
+                severity = "Very";
             }
+            if (
+                testResult["probability"] < 0.6 &&
+                testResult["probability"] >= 0.4
+            ) {
+                severity = "Moderately";
+            }
+            if (testResult["probability"] < 0.4) {
+                severity = "Mildly";
+            }
+
+            resultBoard.innerHTML = `
+            <div id ='result-title'>${greet}</div>
+                Accordingly to our prediction, <br> 
+                Your risk for developing a Heart Disease is : 
+                <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
+                with ${probability} probability. 
+            `;
         }
     });
