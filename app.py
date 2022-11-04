@@ -45,3 +45,13 @@ def callModel(request):
     probs = tf.nn.softmax(predictions)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
+    for i, class_idx in enumerate(class_indexes):
+        p = np.max(probs[i].numpy())
+        if int(class_idx) == 1: 
+            decision = "Yes"
+        else: 
+            decision = "No" 
+        results.append({"Diabetes": decision,"probability": float(p)})
+    
+    print(results)
+    return json({"data":results})
