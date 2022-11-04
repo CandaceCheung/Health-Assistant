@@ -139,17 +139,34 @@ document.querySelector('#heart-form').addEventListener('submit', async (e) => {
         const resultBoard = document.querySelector('#test-result')
         const resultBox = document.querySelector('#test-result-container')
         
+        let likelihood = ''
         let greet = ''
         if (heartDisease == 'Yes'){
             greet = 'Oops...'
+            likelihood = 'Likely'
         } else {
             greet = 'Congratulation!'
+            likelihood = 'Unlikely'
+        }
+
+        let severity = ''
+        if (testResult['probability'] <= 1 && testResult['probability'] >= 0.8){
+            severity = 'Extremely'
+        }
+        if (testResult['probability'] < 0.8 && testResult['probability'] >= 0.6){
+            severity = 'Very'
+        }
+        if (testResult['probability'] < 0.6 && testResult['probability'] >= 0.4){
+            severity = 'Moderately'
+        }
+        if(testResult['probability'] < 0.4) {
+            severity = 'Mildly'
         }
         
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
-                Your chance for developing a Heart Disease is : <div id='heart-disease-result'> <h2>${heartDisease}</h2> </div> with ${probability} probability. 
+                Your chance for developing a Heart Disease is : <div id='heart-disease-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
             `
             
         resultBox.style.display = 'block'
