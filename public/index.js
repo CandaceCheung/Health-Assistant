@@ -260,7 +260,7 @@ document
             }
         }
 
-        const res = await fetch('/test/diabetes',{
+        const res = await fetch("/test/diabetes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -274,7 +274,25 @@ document
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
-            const diabetes = testResult[""]
-        }
+            const diabetes = testResult["Diabetes"];
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
+            const resultBoard = document.querySelector("#test-result");
+            const resultBox = document.querySelector("#test-result-container");
 
+            let level = "";
+            if (
+                testResult["probability"] <= 1 &&
+                testResult["probability"] >= 0.8
+            ) {
+                level = "Extremely";
+            }
+            if (
+                testResult["probability"] < 0.8 &&
+                testResult["probability"] >= 0.6
+            ) {
+                level = "";
+            }
+        }
     });

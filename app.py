@@ -30,18 +30,13 @@ def callModel(request):
     return json({"data":results})
 
 
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
-
-
 @app.post("/index/test/diabetes")
 def callModel(request):
     content = request.json
     print (content)
     
     predict_dataset = tf.convert_to_tensor(content)
-    predictions = heart_model(predict_dataset, training=False)
+    predictions = diabetes_model(predict_dataset, training=False)
     probs = tf.nn.softmax(predictions)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []

@@ -33,5 +33,3 @@ model.evaluate(X_test, y_test)
 
 model.save('./model',overwrite=True)
 
-
-
