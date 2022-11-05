@@ -61,8 +61,8 @@ async function saveInfo(req: Request, res: Response) {
         const name = req.body.name
         const height = req.body.height
         const weight = req.body.weight
-        const ageGroup = req.body.ageGroup
-        const gender = req.body.gender
+        const ageGroup = req.body?.ageGroup
+        const gender = req.body?.gender
         const smoke = req.body?.smoke
         const sleep = req.body?.sleep
         const exercise = req.body?.exercise
@@ -70,8 +70,6 @@ async function saveInfo(req: Request, res: Response) {
         // diabetes
         
         const cookieID = req.cookies['connect.sid']
-
-
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
 
