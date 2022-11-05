@@ -170,12 +170,13 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             severity = "Mildly";
         }
 
+        console.log("123")
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
                 Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
             `;
-
+        console.log("after 123")
         resultBox.style.display = "block";
 
         console.log(testResult);
@@ -316,7 +317,7 @@ document
             }
 
             console.log(testResult)
-            
+
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
                 Accordingly to our prediction, <br> 
@@ -326,5 +327,17 @@ document
             `;
 
             resultBox.style.display = "block";
+            
         }
+
+    });
+
+
+
+document
+    .querySelector("#close-test-result")
+    .addEventListener("click", async (e) => {
+        e.preventDefault();
+        const resultBox = document.querySelector("#test-result-container");
+        resultBox.style.display = "none";
     });
