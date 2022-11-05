@@ -24,12 +24,6 @@ const sessionMiddleware = expressSession({
 	cookie: { secure: false, httpOnly: true, maxAge: 2.628e+9 }
 });
 
-declare module 'express-session' {
-	interface SessionData {
-		user?: number 
-	}
-}
-
 app.use(cookieParser(), express.json(), sessionMiddleware, express.static('public'));
 app.use('/info', infoRoutes);
 app.use('/test', testRoutes)

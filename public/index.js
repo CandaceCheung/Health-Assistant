@@ -71,6 +71,79 @@ async function getUserInfo() {
     });
 }
 
+document.querySelector("#suicide-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    
+    const text = form["text"].value;
+
+    const obj = {
+        text: text
+    }
+
+    const res = await fetch(`/test/suicide`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+    });
+
+    const result = await res.json();
+    if (res.status !== 200) {
+        alert("ERR001: Failed to post test data");
+        document.location.reload();
+    } else {
+        const testResult = result.result.data[0];
+        const suicidalRisk = testResult["Suicide Risk"];
+        const probability = formatAsPercent(testResult["probability"] * 100);
+        const resultBoard = document.querySelector("#test-result");
+        const resultBox = document.querySelector("#test-result-container");
+
+        let likelihood = "";
+        let greet = "";
+        if (suicidalRisk == "Yes") {
+            greet = "Oops...";
+            likelihood = "High";
+        } else {
+            greet = "Congratulation!";
+            likelihood = "Low";
+        }
+
+        let severity = "";
+        if (
+            testResult["probability"] <= 1 &&
+            testResult["probability"] >= 0.8
+        ) {
+            severity = "Extremely";
+        }
+        if (
+            testResult["probability"] < 0.8 &&
+            testResult["probability"] >= 0.6
+        ) {
+            severity = "Very";
+        }
+        if (
+            testResult["probability"] < 0.6 &&
+            testResult["probability"] >= 0.4
+        ) {
+            severity = "Moderately";
+        }
+        if (testResult["probability"] < 0.4) {
+            severity = "Mildly";
+        }
+
+        console.log("123")
+        resultBoard.innerHTML = `
+            <div id ='result-title'>${greet}</div>
+            Accordingly to our prediction, <br> 
+                Input text indicates Suicidal Risk to be: <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
+            `;
+        resultBox.style.display = "block";
+    }
+});
+
 document.querySelector("#heart-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const testData = [];
