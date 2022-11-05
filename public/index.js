@@ -333,7 +333,6 @@ document
     });
 
 
-
 document
     .querySelector("#close-test-result")
     .addEventListener("click", async (e) => {
