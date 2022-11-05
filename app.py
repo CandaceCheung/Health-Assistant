@@ -35,8 +35,6 @@ def callSuicideModel(request):
     
     probs = predictions.numpy()[0]
 
-    print(probs[0])
-
     return json({"probability": f'{probs[0]}'})
 
 @app.post("/index/test/heart")
