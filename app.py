@@ -51,7 +51,7 @@ def callModel(request):
     
     print(results)
     return json({"data":results})
-
+    
 
 @app.post("/index/test/stroke")
 def callModel(request):
