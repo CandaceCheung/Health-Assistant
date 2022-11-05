@@ -95,50 +95,41 @@ document.querySelector("#suicide-form").addEventListener("submit", async (e) => 
         alert("ERR001: Failed to post test data");
         document.location.reload();
     } else {
-        const testResult = result.result.data[0];
-        const suicidalRisk = testResult["Suicide Risk"];
-        const probability = formatAsPercent(testResult["probability"] * 100);
+        const probabilityInFloat = parseFloat(result.result.probability);
+        const probability = formatAsPercent(probabilityInFloat * 100);
         const resultBoard = document.querySelector("#test-result");
         const resultBox = document.querySelector("#test-result-container");
 
-        let likelihood = "";
-        let greet = "";
-        if (suicidalRisk == "Yes") {
-            greet = "Oops...";
-            likelihood = "High";
+        let risk = '';
+        let recommendation = ''
+        let url = ''
+        if (probabilityInFloat >= 0.9){
+            risk = "Very High";
+            recommendation = "It seems like the person who wrote the text is in need for immediate support, please click on the link below to look for emergency services in your area."
+            url = 'https://www.google.com/search?q=emergency+services+for+suicide'
+        
+        }else if (probabilityInFloat >= 0.7 && probabilityInFloat < 0.9) {
+            risk = "High";
+            recommendation = "It seems like the person who wrote the text may be suffering emotionally, you may click the link below to look for more support."
+            url = 'https://suicideprevention.ca/im-concerned-about-someone/'
+
+        } else if (probabilityInFloat < 0.7 && probabilityInFloat >= 0.4){
+            risk = "Medium";
+            recommendation = "It seems like the person who wrote the text is exhibiting some depressive symptoms, you may click the link below to look for more support."
+            url = 'https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html'
+
         } else {
-            greet = "Congratulation!";
-            likelihood = "Low";
+            risk = 'Low'
+            recommendation = 'It seems like the person who wrote the text shows little to none indicator of suicidal thoughts, you could try and find more text for us to analyze or click on the link below to see some available supports.'
+            url = 'https://www.samhsa.gov/find-help/disaster-distress-helpline/warning-signs-risk-factors'
         }
 
-        let severity = "";
-        if (
-            testResult["probability"] <= 1 &&
-            testResult["probability"] >= 0.8
-        ) {
-            severity = "Extremely";
-        }
-        if (
-            testResult["probability"] < 0.8 &&
-            testResult["probability"] >= 0.6
-        ) {
-            severity = "Very";
-        }
-        if (
-            testResult["probability"] < 0.6 &&
-            testResult["probability"] >= 0.4
-        ) {
-            severity = "Moderately";
-        }
-        if (testResult["probability"] < 0.4) {
-            severity = "Mildly";
-        }
-
-        console.log("123")
         resultBoard.innerHTML = `
-            <div id ='result-title'>${greet}</div>
-            Accordingly to our prediction, <br> 
-                Input text indicates Suicidal Risk to be: <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
+            Accordingly to our analysis, <br> 
+                Input text indicates Suicidal Risk to be: <div id='test-result'> <h2>${risk}</h2> </div> <div id='probability'>with ${probability} probability.</div><br>
+                <div id='recommendation'>${recommendation}</div>
+                <a class='link' href=${url}>Link</a>
+                <button id='suicide-explain' class='explain-btn'>Explain</button
             `;
         resultBox.style.display = "block";
     }
@@ -248,8 +239,9 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
                 Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
-            `;
-        console.log("after 123")
+                <button id='heart-explain' class='explain-btn'>Explain</button
+                `;
+       
         resultBox.style.display = "block";
 
         console.log(testResult);
@@ -396,7 +388,8 @@ document
                 Accordingly to our prediction, <br> 
                 Your risk for developing a Diabetes is : 
                 <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
-                with ${probability} probability. 
+                with ${probability} probability.
+                <button id='diabetes-explain' class='explain-btn'>Explain</button
             `;
 
             resultBox.style.display = "block";

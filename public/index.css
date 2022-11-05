@@ -8,8 +8,17 @@
   justify-content: center;
 }
 
+
+.link {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+}
+
 #test-result-container {
+  font-size: 1.8vw;
   position:relative;
+  max-height: 450px;
   display: none;
   padding: 20px;
   position: fixed;
@@ -39,9 +48,9 @@
 }
 
 #test-result {
+  height: 100%;
   padding: 20px;
   text-align: center;
-  font-size: 2vw;
   border-radius: 10px;
   color: black;
   outline: #121212;
@@ -255,4 +264,39 @@ header {
   padding: 10px;
   display: flex;
   justify-content: center;
+}
+
+.explain-btn {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",sans-serif;
+  font-size: 13px;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.explain-btn:hover {
+  background-color: #f7fafa;
+}
+
+.explain-btn:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
 }

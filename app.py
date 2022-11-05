@@ -14,49 +14,33 @@ diabetes_model = tf.saved_model.load('./diabetes/notebook/model')
 stroke_model = tf.saved_model.load('./stroke/notebook/model')
 
 @app.post("/index/test/suicide")
-def callModel(request):
+def callSuicideModel(request):
     content = request.json
     
     print(content)
 
-    text_length=[]
     cleaned_text=[]
     for str in content :
         str=str.lower()
         str=nfx.remove_special_characters(str)
         str=nfx.remove_stopwords(str)
-        text_length.append(len(str.split()))
         cleaned_text.append(str)
-    
+
     tokenizer=Tokenizer()
     tokenizer.fit_on_texts(cleaned_text)
     test_text_seq= tokenizer.texts_to_sequences(cleaned_text)
     test_text_pad= pad_sequences(test_text_seq,maxlen=40)
-    predict_dataset = tf.convert_to_tensor(test_text_pad, dtype =np.float32)
+    predict_dataset = tf.convert_to_tensor(test_text_pad, dtype =float)
     predictions = suicide_model(predict_dataset, training=False)
     
-    print(predictions)
-    
-    probs = tf.nn.softmax(predictions)
-    class_indexes = tf.argmax(probs, axis = 1 ).numpy()
+    probs = predictions.numpy()[0]
 
-    print (probs)
-    print (class_indexes)
+    print(probs[0])
 
-    results = []
-    for i, class_idx in enumerate(class_indexes):
-        p = np.max(probs[i].numpy())
-        if int(class_idx) == 1: 
-            decision = "Yes"
-        else: 
-            decision = "No" 
-        results.append({"Suicide Risk": decision,"probability": float(p)})
-    
-    print(results)
-    return json({"data":results})
+    return json({"probability": f'{probs[0]}'})
 
 @app.post("/index/test/heart")
-def callModel(request):
+def callHeartModel(request):
     content = request.json
     print (content)
     
@@ -78,7 +62,7 @@ def callModel(request):
 
 
 @app.post("/index/test/diabetes")
-def callModel(request):
+def callDiabetesModel(request):
     content = request.json
     print (content)
     
@@ -102,7 +86,7 @@ def callModel(request):
     
 
 @app.post("/index/test/stroke")
-def callModel(request):
+def callStrokeModel(request):
     content = request.json
     print (content)
     
