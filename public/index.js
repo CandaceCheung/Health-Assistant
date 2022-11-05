@@ -209,16 +209,16 @@ document
         const form = e.target;
         const saveInfo = form["save-info"].checked ? 1 : 0;
         const name = form["name"].value;
-        const pregnancies = form["pregnancies"].value;
-        const glucose = form["glucose"].value;
-        const bloodPressure = form["blood-pressure"].value;
-        const skinThickness = form["skin-thickness"].value;
-        const insulin = form["insulin"].value;
-        const pedigree = form["pedigree"].value;
+        const pregnancies = parseFloat(form["pregnancies"].value);
+        const glucose = parseFloat(form["glucose"].value);
+        const bloodPressure = parseFloat(form["blood-pressure"].value);
+        const skinThickness = parseFloat(form["skin-thickness"].value);
+        const insulin = parseFloat(form["insulin"].value);
+        const pedigree = parseFloat(form["pedigree"].value);
         const weight = parseFloat(form["weight-input"].value);
-        const height = parseInt(form["height-input"]).value;
+        const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
-        const age = form["actual-age"].value;
+        const age = parseFloat(form["actual-age"].value);
 
         testData.push(
             pregnancies,
@@ -315,12 +315,16 @@ document
                 severity = "Mildly";
             }
 
+            console.log(testResult)
+            
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
                 Accordingly to our prediction, <br> 
-                Your risk for developing a Heart Disease is : 
+                Your risk for developing a Diabetes is : 
                 <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
                 with ${probability} probability. 
             `;
+
+            resultBox.style.display = "block";
         }
     });
