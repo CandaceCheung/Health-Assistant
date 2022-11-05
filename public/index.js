@@ -71,6 +71,79 @@ async function getUserInfo() {
     });
 }
 
+document.querySelector("#suicide-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    
+    const text = form["text"].value;
+
+    const obj = {
+        text: text
+    }
+
+    const res = await fetch(`/test/suicide`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+    });
+
+    const result = await res.json();
+    if (res.status !== 200) {
+        alert("ERR001: Failed to post test data");
+        document.location.reload();
+    } else {
+        const testResult = result.result.data[0];
+        const suicidalRisk = testResult["Suicide Risk"];
+        const probability = formatAsPercent(testResult["probability"] * 100);
+        const resultBoard = document.querySelector("#test-result");
+        const resultBox = document.querySelector("#test-result-container");
+
+        let likelihood = "";
+        let greet = "";
+        if (suicidalRisk == "Yes") {
+            greet = "Oops...";
+            likelihood = "High";
+        } else {
+            greet = "Congratulation!";
+            likelihood = "Low";
+        }
+
+        let severity = "";
+        if (
+            testResult["probability"] <= 1 &&
+            testResult["probability"] >= 0.8
+        ) {
+            severity = "Extremely";
+        }
+        if (
+            testResult["probability"] < 0.8 &&
+            testResult["probability"] >= 0.6
+        ) {
+            severity = "Very";
+        }
+        if (
+            testResult["probability"] < 0.6 &&
+            testResult["probability"] >= 0.4
+        ) {
+            severity = "Moderately";
+        }
+        if (testResult["probability"] < 0.4) {
+            severity = "Mildly";
+        }
+
+        console.log("123")
+        resultBoard.innerHTML = `
+            <div id ='result-title'>${greet}</div>
+            Accordingly to our prediction, <br> 
+                Input text indicates Suicidal Risk to be: <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
+            `;
+        resultBox.style.display = "block";
+    }
+});
+
 document.querySelector("#heart-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const testData = [];
@@ -170,12 +243,13 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             severity = "Mildly";
         }
 
+        console.log("123")
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
                 Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
             `;
-
+        console.log("after 123")
         resultBox.style.display = "block";
 
         console.log(testResult);
@@ -209,16 +283,16 @@ document
         const form = e.target;
         const saveInfo = form["save-info"].checked ? 1 : 0;
         const name = form["name"].value;
-        const pregnancies = form["pregnancies"].value;
-        const glucose = form["glucose"].value;
-        const bloodPressure = form["blood-pressure"].value;
-        const skinThickness = form["skin-thickness"].value;
-        const insulin = form["insulin"].value;
-        const pedigree = form["pedigree"].value;
+        const pregnancies = parseFloat(form["pregnancies"].value);
+        const glucose = parseFloat(form["glucose"].value);
+        const bloodPressure = parseFloat(form["blood-pressure"].value);
+        const skinThickness = parseFloat(form["skin-thickness"].value);
+        const insulin = parseFloat(form["insulin"].value);
+        const pedigree = parseFloat(form["pedigree"].value);
         const weight = parseFloat(form["weight-input"].value);
-        const height = parseInt(from["height-input"]).value;
+        const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
-        const age = form["actual-age"].value;
+        const age = parseFloat(form["actual-age"].value);
 
         testData.push(
             pregnancies,
@@ -260,7 +334,7 @@ document
             }
         }
 
-        const res = await fetch('/test/diabetes',{
+        const res = await fetch("/test/diabetes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -274,7 +348,68 @@ document
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
-            const diabetes = testResult[""]
+            const diabetes = testResult["Diabetes"];
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
+            const resultBoard = document.querySelector("#test-result");
+            const resultBox = document.querySelector("#test-result-container");
+
+            let likelihood = "";
+            let greet = "";
+            if  (diabetes === "Yes"){
+                greet = "Unfortunately"
+                likelihood = "Likely";
+            } else {
+                greet = "Good!";
+                likelihood = "Unlikely";
+            }
+
+
+            let severity = "";
+            if (
+                testResult["probability"] <= 1 &&
+                testResult["probability"] >= 0.8
+            ) {
+                severity = "Extremely";
+            }
+            if (
+                testResult["probability"] < 0.8 &&
+                testResult["probability"] >= 0.6
+            ) {
+                severity = "Very";
+            }
+            if (
+                testResult["probability"] < 0.6 &&
+                testResult["probability"] >= 0.4
+            ) {
+                severity = "Moderately";
+            }
+            if (testResult["probability"] < 0.4) {
+                severity = "Mildly";
+            }
+
+            console.log(testResult)
+
+            resultBoard.innerHTML = `
+            <div id ='result-title'>${greet}</div>
+                Accordingly to our prediction, <br> 
+                Your risk for developing a Diabetes is : 
+                <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
+                with ${probability} probability. 
+            `;
+
+            resultBox.style.display = "block";
+            
         }
 
+    });
+
+
+document
+    .querySelector("#close-test-result")
+    .addEventListener("click", async (e) => {
+        e.preventDefault();
+        const resultBox = document.querySelector("#test-result-container");
+        resultBox.style.display = "none";
     });
