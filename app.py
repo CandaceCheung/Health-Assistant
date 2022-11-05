@@ -42,7 +42,7 @@ def callModel(request):
     print (content)
     
     predict_dataset = tf.convert_to_tensor(content)
-    predictions = heart_model(predict_dataset, training=False)
+    predictions = diabetes_model(predict_dataset, training=False)
     probs = tf.nn.softmax(predictions)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
