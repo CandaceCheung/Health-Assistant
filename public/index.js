@@ -5,19 +5,18 @@ window.addEventListener("load", async () => {
 
 let globalName = ''
 
-function prefillUserName(){
-    if (globalName !== ''){
+function prefillUserName() {
+    if (globalName !== '') {
         const nameInputBox = document.querySelectorAll('.name')
-        nameInputBox.forEach((box)=>{
+        nameInputBox.forEach((box) => {
             box.value = globalName
         })
     } else {
-        document.querySelector('#start-button').click() 
+        document.querySelector('#start-button').click()
     }
 }
 
 document.querySelector("#name-form").addEventListener("submit", async (e) => {
-    e.preventDefault()
 
     const form = e.target;
     const name = form["name"].value;
@@ -36,12 +35,9 @@ document.querySelector("#name-form").addEventListener("submit", async (e) => {
 
     const result = await res.json()
 
-    if (res.status !== 200) {   
+    if (res.status !== 200) {
         console.log(result)
         alert(res.msg)
-    } else {
-        const msg = `Welcome, ${name}.`;
-        showNotification(msg, 5000);
     }
 })
 
@@ -85,7 +81,7 @@ async function getUserInfo() {
             Hello ! <b>${name}</b> , Which Test Would You Like To Take ?
         `;
 
-    const msg = `Hello, ${name}. Welcome back.`;
+    const msg = `Welcome, ${name}.`;
     showNotification(msg, 5000);
 
     //prefill heart disease form
@@ -238,6 +234,10 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
         const probability = formatAsPercent(testResult["probability"] * 100);
         const resultBoard = document.querySelector("#test-result");
         const resultBox = document.querySelector("#test-result-container");
+        const recommendationBoard = document.querySelector("#recommendation-text")
+        const explanationBoard = document.querySelector("#explain-text")
+        recommendationBoard.innerHTML= ''
+        explanationBoard.innerHTML= ''
 
         let likelihood = "";
         let greet = "";
@@ -272,16 +272,66 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             severity = "Mildly";
         }
 
+        const recommendations = []
+        const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
+            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`
+        const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
+            <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
+            <p href="https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed.">Link<p>
+            `
+
+        const sleepRecommendation = `<label for="sleep-recommendation" class="form-label">Sleep Habit :</label>
+            <div name='sleep-recommendation' class='form-text'>It seems that you hour of sleep is not enough, according to <i>National Sleep Foundation</i>, recommended sleep durations are as follows:<br> 14-17 hours for newborns, 12-15 hours for infants, 11-14 hours for toddlers, 10-13 hours for preschoolers, 9-11 hours for school-aged children, and 8-10 hours for teenagers. Seven to 9 hours is recommended for young adults and adults, and 7-8 hours of sleep is recommended for older adults.</div>`
+
+        const exerciseRecommendation = `<label for="exercise-recommendation" class="form-label">Exercise Habit :</label>
+            <div name='exercise-recommendation' class='form-text'>Regular, daily physical activity can lower the risk of heart disease. Physical activity helps control your weight. It also reduces the chances of developing other conditions that may put a strain on the heart, such as high blood pressure, high cholesterol and type 2 diabetes. Try running the test again at different age group and see the result!</div>`
+
+        const weightRecommendation = `<label for="exercise-recommendation" class="form-label">Weight Control :</label>
+            <div name='exercise-recommendation' class='form-text'>According to your input, your BMI(Body mass index) is ${BMI}, which is consider ${BMIClassifier(BMI)}. Click link below to see how your weight affect your health.</div>
+            <p href="https://www.hopkinsmedicine.org/health/wellness-and-prevention/weight-a-silent-heart-risk">Link<p>`
+
+        const noWorries = `<label for="exercise-recommendation" class="form-label">You Are Good to Go !</label>
+            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`
+
+
+        if (smoke) {
+            recommendations.push(smokerRecommendation)
+        }
+        if (alcohol) {
+            recommendations.push(drinkerRecommendation)
+        }
+        if (sleep < 6) {
+            recommendations.push(sleepRecommendation)
+        }
+        if (BMI >= 30 || BMI <= 18.5) {
+            recommendations.push(weightRecommendation)
+        }
+        if (exercise === 0) {
+            recommendations.push(exerciseRecommendation)
+        }
+        if (recommendations.length < 1) {
+            recommendations.push(noWorries)
+        }
+
+        for(let i =0; i< recommendations.length;i++){
+            if (i === 0){
+                recommendationBoard.innerHTML += recommendations[i]
+            } else {
+                recommendationBoard.innerHTML += '<hr>'+ recommendations[i]
+            }
+        }
+
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
                 Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
-                <button id='heart-explain' class='explain-btn'>Explain</button
+                <button id='heart-explain' class='explain-btn' data-bs-toggle="modal"
+                data-bs-target="#explain-modal">Explain</button>
+                <button id='heart-recommendation' class='recommendation-btn' data-bs-toggle="modal"
+                data-bs-target="#recommendation-modal">Recommendation</button>
                 `;
 
         resultBox.style.display = "block";
-
-        console.log(testResult);
     }
 });
 
@@ -297,7 +347,7 @@ document
             document.location.reload();
         }, 5000);
 
-        const result = await res.jon()
+        const result = await res.json()
 
         if (res.status !== 200) {
             console.log(result)
@@ -362,7 +412,7 @@ document
             const result = await res.json()
 
             if (res.status !== 200) {
-                console.log (result)
+                console.log(result)
                 alert(res.msg);
             } else {
                 const msg = "User Info Saved";
@@ -445,10 +495,32 @@ document
         resultBox.style.display = "none";
     });
 
-    function formatAsPercent(num) {
-        return new Intl.NumberFormat('default', {
-          style: 'percent',
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(num / 100);
-      }
+function formatAsPercent(num) {
+    return new Intl.NumberFormat('default', {
+        style: 'percent',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(num / 100);
+}
+
+function BMIClassifier(BMI) {
+
+    let bmi = parseFloat(BMI)
+    let category
+
+    if (bmi < 18.5) {
+        category = "Underweight";
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        category = "Normal Weight";
+    } else if (bmi >= 25 && bmi <= 29.9) {
+        category = "Overweight";
+    } else if (bmi >= 30 && bmi <= 34.9) {
+        category = "Class 1 Obesity";
+    } else if (bmi >= 35 && bmi <= 39.9) {
+        category = "Class 2 Obesity";
+    } else {
+        category = "Class 3 Obesity";
+    }
+
+    return category
+}

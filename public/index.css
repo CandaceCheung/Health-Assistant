@@ -4,6 +4,11 @@ html, body {
   padding-bottom: 70px;
 }
 
+.submit-button-box{
+  align-content: center;
+  text-align: center;
+}
+
 #user-guide-button{
   position: fixed;
   bottom: 30px;
@@ -21,8 +26,9 @@ body {
 }
 
 #result-title{
-  font-size: 30px;
+  font-size: calc(20px + 1.5vw);
   font-style: italic;
+  padding-bottom: 10px;
 }
 
 .btn-box{
@@ -50,7 +56,11 @@ body {
 }
 
 #test-result-container {
-  font-size: 1.8vw;
+  position:relative;
+  min-width: 300px;
+  overflow: auto;
+  z-index: 2;
+  font-size: calc(10px + 1vw);
   position:relative;
   max-height: 450px;
   display: none;
@@ -59,12 +69,15 @@ body {
   background-color: rgb(255, 255, 255);
   border-style: solid;
   border-width: 5px;
-  border-color: coral;
+  border-color: cornflowerblue;
   border-radius: 10px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation-name: fade;
+  animation-duration: 0.5s;
+	animation-name: fade;
+	animation-delay: 0.1s;
+	animation-fill-mode: both
 }
 @keyframes fade {
 	0% {
@@ -261,10 +274,6 @@ header {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
-
-#start-button {
-  max-width: 200px !important;
-}
 .btn-panel {
   padding: 30px;
   weight:100%;
@@ -318,6 +327,15 @@ header {
   justify-content: center;
 }
 
+.recommendation-btn{
+  min-width: 125px;
+  left:5px;
+}
+.explain-btn{
+  right:5px;
+}
+
+.recommendation-btn,
 .explain-btn {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -333,7 +351,6 @@ header {
   padding: 0 10px 0 11px;
   position: absolute;
   bottom: 5px;
-  right: 5px;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -343,16 +360,18 @@ header {
   width: 100px;
 }
 
+.recommendation-btn:hover,
 .explain-btn:hover {
   background-color: #f7fafa;
 }
-
+.recommendation-btn:focus,
 .explain-btn:focus {
   border-color: #008296;
   box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
   outline: 0;
 }
 .start-button {
+  max-width: 200px !important;
   all: unset;
   min-width: 100px;
   min-height: 30px;
@@ -376,7 +395,7 @@ header {
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: -99999;
+  z-index: -1;
   transition: all .4s;
 }
 
