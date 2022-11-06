@@ -6,6 +6,7 @@ export const infoRoutes = express.Router();
 
 infoRoutes.get('/', getInfo)
 infoRoutes.post('/', saveInfo)
+infoRoutes.post('/name', saveNameOnly)
 infoRoutes.delete('/', deleteInfo)
 
 async function getInfo(req: Request, res: Response) {
@@ -53,14 +54,49 @@ async function getInfo(req: Request, res: Response) {
     }
 }
 
+async function saveNameOnly (req: Request, res: Response){
+    try{
+        logger.debug('before DB query')
+
+        const cookieID = req.cookies['connect.sid']
+        const name = req.body.name
+
+        const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
+
+        if (!!userID){
+            await knex('users').update({
+                session_id: cookieID,
+                name: name,
+            }).where('id', userID.id)
+        } else {
+            await knex.insert({
+                session_id: cookieID,
+                name: name,
+            }).into('users')
+        }
+
+        res.json({
+            status: true,
+            msg: 'save successful'
+        })
+
+    } catch (e){
+        logger.error(e)
+        res.status(400).json({
+            msg: 'ERR007: Unable to Save User Name'
+        })
+    }
+}
+
+
 async function saveInfo(req: Request, res: Response) {
 
     try {
         logger.debug('before reading DB')
 
-        const name = req.body.name
-        const height = req.body.height
-        const weight = req.body.weight
+        const name = req.body?.name
+        const height = req.body?.height
+        const weight = req.body?.weight
         const ageGroup = req.body?.ageGroup
         const gender = req.body?.gender
         const smoke = req.body?.smoke

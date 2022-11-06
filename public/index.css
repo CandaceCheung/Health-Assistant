@@ -1,3 +1,25 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  padding-bottom: 70px;
+}
+
+#user-guide-button{
+  position: fixed;
+  bottom: 30px;
+  right:30px;
+}
+
+.btn-box {
+  padding-bottom: 10px;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
 #result-title{
   font-size: 30px;
   font-style: italic;
@@ -7,7 +29,19 @@
   display: flex;
   justify-content: center;
 }
+#to-user-guide{
+  font-size: 10px;
+  position: absolute;
+  right: -5px;
+  bottom: -10px
+}
+.save-info-box{
+  padding: 10px;
+}
 
+.selection{
+  border-color: rgb(113, 113, 113);
+}
 
 .link {
   position: absolute;
@@ -65,19 +99,20 @@
 
 .notification {
   display: none;
-  font-size: 16;
+  font-size: calc(15px + 1vw);
   text-align: center;
   outline-color: #FF6314;
   outline-width: 10px;
   padding: 20px;
-  width:150px;
-  height: 100px;
+  max-width:250px;
+  max-height: 200px;
   background-color: rgba(255, 255, 255, 0.637);
   border-radius: 10px;
   position: fixed;
-  right:20px;
-  bottom: 20px;
-  box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+  right: 30px;
+  top: 30px;
+  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-sizing: border-box;
   transition: box-shadow .2s,-webkit-box-shadow .2s;
 }
 
@@ -91,12 +126,12 @@
 @keyframes animate-fade {
 	0% {
 		opacity: 0;
-    bottom: -120px;
+    top: -120px;
 	}
 
 	100% {
 		opacity: 1;
-    bottom: 30px;
+    top: 30px;
 	}
 }
 
@@ -114,6 +149,10 @@
   left: 30px;
 }
 
+#user-guide-modal{
+  font-size: 20px;
+}
+
 .modal-footer{
     display: flex;
     justify-content: center;
@@ -128,19 +167,24 @@
 header {
     text-align: center;
     padding: 20px;
-    font-size: larger;
+    font-size: calc(15px + 2vw);
     font-weight: bolder;
 }
-
-.col-12 {
-    padding-bottom: 30px;  
-    text-align: center;
+.greeting-box{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: calc(12px + 1vw);
+  padding-bottom: 20px;
 }
-
-
 .test-button {
-    min-width: 20vw;
+    width: 20vw;
+    max-height: 100px;
+    min-height:50px;
+    min-width: 276px;
     font-weight:800;
+    font-size:calc(12px + 1vw);
   --b: 3px;   /* border thickness */
   --s: .45em; /* size of the corner */
   --color: #373B44;
@@ -154,7 +198,6 @@ header {
   transition: .3s linear, color 0s, background-color 0s;
   outline: var(--b) solid #0000;
   outline-offset: .6em;
-  font-size: 1.5vw;
 
   border: 0;
 
@@ -174,6 +217,7 @@ header {
 }
 
 .submit-button {
+  min-width: 150px;
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
@@ -224,11 +268,19 @@ header {
 .btn-panel {
   padding: 30px;
   weight:100%;
+  max-height:50vw;
   height:100%;
   margin: 0px;
 }
 
 .special-button {
+  width: 20vw;
+    max-height: 100px;
+    max-width: 200px;
+    min-height:50px;
+    min-width: 145px;
+    font-weight:800;
+    font-size:calc(12px + 1vw);
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
@@ -299,4 +351,70 @@ header {
   border-color: #008296;
   box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
   outline: 0;
+}
+.start-button {
+  all: unset;
+  min-width: 100px;
+  min-height: 30px;
+  font-size: calc(10px + 1.2vw);
+  background: transparent;
+  position: relative;
+  color: black;
+  cursor: pointer;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.start-button::after,
+.start-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all .4s;
+}
+
+.start-button::before {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+}
+
+.start-button::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #d0d0d51c;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.start-button:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.start-button:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.start-button:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
 }

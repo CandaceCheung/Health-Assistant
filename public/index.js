@@ -1,6 +1,49 @@
 window.addEventListener("load", async () => {
     await getUserInfo();
+    prefillUserName()
 });
+
+let globalName = ''
+
+function prefillUserName(){
+    if (globalName !== ''){
+        const nameInputBox = document.querySelectorAll('.name')
+        nameInputBox.forEach((box)=>{
+            box.value = globalName
+        })
+    } else {
+        document.querySelector('#start-button').click() 
+    }
+}
+
+document.querySelector("#name-form").addEventListener("submit", async (e) => {
+    e.preventDefault()
+
+    const form = e.target;
+    const name = form["name"].value;
+
+    const obj = {
+        name: name
+    }
+
+    const res = await fetch(`/info/name`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+    });
+
+    const result = await res.json()
+
+    if (res.status !== 200) {   
+        console.log(result)
+        alert(res.msg)
+    } else {
+        const msg = `Welcome, ${name}.`;
+        showNotification(msg, 5000);
+    }
+})
 
 function showNotification(msg, time) {
     const notification = document.querySelector("#notification-box");
@@ -9,14 +52,6 @@ function showNotification(msg, time) {
     setTimeout(() => {
         notification.style.display = "none";
     }, time);
-}
-
-export function formatAsPercent(num) {
-    return new Intl.NumberFormat("default", {
-        style: "percent",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    }).format(num / 100);
 }
 
 async function getUserInfo() {
@@ -43,8 +78,7 @@ async function getUserInfo() {
     const sleep = result.data.sleep;
     const exercise = result.data.exercise;
     const alcohol = result.data.alcohol;
-
-    console.log(height, weight, ageGroup);
+    globalName = name
 
     // Set greeting
     document.querySelector("#name-greet").innerHTML = `
@@ -73,9 +107,10 @@ async function getUserInfo() {
 
 document.querySelector("#suicide-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
+    console.log('123')
+
     const form = e.target;
-    
     const text = form["text"].value;
 
     const obj = {
@@ -103,17 +138,17 @@ document.querySelector("#suicide-form").addEventListener("submit", async (e) => 
         let risk = '';
         let recommendation = ''
         let url = ''
-        if (probabilityInFloat >= 0.9){
+        if (probabilityInFloat >= 0.9) {
             risk = "Very High";
             recommendation = "It seems like the person who wrote the text is in need for immediate support, please click on the link below to look for emergency services in your area."
             url = 'https://www.google.com/search?q=emergency+services+for+suicide'
-        
-        }else if (probabilityInFloat >= 0.7 && probabilityInFloat < 0.9) {
+
+        } else if (probabilityInFloat >= 0.7 && probabilityInFloat < 0.9) {
             risk = "High";
             recommendation = "It seems like the person who wrote the text may be suffering emotionally, you may click the link below to look for more support."
             url = 'https://suicideprevention.ca/im-concerned-about-someone/'
 
-        } else if (probabilityInFloat < 0.7 && probabilityInFloat >= 0.4){
+        } else if (probabilityInFloat < 0.7 && probabilityInFloat >= 0.4) {
             risk = "Medium";
             recommendation = "It seems like the person who wrote the text is exhibiting some depressive symptoms, you may click the link below to look for more support."
             url = 'https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html'
@@ -174,11 +209,14 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             body: JSON.stringify(obj),
         });
 
-        const msg = "User Info Saved";
-        showNotification(msg, 5000);
+        const result = await res.json()
 
         if (res.status !== 200) {
+            console.log(result)
             alert(res.msg);
+        } else {
+            const msg = "User Info Saved";
+            showNotification(msg, 5000);
         }
     }
 
@@ -234,14 +272,13 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             severity = "Mildly";
         }
 
-        console.log("123")
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
                 Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
                 <button id='heart-explain' class='explain-btn'>Explain</button
                 `;
-       
+
         resultBox.style.display = "block";
 
         console.log(testResult);
@@ -259,11 +296,15 @@ document
         setTimeout(() => {
             document.location.reload();
         }, 5000);
-        const msg = "User Info Deleted";
-        showNotification(msg, 5000);
+
+        const result = await res.jon()
 
         if (res.status !== 200) {
+            console.log(result)
             alert(res.msg);
+        } else {
+            const msg = "User Info Deleted";
+            showNotification(msg, 5000);
         }
     });
 
@@ -318,11 +359,14 @@ document
                 body: JSON.stringify(obj),
             });
 
-            const msg = "User Info Saved";
-            showNotification(msg, 5000);
+            const result = await res.json()
 
             if (res.status !== 200) {
+                console.log (result)
                 alert(res.msg);
+            } else {
+                const msg = "User Info Saved";
+                showNotification(msg, 5000);
             }
         }
 
@@ -349,14 +393,13 @@ document
 
             let likelihood = "";
             let greet = "";
-            if  (diabetes === "Yes"){
+            if (diabetes === "Yes") {
                 greet = "Unfortunately"
                 likelihood = "Likely";
             } else {
                 greet = "Good!";
                 likelihood = "Unlikely";
             }
-
 
             let severity = "";
             if (
@@ -381,8 +424,6 @@ document
                 severity = "Mildly";
             }
 
-            console.log(testResult)
-
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
                 Accordingly to our prediction, <br> 
@@ -392,17 +433,22 @@ document
                 <button id='diabetes-explain' class='explain-btn'>Explain</button
             `;
 
-            resultBox.style.display = "block";
-            
+            resultBox.style.display = "block"
         }
-
     });
 
 
 document
     .querySelector("#close-test-result")
-    .addEventListener("click", async (e) => {
-        e.preventDefault();
+    .addEventListener("click", () => {
         const resultBox = document.querySelector("#test-result-container");
         resultBox.style.display = "none";
     });
+
+    function formatAsPercent(num) {
+        return new Intl.NumberFormat('default', {
+          style: 'percent',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(num / 100);
+      }
