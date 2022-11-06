@@ -80,3 +80,4 @@ tf_python
 heart/dataset
 suicide-detection/dataset
 
+.DS_Store
