@@ -325,7 +325,7 @@ document
         const weight = parseFloat(form["weight-input"].value);
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
-        const age = parseFloat(form["actual-age"].value);
+        const actualAge = parseFloat(form["actual-age"].value);
 
         testData.push(
             pregnancies,
@@ -335,7 +335,7 @@ document
             insulin,
             bmi,
             pedigree,
-            age
+            actualAge
         );
 
         if (saveInfo) {
@@ -348,7 +348,7 @@ document
                 insulin: insulin,
                 bmi: bmi,
                 pedigree: pedigree,
-                age: age,
+                actualAge: actualAge,
             };
 
             const res = await fetch("/info", {

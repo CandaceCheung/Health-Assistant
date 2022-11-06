@@ -103,8 +103,13 @@ async function saveInfo(req: Request, res: Response) {
         const sleep = req.body?.sleep
         const exercise = req.body?.exercise
         const alcohol = req.body?.alcohol
-        // diabetes
-        
+        const actualAge = req.body?.actualAge
+        const pregnancies = req.body?.pregnancies
+        const glucose = req.body?.glucose
+        const bloodPressure = req.body?.bloodPressure
+        const skinThickness = req.body?.skinThickness
+        const insulin = req.body?.insulin
+        const pedigree = req.body?.pedigree
         const cookieID = req.cookies['connect.sid']
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
@@ -121,6 +126,13 @@ async function saveInfo(req: Request, res: Response) {
                 exercise: exercise,
                 sleep: sleep,
                 alcohol: alcohol,
+                actualAge: actualAge,
+                pregnancies: pregnancies,
+                glucose: glucose,
+                bloodPressure: bloodPressure,
+                skinThickness: skinThickness,
+                insulin: insulin,
+                pedigree: pedigree, 
             }).where('id', userID.id)
         } else {
             await knex.insert({
@@ -134,6 +146,13 @@ async function saveInfo(req: Request, res: Response) {
                 exercise: exercise,
                 sleep: sleep,
                 alcohol: alcohol,
+                actualAge:actualAge,
+                pregnancies:pregnancies,
+                glucose: glucose,
+                bloodPressure: bloodPressure,
+                skinThickness: skinThickness,
+                insulin: insulin,
+                pedigree: pedigree, 
             }).into('users')
         }
 
