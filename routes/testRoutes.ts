@@ -26,16 +26,23 @@ async function testSuicide(req: Request, res: Response) {
         }
 
         const result = await fetchRes.json()
-
-        res.json({
-            status: true,
-            result: result
-        });
+        
+        if (fetchRes.status !== 200){
+            res.json({
+                status: false,
+                msg: 'ERR008: Something Went Wrong When Sending Test Data to Model'
+            })
+        } else{
+            res.json({
+                status: true,
+                result: result
+            });
+        }
 
     } catch (e) {
         logger.error(e)
         res.status(400).json({
-            msg: 'ERR005: Something Went Wrong When Sending Test Data'
+            msg: 'ERR005: Something Went Wrong When Sending Test Data to Server'
         })
     }
 }

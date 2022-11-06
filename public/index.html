@@ -15,7 +15,7 @@
 
     <button type='button' id="delete-button" class="special-button">Delete Info</button>
     <div id="notification-box" class="notification"></div>
-    <div id="test-result-container">
+    <div id="test-result-container" class="container container-fluid">
         <button type="button" id='close-test-result' class="btn-close"></button>
         <div id="test-result" class="result-board"></div>
     </div>
@@ -161,7 +161,8 @@
 
                             <div class="input-panel mb-3"></div>
                             <input type="checkbox" id="heart-smoke" name="smoke" unchecked />
-                            <label for="smoke" title="[Note: 5 packs = 100 cigarettes]">Have you ever smoked ?</label><br />
+                            <label for="smoke" title="[Note: 5 packs = 100 cigarettes]">Have you ever smoked
+                                ?</label><br />
 
                             <div class="modal-footer">
                                 <div class="save-info-box">
@@ -195,7 +196,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div></div>
-                    <h5 class="modal-title">Suicide Risk Prediction</h5>
+                    <h5 class="modal-title">Suicide Risk Detection</h5>
                     <div class="exit-modal">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -204,8 +205,8 @@
                     <div class="input-group">
                         <form id="suicide-form" class="form">
                             <div class="form-text">This test is to detect suicidal thoughts and depression through
-                                sematic meaning from text. The length of the text will affect result outcome. In case of
-                                short text (eg. less than 20 words), result will be less accurate and reliable * Please
+                                sematic meaning from text. The length and the context of the text will affect result outcome. In case of
+                                short text (e.g. less than 20 words) or non-social-text (e.g. long quote, stories, instructional manual etc.), result will be less accurate and reliable * Please
                                 note that this test currently only support English, text in other languages will not
                                 yield meaningful result. *
                             </div>
@@ -218,10 +219,15 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button id="suicide-submit" type="submit" class="submit-button" data-bs-toggle="modal"
-                                    data-bs-target="#suicide-modal">
-                                    Submit
-                                </button>
+                                <div class="submit-button-box">
+                                    <button id="suicide-submit" type="submit" class="submit-button"
+                                        data-bs-toggle="modal" data-bs-target="#suicide-modal">
+                                        Submit
+                                    </button>
+                                    <button id="clear-suicide" type="button" class="submit-button">
+                                        Clear Text
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -470,7 +476,7 @@
                         <div class="modal-footer">
                             <button type="submit" class="submit-button" data-bs-dismiss="modal">Submit</button>
                             <button type="button" id='to-user-guide' class="btn btn-secondary" data-bs-toggle="modal"
-                            data-bs-target="#user-guide-modal">See User Guide</button>
+                                data-bs-target="#user-guide-modal">See User Guide</button>
                         </div>
                     </form>
                 </div>
@@ -494,7 +500,7 @@
                 <div id="explain-text">
                     <!-- insert explanation from JS -->
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Understood</button>
                 </div>
@@ -518,7 +524,7 @@
                 <div id="recommendation-text">
                     <!-- insert explanation from JS -->
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Understood</button>
                 </div>
