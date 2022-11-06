@@ -1,13 +1,19 @@
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
   padding-bottom: 70px;
 }
 
-#user-guide-button{
+.submit-button-box {
+  align-content: center;
+  text-align: center;
+}
+
+#user-guide-button {
   position: fixed;
   bottom: 30px;
-  right:30px;
+  right: 30px;
 }
 
 .btn-box {
@@ -20,69 +26,80 @@ body {
   justify-content: center;
 }
 
-#result-title{
-  font-size: 30px;
+#result-title {
+  font-size: calc(20px + 1.5vw);
   font-style: italic;
+  padding-bottom: 10px;
 }
 
-.btn-box{
+.btn-box {
   display: flex;
   justify-content: center;
 }
-#to-user-guide{
+
+#to-user-guide {
   font-size: 10px;
   position: absolute;
   right: -5px;
   bottom: -10px
 }
-.save-info-box{
+
+.save-info-box {
   padding: 10px;
 }
 
-.selection{
+.probability-result {
+  padding-bottom: 20px;
+}
+
+.selection {
   border-color: rgb(113, 113, 113);
 }
 
-.link {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-}
-
 #test-result-container {
-  font-size: 1.8vw;
-  position:relative;
-  max-height: 450px;
+  position: relative;
+  min-width: 300px;
+  min-height: 500px;
+  z-index: 2;
+  font-size: calc(10px + 1vw);
+  position: relative;
+  max-height: 500px;
   display: none;
   padding: 20px;
+  padding-bottom: 40px;
   position: fixed;
   background-color: rgb(255, 255, 255);
   border-style: solid;
   border-width: 5px;
-  border-color: coral;
+  border-color: cornflowerblue;
   border-radius: 10px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation-duration: 0.5s;
   animation-name: fade;
+  animation-delay: 0.1s;
+  animation-fill-mode: both
 }
+
 @keyframes fade {
-	0% {
-		opacity: 0;
-	}
+  0% {
+    opacity: 0;
+  }
 
-	100% {
-		opacity: 1;
-	}
+  100% {
+    opacity: 1;
+  }
 }
 
-#split-container{
+#split-container {
   display: flex;
   justify-content: space-evenly;
 }
 
 #test-result {
-  height: 100%;
+  overflow: auto;
+  max-height: 100%;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
@@ -93,7 +110,7 @@ body {
 
 #close-test-result {
   position: absolute;
-  right:0px;
+  right: 0px;
   top: 0px;
 }
 
@@ -104,39 +121,39 @@ body {
   outline-color: #FF6314;
   outline-width: 10px;
   padding: 20px;
-  max-width:250px;
+  max-width: 250px;
   max-height: 200px;
   background-color: rgba(255, 255, 255, 0.637);
   border-radius: 10px;
   position: fixed;
   right: 30px;
   top: 30px;
-  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, .1) 0 6px 20px;
   box-sizing: border-box;
-  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  transition: box-shadow .2s, -webkit-box-shadow .2s;
 }
 
 .notification {
-	animation-duration: 0.5s;
-	animation-name: animate-fade;
-	animation-delay: 0.1s;
-	animation-fill-mode: both
+  animation-duration: 0.5s;
+  animation-name: animate-fade;
+  animation-delay: 0.1s;
+  animation-fill-mode: both
 }
 
 @keyframes animate-fade {
-	0% {
-		opacity: 0;
+  0% {
+    opacity: 0;
     top: -120px;
-	}
+  }
 
-	100% {
-		opacity: 1;
+  100% {
+    opacity: 1;
     top: 30px;
-	}
+  }
 }
 
 .modal-content {
-    padding: 0px 20px 30px 20px;
+  padding: 0px 20px 30px 20px;
 }
 
 .selection {
@@ -144,33 +161,34 @@ body {
 }
 
 #delete-button {
-  position:fixed;
+  position: fixed;
   bottom: 30px;
   left: 30px;
 }
 
-#user-guide-modal{
+#user-guide-modal {
   font-size: 20px;
 }
 
-.modal-footer{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-#greeting{
-    text-align: center;
-    padding-top: 10px;
+#greeting {
+  text-align: center;
+  padding-top: 10px;
 }
 
 header {
-    text-align: center;
-    padding: 20px;
-    font-size: calc(15px + 2vw);
-    font-weight: bolder;
+  text-align: center;
+  padding: 20px;
+  font-size: calc(15px + 2vw);
+  font-weight: bolder;
 }
-.greeting-box{
+
+.greeting-box {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -178,23 +196,25 @@ header {
   font-size: calc(12px + 1vw);
   padding-bottom: 20px;
 }
+
 .test-button {
-    width: 20vw;
-    max-height: 100px;
-    min-height:50px;
-    min-width: 276px;
-    font-weight:800;
-    font-size:calc(12px + 1vw);
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
+  width: 20vw;
+  max-height: 100px;
+  min-height: 50px;
+  min-width: 276px;
+  font-weight: 800;
+  font-size: calc(12px + 1vw);
+  --b: 3px;
+  /* border thickness */
+  --s: .45em;
+  /* size of the corner */
   --color: #373B44;
-  
+
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
   color: var(--color);
   --_p: var(--s);
   background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
   transition: .3s linear, color 0s, background-color 0s;
   outline: var(--b) solid #0000;
   outline-offset: .6em;
@@ -205,12 +225,14 @@ header {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .test-button:hover,
-.test-button:focus-visible{
+.test-button:focus-visible {
   --_p: 0px;
   outline-color: var(--color);
   outline-offset: .05em;
 }
+
 .test-button:active {
   background: var(--color);
   color: #fff;
@@ -223,12 +245,12 @@ header {
   background-color: #FCFCFD;
   border-radius: 4px;
   border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   box-sizing: border-box;
   color: #36395A;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  font-family: "JetBrains Mono", monospace;
   height: 48px;
   justify-content: center;
   line-height: 1;
@@ -239,12 +261,12 @@ header {
   position: relative;
   text-align: left;
   text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
+  transition: box-shadow .15s, transform .15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
-  will-change: box-shadow,transform;
+  will-change: box-shadow, transform;
   font-size: 18px;
 }
 
@@ -262,35 +284,32 @@ header {
   transform: translateY(2px);
 }
 
-#start-button {
-  max-width: 200px !important;
-}
 .btn-panel {
   padding: 30px;
-  weight:100%;
-  max-height:50vw;
-  height:100%;
+  weight: 100%;
+  max-height: 50vw;
+  height: 100%;
   margin: 0px;
 }
 
 .special-button {
   width: 20vw;
-    max-height: 100px;
-    max-width: 200px;
-    min-height:50px;
-    min-width: 145px;
-    font-weight:800;
-    font-size:calc(12px + 1vw);
+  max-height: 100px;
+  max-width: 200px;
+  min-height: 50px;
+  min-width: 145px;
+  font-weight: 800;
+  font-size: calc(12px + 1vw);
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, .1) 0 6px 20px;
   box-sizing: border-box;
   color: #121212;
   cursor: pointer;
   display: inline-flex;
   flex: 1 1 auto;
-  font-family: Inter,sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   justify-content: center;
@@ -300,7 +319,7 @@ header {
   padding: 1rem 1.2rem;
   text-align: center;
   text-decoration: none;
-  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  transition: box-shadow .2s, -webkit-box-shadow .2s;
   white-space: nowrap;
   border: 0;
   user-select: none;
@@ -318,6 +337,28 @@ header {
   justify-content: center;
 }
 
+.link-btn {
+  position: absolute;
+  min-width: 80px;
+  left: 5px;
+  bottom: 5px;
+}
+
+.recommendation-btn {
+  position: absolute;
+  min-width: 125px;
+  left: 5px;
+  bottom: 5px;
+}
+
+.explain-btn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.link,
+.recommendation-btn,
 .explain-btn {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -327,13 +368,10 @@ header {
   color: #0f1111;
   cursor: pointer;
   display: inline-block;
-  font-family: "Amazon Ember",sans-serif;
+  font-family: "Amazon Ember", sans-serif;
   font-size: 13px;
   line-height: 29px;
   padding: 0 10px 0 11px;
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -343,19 +381,26 @@ header {
   width: 100px;
 }
 
+.link:hover,
+.recommendation-btn:hover,
 .explain-btn:hover {
   background-color: #f7fafa;
 }
 
+.link:focus,
+.recommendation-btn:focus,
 .explain-btn:focus {
   border-color: #008296;
   box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
   outline: 0;
 }
+
 .start-button {
   all: unset;
-  min-width: 100px;
+  width: 16vw;
+  max-height: 60px;
   min-height: 30px;
+  min-width: 230px;
   font-size: calc(10px + 1.2vw);
   background: transparent;
   position: relative;
@@ -370,13 +415,14 @@ header {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .start-button::after,
 .start-button::before {
   content: '';
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: -99999;
+  z-index: -1;
   transition: all .4s;
 }
 

@@ -3,56 +3,7 @@ window.addEventListener("load", async () => {
     prefillUserName()
 });
 
-let globalName = ''
-
-function prefillUserName(){
-    if (globalName !== ''){
-        const nameInputBox = document.querySelectorAll('.name')
-        nameInputBox.forEach((box)=>{
-            box.value = globalName
-        })
-    } else {
-        document.querySelector('#start-button').click() 
-    }
-}
-
-document.querySelector("#name-form").addEventListener("submit", async (e) => {
-    e.preventDefault()
-
-    const form = e.target;
-    const name = form["name"].value;
-
-    const obj = {
-        name: name
-    }
-
-    const res = await fetch(`/info/name`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(obj),
-    });
-
-    const result = await res.json()
-
-    if (res.status !== 200) {   
-        console.log(result)
-        alert(res.msg)
-    } else {
-        const msg = `Welcome, ${name}.`;
-        showNotification(msg, 5000);
-    }
-})
-
-function showNotification(msg, time) {
-    const notification = document.querySelector("#notification-box");
-    notification.innerHTML = msg;
-    notification.style.display = "block";
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, time);
-}
+let globalName = '' //Save username globally
 
 async function getUserInfo() {
     const res = await fetch("/info", {
@@ -85,7 +36,7 @@ async function getUserInfo() {
             Hello ! <b>${name}</b> , Which Test Would You Like To Take ?
         `;
 
-    const msg = `Hello, ${name}. Welcome back.`;
+    const msg = `Welcome, ${name}.`;
     showNotification(msg, 5000);
 
     //prefill heart disease form
@@ -105,7 +56,47 @@ async function getUserInfo() {
     });
 }
 
-document.querySelector("#suicide-form").addEventListener("submit", async (e) => {
+function prefillUserName() {
+    if (globalName !== '') {
+        const nameInputBox = document.querySelectorAll('.name')
+        nameInputBox.forEach((box) => {
+            box.value = globalName
+        })
+    } else {
+        document.querySelector('#start-button').click()
+    }
+}
+
+document //form submission: Username only
+    .querySelector("#name-form")
+    .addEventListener("submit", async (e) => {
+
+    const form = e.target;
+    const name = form["name"].value;
+
+    const obj = {
+        name: name
+    }
+
+    const res = await fetch(`/info/name`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+    });
+
+    const result = await res.json()
+
+    if (res.status !== 200) {
+        console.log(result)
+        alert(res.msg)
+    }
+})
+
+document //form submission: Suicide detection
+    .querySelector("#suicide-form")
+    .addEventListener("submit", async (e) => {
     e.preventDefault();
 
     console.log('123')
@@ -139,23 +130,23 @@ document.querySelector("#suicide-form").addEventListener("submit", async (e) => 
         let recommendation = ''
         let url = ''
         if (probabilityInFloat >= 0.9) {
-            risk = "Very High";
-            recommendation = "It seems like the person who wrote the text is in need for immediate support, please click on the link below to look for emergency services in your area."
+            risk = "High";
+            recommendation = "Our program detects that the text contains a hugh amount of words were also used in suicide notes, results show significant correlation between the text and our suicide notes database. You may click on the link below to look for emergency services in your area."
             url = 'https://www.google.com/search?q=emergency+services+for+suicide'
 
         } else if (probabilityInFloat >= 0.7 && probabilityInFloat < 0.9) {
-            risk = "High";
-            recommendation = "It seems like the person who wrote the text may be suffering emotionally, you may click the link below to look for more support."
+            risk = "Medium";
+            recommendation = "Our program detects a relative large amount of words in this text were also used in suicide notes, result suggests a high correlation between the text and our suicide notes data. You may click the link below to look for more support."
             url = 'https://suicideprevention.ca/im-concerned-about-someone/'
 
-        } else if (probabilityInFloat < 0.7 && probabilityInFloat >= 0.4) {
-            risk = "Medium";
-            recommendation = "It seems like the person who wrote the text is exhibiting some depressive symptoms, you may click the link below to look for more support."
+        } else if (probabilityInFloat < 0.7 && probabilityInFloat >= 0.5) {
+            risk = "Low";
+            recommendation = "Our programs detects that the text is containing some sematic similarities to suicide notes, but statistically the result shows insignificant correlation to suicidal thoughts. You may click the link below to look for more support."
             url = 'https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html'
 
         } else {
-            risk = 'Low'
-            recommendation = 'It seems like the person who wrote the text shows little to none indicator of suicidal thoughts, you could try and find more text for us to analyze or click on the link below to see some available supports.'
+            risk = 'None'
+            recommendation = 'Our programs detects few of the words in this text was sometime used by people who committed suicide in their suicide notes, but statistically the result shows no correlation to suicidal thoughts. You could try and find more text for us to analyze or click on the link below to see some available supports.'
             url = 'https://www.samhsa.gov/find-help/disaster-distress-helpline/warning-signs-risk-factors'
         }
 
@@ -163,14 +154,17 @@ document.querySelector("#suicide-form").addEventListener("submit", async (e) => 
             Accordingly to our analysis, <br> 
                 Input text indicates Suicidal Risk to be: <div id='test-result'> <h2>${risk}</h2> </div> <div id='probability'>with ${probability} probability.</div><br>
                 <div id='recommendation'>${recommendation}</div>
-                <a class='link' href=${url}>Link</a>
-                <button id='suicide-explain' class='explain-btn'>Explain</button
+                <button type="button" class='link link-btn' onclick="window.location.href = '${url}';"> Link </button>  
+                <button id='suicide-explain' class='explain-btn' data-bs-toggle="modal"
+                data-bs-target="#explain-modal">Explain</button>
             `;
         resultBox.style.display = "block";
     }
 });
 
-document.querySelector("#heart-form").addEventListener("submit", async (e) => {
+document //form submission: Heart Disease
+    .querySelector("#heart-form")
+    .addEventListener("submit", async (e) => {
     e.preventDefault();
     const testData = [];
     const form = e.target;
@@ -238,6 +232,10 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
         const probability = formatAsPercent(testResult["probability"] * 100);
         const resultBoard = document.querySelector("#test-result");
         const resultBox = document.querySelector("#test-result-container");
+        const recommendationBoard = document.querySelector("#recommendation-text")
+        const explanationBoard = document.querySelector("#explain-text")
+        recommendationBoard.innerHTML = ''
+        explanationBoard.innerHTML = ''
 
         let likelihood = "";
         let greet = "";
@@ -272,43 +270,73 @@ document.querySelector("#heart-form").addEventListener("submit", async (e) => {
             severity = "Mildly";
         }
 
+        const recommendations = []
+        const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
+            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`
+        const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
+            <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed';"> Link </button>
+            `
+
+        const sleepRecommendation = `<label for="sleep-recommendation" class="form-label">Sleep Habit :</label>
+            <div name='sleep-recommendation' class='form-text'>It seems that you hour of sleep is not enough, check the link below to see some recommendation for sleep from Sleep Foundation.</div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.sleepfoundation.org/how-sleep-works/how-much-sleep-do-we-really-need';"> Link </button>
+            `
+
+        const exerciseRecommendation = `<label for="exercise-recommendation" class="form-label">Exercise Habit :</label>
+            <div name='exercise-recommendation' class='form-text'>Regular, daily physical activity can lower the risk of heart disease. Physical activity helps control your weight. It also reduces the chances of developing other conditions that may put a strain on the heart, such as high blood pressure, high cholesterol and type 2 diabetes. Try running the test again at different age group and see the result!</div>`
+
+        const weightRecommendation = `<label for="exercise-recommendation" class="form-label">Weight Control :</label>
+            <div name='exercise-recommendation' class='form-text'>According to your input, your BMI(Body mass index) is ${BMI}, which is consider ${BMIClassifier(BMI)}. Click link below to see how your weight affect your health.</div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.hopkinsmedicine.org/health/wellness-and-prevention/weight-a-silent-heart-risk';"> Link </button>
+            `
+        const noWorries = `<label for="exercise-recommendation" class="form-label">You Are Good to Go !</label>
+            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`
+
+
+        if (smoke) {
+            recommendations.push(smokerRecommendation)
+        }
+        if (alcohol) {
+            recommendations.push(drinkerRecommendation)
+        }
+        if (sleep < 6) {
+            recommendations.push(sleepRecommendation)
+        }
+        if (BMI >= 30 || BMI <= 18.5) {
+            recommendations.push(weightRecommendation)
+        }
+        if (exercise === 0) {
+            recommendations.push(exerciseRecommendation)
+        }
+        if (recommendations.length < 1) {
+            recommendations.push(noWorries)
+        }
+
+        for (let i = 0; i < recommendations.length; i++) {
+            if (i === 0) {
+                recommendationBoard.innerHTML += recommendations[i]
+            } else {
+                recommendationBoard.innerHTML += '<hr>' + recommendations[i]
+            }
+        }
+
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
             Accordingly to our prediction, <br> 
-                Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability. 
-                <button id='heart-explain' class='explain-btn'>Explain</button
+                Your risk for developing a Heart Disease is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> <div class='probability-result'> with ${probability} probability.</div>
+                <div>Click to see our recommendations below!</div>
+                <button id='heart-explain' class='explain-btn' data-bs-toggle="modal"
+                data-bs-target="#explain-modal">Explain</button>
+                <button id='heart-recommendation' class='recommendation-btn' data-bs-toggle="modal"
+                data-bs-target="#recommendation-modal">Recommendation</button>
                 `;
 
         resultBox.style.display = "block";
-
-        console.log(testResult);
     }
 });
 
-document
-    .querySelector("#delete-button")
-    .addEventListener("click", async (e) => {
-        e.preventDefault();
-        const res = await fetch("/info", {
-            method: "DELETE",
-        });
-
-        setTimeout(() => {
-            document.location.reload();
-        }, 5000);
-
-        const result = await res.jon()
-
-        if (res.status !== 200) {
-            console.log(result)
-            alert(res.msg);
-        } else {
-            const msg = "User Info Deleted";
-            showNotification(msg, 5000);
-        }
-    });
-
-document
+document //form submission: Diabetes
     .querySelector("#diabetes-form")
     .addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -362,7 +390,7 @@ document
             const result = await res.json()
 
             if (res.status !== 200) {
-                console.log (result)
+                console.log(result)
                 alert(res.msg);
             } else {
                 const msg = "User Info Saved";
@@ -435,20 +463,80 @@ document
 
             resultBox.style.display = "block"
         }
-    });
+});
 
+document //Delete user info from DB
+    .querySelector("#delete-button")
+    .addEventListener("click", async (e) => {
+        e.preventDefault();
+        const res = await fetch("/info", {
+            method: "DELETE",
+        });
 
-document
+        setTimeout(() => {
+            document.location.reload();
+        }, 5000);
+
+        const result = await res.json()
+
+        if (res.status !== 200) {
+            console.log(result)
+            alert(res.msg);
+        } else {
+            const msg = "User Info Deleted";
+            showNotification(msg, 5000);
+        }
+});
+
+document //Close test result panel
     .querySelector("#close-test-result")
     .addEventListener("click", () => {
         const resultBox = document.querySelector("#test-result-container");
         resultBox.style.display = "none";
-    });
+});
 
-    function formatAsPercent(num) {
-        return new Intl.NumberFormat('default', {
-          style: 'percent',
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(num / 100);
-      }
+document //Clear suicide detection text box
+    .querySelector('#clear-suicide')
+    .addEventListener('click', (e) => {
+        e.preventDefault()
+        document.getElementById('suicide-text').value = ''
+})
+
+function formatAsPercent(num) {
+    return new Intl.NumberFormat('default', {
+        style: 'percent',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(num / 100);
+}
+
+function BMIClassifier(BMI) {
+
+    let bmi = parseFloat(BMI)
+    let category
+
+    if (bmi < 18.5) {
+        category = "Underweight";
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        category = "Normal Weight";
+    } else if (bmi >= 25 && bmi <= 29.9) {
+        category = "Overweight";
+    } else if (bmi >= 30 && bmi <= 34.9) {
+        category = "Class 1 Obesity";
+    } else if (bmi >= 35 && bmi <= 39.9) {
+        category = "Class 2 Obesity";
+    } else {
+        category = "Class 3 Obesity";
+    }
+
+    return category
+}
+
+function showNotification(msg, time) {
+    const notification = document.querySelector("#notification-box");
+    notification.innerHTML = msg;
+    notification.style.display = "block";
+    setTimeout(() => {
+        notification.style.display = "none";
+    }, time);
+}
