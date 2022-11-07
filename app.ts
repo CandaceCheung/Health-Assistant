@@ -13,9 +13,7 @@ const knexConfig = require('./knexfile');
 const configMode = process.env.NODE_ENV || 'development';
 export const knex = Knex(knexConfig[configMode]);
 
-
 const app = express();
-
 
 const sessionMiddleware = expressSession({
 	secret: process.env.SESSION_SECRET || '',
