@@ -474,7 +474,7 @@ document //form submission: Diabetes
         }
 });
 
-document //form submission: Stroke
+document //form submission: strokes
     .querySelector("#stroke-form")
     .addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -487,10 +487,7 @@ document //form submission: Stroke
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const actualAge = parseFloat(form["actual-age"].value);
 
-        testData.push(
-            bmi,
-            actualAge
-        );
+        testData.push(bmi,actualAge);
 
         if (saveInfo) {
             const obj = {
@@ -533,9 +530,7 @@ document //form submission: Stroke
         } else {
             const testResult = result.result.data[0];
             const strokes = testResult["Strokes"];
-            const probability = formatAsPercent(
-                testResult["probability"] * 100
-            );
+            const probability = formatAsPercent(testResult["probability"] * 100);
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
