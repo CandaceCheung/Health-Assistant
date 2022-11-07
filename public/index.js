@@ -417,46 +417,49 @@ document //form submission: Diabetes
             alert("ERR002: Failed to post test data");
             document.location.reload();
         } else {
-            const testResult = result.result.data[0];
-            const diabetes = testResult["Diabetes"];
-            const probability = formatAsPercent(
-                testResult["probability"] * 100
-            );
-            const resultBoard = document.querySelector("#test-result");
-            const resultBox = document.querySelector("#test-result-container");
+            const testResult = parseFloat(result.result.data);
 
-            let likelihood = "";
-            let greet = "";
-            if (diabetes === "Yes") {
-                greet = "Unfortunately"
-                likelihood = "Likely";
-            } else {
-                greet = "Good!";
-                likelihood = "Unlikely";
-            }
+            console.log(testResult)
 
-            let severity = "";
-            if (
-                testResult["probability"] <= 1 &&
-                testResult["probability"] >= 0.8
-            ) {
-                severity = "Extremely";
-            }
-            if (
-                testResult["probability"] < 0.8 &&
-                testResult["probability"] >= 0.6
-            ) {
-                severity = "Very";
-            }
-            if (
-                testResult["probability"] < 0.6 &&
-                testResult["probability"] >= 0.4
-            ) {
-                severity = "Moderately";
-            }
-            if (testResult["probability"] < 0.4) {
-                severity = "Mildly";
-            }
+            // const diabetes = testResult["Diabetes"];
+            // const probability = formatAsPercent(
+            //     testResult["probability"] * 100
+            // );
+            // const resultBoard = document.querySelector("#test-result");
+            // const resultBox = document.querySelector("#test-result-container");
+
+            // let likelihood = "";
+            // let greet = "";
+            // if (diabetes === "Yes") {
+            //     greet = "Unfortunately"
+            //     likelihood = "Likely";
+            // } else {
+            //     greet = "Good!";
+            //     likelihood = "Unlikely";
+            // }
+
+            // let severity = "";
+            // if (
+            //     testResult["probability"] <= 1 &&
+            //     testResult["probability"] >= 0.8
+            // ) {
+            //     severity = "Extremely";
+            // }
+            // if (
+            //     testResult["probability"] < 0.8 &&
+            //     testResult["probability"] >= 0.6
+            // ) {
+            //     severity = "Very";
+            // }
+            // if (
+            //     testResult["probability"] < 0.6 &&
+            //     testResult["probability"] >= 0.4
+            // ) {
+            //     severity = "Moderately";
+            // }
+            // if (testResult["probability"] < 0.4) {
+            //     severity = "Mildly";
+            // }
 
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
@@ -465,7 +468,7 @@ document //form submission: Diabetes
                 <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
                 with ${probability} probability.
                 <button id='diabetes-explain' class='explain-btn'>Explain</button
-            `;
+            `
 
             resultBox.style.display = "block"
         }
