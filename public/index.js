@@ -16,7 +16,10 @@ async function getUserInfo() {
     const result = await res.json();
 
     if (res.status !== 200) {
-        console.log(res.msg);
+        console.log(result);
+        document.querySelector("#name-greet").innerHTML = `
+            Hello ! Which Test Would You Like To Take ?
+        `;
         return;
     }
 
@@ -32,9 +35,11 @@ async function getUserInfo() {
     globalName = name
 
     // Set greeting
-    document.querySelector("#name-greet").innerHTML = `
+    if (name) {
+        document.querySelector("#name-greet").innerHTML = `
             Hello ! <b>${name}</b> , Which Test Would You Like To Take ?
         `;
+    } 
 
     const msg = `Welcome, ${name}.`;
     showNotification(msg, 5000);
@@ -320,6 +325,7 @@ document //form submission: Heart Disease
                 recommendationBoard.innerHTML += '<hr>' + recommendations[i]
             }
         }
+        document.querySelector('#recommendation-text').style.overflow = 'auto'
 
         resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>

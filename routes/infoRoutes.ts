@@ -42,6 +42,7 @@ async function getInfo(req: Request, res: Response) {
             })
         } else {
             res.status(400).json({
+                status: false,
                 msg: 'No Saved Info'
             })
         }
@@ -49,13 +50,14 @@ async function getInfo(req: Request, res: Response) {
     } catch (e) {
         logger.error(e);
         res.status(500).json({
+            status: false,
             msg: 'ERR006: Failed to Get User Info'
         });
     }
 }
 
-async function saveNameOnly (req: Request, res: Response){
-    try{
+async function saveNameOnly(req: Request, res: Response) {
+    try {
         logger.debug('before DB query')
 
         const cookieID = req.cookies['connect.sid']
@@ -63,7 +65,7 @@ async function saveNameOnly (req: Request, res: Response){
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
 
-        if (!!userID){
+        if (!!userID) {
             await knex('users').update({
                 session_id: cookieID,
                 name: name,
@@ -80,14 +82,14 @@ async function saveNameOnly (req: Request, res: Response){
             msg: 'save successful'
         })
 
-    } catch (e){
+    } catch (e) {
         logger.error(e)
         res.status(400).json({
+            status: false,
             msg: 'ERR007: Unable to Save User Name'
         })
     }
 }
-
 
 async function saveInfo(req: Request, res: Response) {
 
@@ -132,7 +134,7 @@ async function saveInfo(req: Request, res: Response) {
                 bloodPressure: bloodPressure,
                 skinThickness: skinThickness,
                 insulin: insulin,
-                pedigree: pedigree, 
+                pedigree: pedigree,
             }).where('id', userID.id)
         } else {
             await knex.insert({
@@ -146,13 +148,13 @@ async function saveInfo(req: Request, res: Response) {
                 exercise: exercise,
                 sleep: sleep,
                 alcohol: alcohol,
-                actualAge:actualAge,
-                pregnancies:pregnancies,
+                actualAge: actualAge,
+                pregnancies: pregnancies,
                 glucose: glucose,
                 bloodPressure: bloodPressure,
                 skinThickness: skinThickness,
                 insulin: insulin,
-                pedigree: pedigree, 
+                pedigree: pedigree,
             }).into('users')
         }
 
@@ -160,7 +162,10 @@ async function saveInfo(req: Request, res: Response) {
 
     } catch (e) {
         logger.error(e)
-        res.status(500).json({ msg: 'ERR002: Failed Save User Info' })
+        res.status(500).json({
+            status: false,
+            msg: 'ERR002: Failed Save User Info'
+        })
     }
 }
 
@@ -178,7 +183,10 @@ async function deleteInfo(req: Request, res: Response) {
 
     } catch (e) {
         logger.error(e)
-        res.status(500).json({ msg: 'ERR004: Unable to Delete User Info' })
+        res.status(500).json({
+            status: false,
+            msg: 'ERR004: Unable to Delete User Info'
+        })
     }
 
 }

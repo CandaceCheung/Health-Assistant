@@ -7,6 +7,7 @@ export const testRoutes = express.Router();
 testRoutes.post('/suicide', testSuicide)
 testRoutes.post('/heart', testHeartDisease)
 testRoutes.post('/diabetes', testDiabetes)
+testRoutes.post('/stroke', testStroke)
 
 async function testSuicide(req: Request, res: Response) {
     try {
@@ -42,6 +43,7 @@ async function testSuicide(req: Request, res: Response) {
     } catch (e) {
         logger.error(e)
         res.status(400).json({
+            status: false,
             msg: 'ERR005: Something Went Wrong When Sending Test Data to Server'
         })
     }
@@ -74,6 +76,7 @@ async function testHeartDisease(req: Request, res: Response) {
     } catch (e) {
         logger.error(e)
         res.status(400).json({
+            status: false,
             msg: 'ERR005: Something Went Wrong When Sending Test Data'
         })
     }
@@ -106,12 +109,13 @@ async function testDiabetes(req: Request, res: Response) {
     } catch (e) {
         logger.error(e)
         res.status(400).json({
+            status: false,
             msg: 'ERR006: Error of sending test data.'
         })
     }
 }
 
-async function testStrokes(req: Request, res: Response) {
+async function testStroke(req: Request, res: Response) {
     try{
         logger.debug('before sending test data')
         const testData = req.body
@@ -138,6 +142,7 @@ async function testStrokes(req: Request, res: Response) {
     } catch (e) {
         logger.error(e)
         res.status(400).json({
+            status: false,
             msg: 'ERR006: Error of sending test data.'
         })
     }

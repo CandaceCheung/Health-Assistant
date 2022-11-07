@@ -5,6 +5,11 @@ body {
   padding-bottom: 70px;
 }
 
+.recommendation-text{
+  overflow: auto;
+  align-content: center;
+}
+
 .submit-button-box {
   align-content: center;
   text-align: center;
