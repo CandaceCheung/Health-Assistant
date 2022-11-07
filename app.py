@@ -29,7 +29,7 @@ def callSuicideModel(request):
     tokenizer=Tokenizer()
     tokenizer.fit_on_texts(cleaned_text)
     test_text_seq= tokenizer.texts_to_sequences(cleaned_text)
-    test_text_pad= pad_sequences(test_text_seq,maxlen=50)
+    test_text_pad= pad_sequences(test_text_seq,maxlen=100)
     predict_dataset = tf.convert_to_tensor(test_text_pad, dtype =float)
     predictions = suicide_model(predict_dataset, training=False)
     
