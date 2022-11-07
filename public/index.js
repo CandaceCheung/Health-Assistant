@@ -582,7 +582,6 @@ document //form submission: Stroke
         }
 });
 
-
 document //Delete user info from DB
     .querySelector("#delete-button")
     .addEventListener("click", async (e) => {
