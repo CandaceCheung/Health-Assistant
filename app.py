@@ -24,6 +24,8 @@ def callSuicideModel(request):
         str=str.lower()
         str=nfx.remove_special_characters(str)
         str=nfx.remove_stopwords(str)
+
+        # add email and http
         cleaned_text.append(str)
 
     tokenizer=Tokenizer()
@@ -66,8 +68,13 @@ def callDiabetesModel(request):
     
     predict_dataset = tf.convert_to_tensor(content)
     predictions = diabetes_model(predict_dataset, training=False)
+
+   # predictions = probability 
+
+    print ('this is prediction', predictions)
+
     print("predictions",predictions)
-    probs = tf.nn.softmax(predictions)
+    probs = tf.nn.softmax(predictions) e.g [0.7, 0.3] 
     print("probs", probs)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
