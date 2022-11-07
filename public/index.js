@@ -254,24 +254,24 @@ document //form submission: Heart Disease
 
         let severity = "";
         if (
-            testResult["probability"] <= 1 &&
-            testResult["probability"] >= 0.8
+            testResult["probability"] >= 0.9 ||
+            testResult["probability"] <= 0.1
         ) {
             severity = "Extremely";
         }
         if (
-            testResult["probability"] < 0.8 &&
-            testResult["probability"] >= 0.6
+            testResult["probability"] >= 0.8 && testResult["probability"] < 0.9 ||
+            testResult["probability"] <= 0.3 && testResult["probability"] > 0.1 
         ) {
             severity = "Very";
         }
         if (
-            testResult["probability"] < 0.6 &&
-            testResult["probability"] >= 0.4
+            testResult["probability"] >= 0.6 && testResult["probability"] < 0.8 ||
+            testResult["probability"] <= 0.4 && testResult["probability"] > 0.3
         ) {
             severity = "Moderately";
         }
-        if (testResult["probability"] < 0.4) {
+        if (testResult["probability"] > 0.4 && testResult["probability"] < 0.6) {
             severity = "Mildly";
         }
 
