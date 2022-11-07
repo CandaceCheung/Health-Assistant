@@ -471,6 +471,118 @@ document //form submission: Diabetes
         }
 });
 
+document //form submission: Stroke
+    .querySelector("#stroke-form")
+    .addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const testData = [];
+        const form = e.target;
+        const saveInfo = form["save-info"].checked ? 1 : 0;
+        const name = form["name"].value;
+        const weight = parseFloat(form["weight-input"].value);
+        const height = parseFloat(form["height-input"].value);
+        const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
+        const actualAge = parseFloat(form["actual-age"].value);
+
+        testData.push(
+            bmi,
+            actualAge
+        );
+
+        if (saveInfo) {
+            const obj = {
+                name: name,
+                bmi: bmi,
+                actualAge: actualAge,
+            };
+
+            const res = await fetch("/info", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(obj),
+            });
+
+            const result = await res.json()
+
+            if (res.status !== 200) {
+                console.log(result)
+                alert(res.msg);
+            } else {
+                const msg = "User Info Saved";
+                showNotification(msg, 5000);
+            }
+        }
+
+        const res = await fetch("/test/strokes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(testData),
+        });
+
+        const result = await res.json();
+        if (res.status !== 200) {
+            alert("ERR002: Failed to post test data");
+            document.location.reload();
+        } else {
+            const testResult = result.result.data[0];
+            const strokes = testResult["Strokes"];
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
+            const resultBoard = document.querySelector("#test-result");
+            const resultBox = document.querySelector("#test-result-container");
+
+            let likelihood = "";
+            let greet = "";
+            if (strokes === "Yes") {
+                greet = "Unfortunately"
+                likelihood = "Likely";
+            } else {
+                greet = "Good!";
+                likelihood = "Unlikely";
+            }
+
+            let severity = "";
+            if (
+                testResult["probability"] <= 1 &&
+                testResult["probability"] >= 0.8
+            ) {
+                severity = "Extremely";
+            }
+            if (
+                testResult["probability"] < 0.8 &&
+                testResult["probability"] >= 0.6
+            ) {
+                severity = "Very";
+            }
+            if (
+                testResult["probability"] < 0.6 &&
+                testResult["probability"] >= 0.4
+            ) {
+                severity = "Moderately";
+            }
+            if (testResult["probability"] < 0.4) {
+                severity = "Mildly";
+            }
+
+            resultBoard.innerHTML = `
+            <div id ='result-title'>${greet}</div>
+                Accordingly to our prediction, <br> 
+                Your risk for developing Stroke is : 
+                <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
+                with ${probability} probability.
+                <button id='diabetes-explain' class='explain-btn'>Explain</button
+            `;
+
+            resultBox.style.display = "block"
+        }
+});
+
+
 document //Delete user info from DB
     .querySelector("#delete-button")
     .addEventListener("click", async (e) => {
