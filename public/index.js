@@ -461,16 +461,16 @@ document //form submission: Diabetes
             //     severity = "Mildly";
             // }
 
-            resultBoard.innerHTML = `
-            <div id ='result-title'>${greet}</div>
-                Accordingly to our prediction, <br> 
-                Your risk for developing a Diabetes is : 
-                <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
-                with ${probability} probability.
-                <button id='diabetes-explain' class='explain-btn'>Explain</button
-            `
+            // resultBoard.innerHTML = `
+            // <div id ='result-title'>${greet}</div>
+            //     Accordingly to our prediction, <br> 
+            //     Your risk for developing a Diabetes is : 
+            //     <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
+            //     with ${probability} probability.
+            //     <button id='diabetes-explain' class='explain-btn'>Explain</button
+            // `
 
-            resultBox.style.display = "block"
+            // resultBox.style.display = "block"
         }
 });
 

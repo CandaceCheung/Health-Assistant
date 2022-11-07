@@ -8,7 +8,7 @@ from keras_preprocessing.sequence import pad_sequences
 
 app = Sanic("Python-Hosted-Model")
 
-suicide_model = tf.saved_model.load('./suicide-detection/model')
+suicide_model = tf.saved_model.load('./suicide-detection/notebook/model')
 heart_model = tf.saved_model.load('./heart/notebook/model')
 diabetes_model = tf.saved_model.load('./diabetes/notebook/model')
 stroke_model = tf.saved_model.load('./stroke/notebook/model')
@@ -72,7 +72,6 @@ def callDiabetesModel(request):
     predictions = str(predictions[0])
 
     print("predictions",predictions, type(predictions))
-    result = []
 
     return json({"data": predictions})
     
