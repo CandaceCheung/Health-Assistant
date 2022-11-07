@@ -24,8 +24,8 @@ def callSuicideModel(request):
         str=str.lower()
         str=nfx.remove_special_characters(str)
         str=nfx.remove_stopwords(str)
-
-        # add email and http
+        str=nfx.remove_emails(str)
+        str=nfx.remove_urls(str)
         cleaned_text.append(str)
 
     tokenizer=Tokenizer()
@@ -60,7 +60,6 @@ def callHeartModel(request):
     print(results)
     return json({"data":results})
 
-
 @app.post("/index/test/diabetes")
 def callDiabetesModel(request):
     content = request.json
@@ -68,13 +67,8 @@ def callDiabetesModel(request):
     
     predict_dataset = tf.convert_to_tensor(content)
     predictions = diabetes_model(predict_dataset, training=False)
-
-   # predictions = probability 
-
-    print ('this is prediction', predictions)
-
     print("predictions",predictions)
-    probs = tf.nn.softmax(predictions) e.g [0.7, 0.3] 
+    probs = tf.nn.softmax(predictions)
     print("probs", probs)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
@@ -89,7 +83,6 @@ def callDiabetesModel(request):
     print(results)
     return json({"data":results})
     
-
 @app.post("/index/test/stroke")
 def callStrokeModel(request):
     content = request.json
