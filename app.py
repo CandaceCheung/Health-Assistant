@@ -67,21 +67,14 @@ def callDiabetesModel(request):
     
     predict_dataset = tf.convert_to_tensor(content)
     predictions = diabetes_model(predict_dataset, training=False)
-    print("predictions",predictions)
-    probs = tf.nn.softmax(predictions) 
-    print("probs", probs)
-    class_indexes = tf.argmax(probs, axis = 1 ).numpy()
-    results = []
-    for i, class_idx in enumerate(class_indexes):
-        p = np.max(probs[i].numpy())
-        if int(class_idx) == 1: 
-            decision = "Yes"
-        else: 
-            decision = "No" 
-        results.append({"Diabetes": decision,"probability": float(p)})
     
-    print(results)
-    return json({"data":results})
+    predictions = predictions.numpy()[0]
+    predictions = str(predictions[0])
+
+    print("predictions",predictions, type(predictions))
+    result = []
+
+    return json({"data": predictions})
     
 @app.post("/index/test/stroke")
 def callStrokeModel(request):
