@@ -74,7 +74,7 @@ def callDiabetesModel(request):
     print ('this is prediction', predictions)
 
     print("predictions",predictions)
-    probs = tf.nn.softmax(predictions) e.g [0.7, 0.3] 
+    probs = tf.nn.softmax(predictions) 
     print("probs", probs)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
