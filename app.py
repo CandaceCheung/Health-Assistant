@@ -68,11 +68,7 @@ def callDiabetesModel(request):
     predict_dataset = tf.convert_to_tensor(content)
     predictions = diabetes_model(predict_dataset, training=False)
     print("predictions",predictions)
-<<<<<<< HEAD
     probs = tf.nn.softmax(predictions) 
-=======
-    probs = tf.nn.softmax(predictions)
->>>>>>> bd36ba6456ced12d88d7c27efa6752be3a620ff7
     print("probs", probs)
     class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
