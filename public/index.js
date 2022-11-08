@@ -493,20 +493,22 @@ document //form submission: strokes
         const testData = [];
         const form = e.target;
         const saveInfo = form["save-info"].checked ? 1 : 0;
-        const user = form["name"].value;
+        const name = form["name"].value;
+        const gender = parseInt(form["gender"].value);
         const weight = parseFloat(form["weight-input"].value);
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const actualAge = parseFloat(form["actual-age"].value);
 
-        testData.push(bmi, actualAge);
+        testData.push(gender,actualAge,bmi);
 
         if (saveInfo) {
             const obj = {
                 name: name,
+                gender: gender,
+                actualAge: actualAge,
                 height: height,
                 weight: weight,
-                actualAge: actualAge,
             };
 
             const res = await fetch("/info", {
@@ -528,7 +530,7 @@ document //form submission: strokes
             }
         }
 
-        const res = await fetch("/test/strokes", {
+        const res = await fetch("/test/stroke", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
