@@ -18,7 +18,7 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('blood-pressure');
         table.integer('insulin');
         table.integer('pedigree');
-        table.integer('actual-age')
+        table.integer('actual_age')
         table.string('session_id');
     })
 

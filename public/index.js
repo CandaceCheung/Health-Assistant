@@ -493,7 +493,7 @@ document //form submission: strokes
         const testData = [];
         const form = e.target;
         const saveInfo = form["save-info"].checked ? 1 : 0;
-        const name = form["name"].value;
+        const user = form["name"].value;
         const weight = parseFloat(form["weight-input"].value);
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
@@ -504,7 +504,8 @@ document //form submission: strokes
         if (saveInfo) {
             const obj = {
                 name: name,
-                bmi: bmi,
+                height: height,
+                weight: weight,
                 actualAge: actualAge,
             };
 
