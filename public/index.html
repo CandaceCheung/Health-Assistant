@@ -257,6 +257,8 @@
                     </div>
                 </div>
                 <div class="modal-body">
+                    <div class="diabetes-note mb-3"> Please fill in all the questions!</div>
+
                     <div class="input-group-diabetes">
                         <form id="diabetes-form">
                             <div class="mb-3">
@@ -265,8 +267,12 @@
                                     placeholder="Input Your Name" value="">
                             </div>
                             <div class="mb-3">
-                                <label for="gender-input" class="form-label">Gender</label>
-                                <input name="gender" type="number" class="form-control" id="gender-input">
+                                <label for="gender-select" class="form-label">Gender</label>
+                                <select class="form-select gender-select mb-3" aria-label=".form-select">
+                                    <option selected>Please select</option>
+                                    <option value="0">Women</option>
+                                    <option value="1">Man</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="age-input" class="form-label">Age</label>
@@ -283,7 +289,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Are you smoke?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                <select class="form-select form-select mb-3" aria-label=".form-select example">
                                     <option selected>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -439,7 +445,7 @@
                                     <label for="save-info">Save My Info</label><br />
                                 </div>
                                 <button id="submit-diabetes" type="submit" class="submit-button" data-bs-toggle="modal"
-                                data-bs-target="#liver-modal">
+                                    data-bs-target="#liver-modal">
                                     Submit
                                 </button>
                             </div>

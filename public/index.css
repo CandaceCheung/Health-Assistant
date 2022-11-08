@@ -482,3 +482,7 @@ header {
   transition: 0s;
   transform: translate(0, 5%);
 }
+
+.diabetes-note{
+  color: gray;
+}
