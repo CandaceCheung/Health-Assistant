@@ -14,7 +14,7 @@ async function testSuicide(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body.text
         
-        const fetchRes = await fetch('http://52.60.123.6/index/test/suicide', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/suicide', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -54,7 +54,7 @@ async function testHeartDisease(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
         
-        const fetchRes = await fetch('http://52.60.123.6/index/test/heart', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/heart', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
