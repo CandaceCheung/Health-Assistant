@@ -208,15 +208,19 @@
                     <div class="input-group">
                         <form id="suicide-form" class="form">
                             <div class="form-text">This test is to detect suicidal thoughts and depression through
-                                sematic meaning from text. The length and the context of the text will affect result outcome. In case of
-                                short text (e.g. less than 20 words) or non-social-text (e.g. long quote, stories, instructional manual etc.), result will be less accurate and reliable * Please
+                                sematic meaning from text. The length and the context of the text will affect result
+                                outcome. In case of
+                                short text (e.g. less than 20 words) or non-social-text (e.g. long quote, stories,
+                                instructional manual etc.), result will be less accurate and reliable * Please
                                 note that this test currently only support English, text in other languages will not
                                 yield meaningful result. *
                             </div>
                             <hr>
 
                             <div class="mb-3">
-                                <label for="text" class="form-label">Input Text Message:</label><span class='form-text' id="word-counter">Word Count : </span><span class="form-text" id="word-count"></span>
+                                <label for="text" class="form-label">Input Text Message:</label><span class='form-text'
+                                    id="word-counter">Word Count : </span><span class="form-text"
+                                    id="word-count"></span>
                                 <textarea type="text" class="form-control" name="text" id="suicide-text" rows="10"
                                     value="" required></textarea>
                             </div>
@@ -261,31 +265,12 @@
                                     placeholder="Input Your Name" value="">
                             </div>
                             <div class="mb-3">
-                                <label for="pregnancies-input" class="form-label">Pregnancies</label>
-                                <input name="pregnancies" type="number" class="form-control" id="pregnancies-input">
+                                <label for="gender-input" class="form-label">Gender</label>
+                                <input name="gender" type="number" class="form-control" id="gender-input">
                             </div>
                             <div class="mb-3">
-                                <label for="glucose-input" class="form-label">Glucose</label>
-                                <input name="glucose" type="number" class="form-control" id="glucose-input">
-                            </div>
-                            <div class="mb-3">
-                                <label for="blood-pressure-input" class="form-label">Blood Pressure</label>
-                                <input name="blood-pressure" type="number" class="form-control"
-                                    id="blood-pressure-input">
-                            </div>
-                            <div class="mb-3">
-                                <label for="skin-thickness-input" class="form-label">Skin Thickness</label>
-                                <input name="skin-thickness" type="number" class="form-control"
-                                    id="skin-thickness-input">
-                            </div>
-                            <div class="mb-3">
-                                <label for="insulin-input" class="form-label">Insulin</label>
-                                <input name="insulin" type="number" class="form-control" id="insulin-input">
-                            </div>
-                            <div class="mb-3">
-                                <label for="pedigree-function-input" class="form-label">Pedigree
-                                    Function</label>
-                                <input name="pedigree" type="number" class="form-control" id="pedigree-function-input">
+                                <label for="age-input" class="form-label">Age</label>
+                                <input name="actual-age" type="number" class="form-control" id="age-input">
                             </div>
                             <!-- BMI -->
                             <div class="mb-3">
@@ -297,8 +282,101 @@
                                 <input name="weight-input" type="number" class="form-control" id="weight-input">
                             </div>
                             <div class="mb-3">
-                                <label for="age-input" class="form-label">Age</label>
-                                <input name="actual-age" type="number" class="form-control" id="age-input">
+                                <label class="form-label">Are you smoke?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Did you have stroke before?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Did you have heart disease or attack before?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Did you have cholesterol check within past five years?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Have you EVER been told by a doctor, nurse or other health
+                                    professional that your blood cholesterol is high?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Do you have high blood pressure?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Do you eat fruit regularly?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Do you eat veggies regularly?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Do you do physical exercise during the past 30 days?</label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="physical-exercise-input" class="form-label">How many day(s) you do physical
+                                    exercise during the past 30 days?</label>
+                                <input name="physical-exercise-input" type="number" class="form-control"
+                                    id="physical-exercise-input" placeholder="number of day(s)">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mental-health-input" class="form-label">How many day(s) during the past 30
+                                    days was your mental health not good?<br />
+                                    (which includes stress, depression, and problems with emotions) </label>
+                                <input name="mental-health-input" type="number" class="form-control"
+                                    id="mental-health-input" placeholder="number of day(s)">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Are you a heavy drinker? <br />
+                                    (adult men having more than 14 drinks per week ; adult women having more than 7
+                                    drinks per week)
+                                </label>
+                                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
                             </div>
                             <div class="modal-footer">
                                 <div class="save-info-box">
@@ -538,7 +616,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
-    </script>
+        </script>
     <script type="module" src="index.js"></script>
 </body>
 
