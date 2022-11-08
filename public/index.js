@@ -355,16 +355,16 @@ document //form submission: Diabetes
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const gender = parseInt(form["gender"].value);
-        const smoke = parseInt (form["smoke"].value);
+        const smokeCheck = parseInt (form["smoke"].value);
         const stroke = parseInt(form["stroke"].value);
         const heartAttack = parseInt(form["heart-attack"].value);
         const cholesterolCheck = parseInt(form["cholesterol-check"].value);
         const cholesterolHigh = parseInt(form["cholesterol-high"].value);
         const bloodPressure = parseInt(form["high-blood-pressure"].value);
-        const fruit = form["fruit"].value;
-        const veggies = form["veggies"].value;
-        const exercise = form["exercise"].value;
-        const exerciseDays = form["exercise-days"].value;
+        const fruit = parseInt(form["fruit"].value);
+        const veggies = parseInt(form["veggies"].value);
+        const exerciseCheck = parseInt(form["exercise-check"].value);
+        const exerciseDays = parseInt(form["exercise-days"].value);
         const mentalHealth = parseInt(form["mental-health"].value);
         const drinker = parseInt(form["drinker"].value);
         const generalHealth = form["general-health"].value;
@@ -374,10 +374,10 @@ document //form submission: Diabetes
             cholesterolHigh,
             cholesterolCheck,
             bmi,
-            smoke,
+            smokeCheck,
             stroke,
             heartAttack,
-            exercise,
+            exerciseCheck,
             fruit,
             veggies,
             drinker,
@@ -395,14 +395,15 @@ document //form submission: Diabetes
                 bmi: bmi,
                 actualAge: actualAge,
                 gender: gender,
-                smoke: smoke,
+                smokeCheck: smokeCheck,
                 stroke: stroke,
                 heartAttack: heartAttack,
                 cholesterolCheck: cholesterolCheck, 
                 cholesterolHigh: cholesterolHigh,
+                bloodPressure: bloodPressure,
                 fruit: fruit,
                 veggies: veggies,
-                exercise: exercise,
+                exerciseCheck: exerciseCheck,
                 exerciseDays: exerciseDays,
                 mentalHealth: mentalHealth,
                 drinker: drinker,
