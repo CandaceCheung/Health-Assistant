@@ -182,9 +182,8 @@ body {
   display: flex;
 }
 
-.diabetes-gender,
 .diabetes-age {
- margin: 5px;
+ margin-left: 10px;
 }
 
 .gender-form-select,
