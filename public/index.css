@@ -178,6 +178,20 @@ body {
   min-width: 120px;
 }
 
+.gender-age-input {
+  display: flex;
+}
+
+.diabetes-gender,
+.diabetes-age {
+ margin: 5px;
+}
+
+.gender-form-select,
+.age-form-control {
+  width: 120px;
+}
+
 #delete-button {
   position: fixed;
   bottom: 30px;

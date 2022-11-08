@@ -258,6 +258,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="diabetes-note mb-3"> Please fill in all the questions!</div>
+                    <hr>
 
                     <div class="input-group-diabetes">
                         <form id="diabetes-form">
@@ -266,120 +267,139 @@
                                 <input name="name" type="text" class="form-control name" id="name"
                                     placeholder="Input Your Name" value="">
                             </div>
-                            <div class="mb-3">
-                                <label for="gender-select" class="form-label">Gender</label>
-                                <select class="form-select gender-select mb-3" aria-label=".form-select">
-                                    <option selected>Please select</option>
-                                    <option value="0">Women</option>
-                                    <option value="1">Man</option>
-                                </select>
+                            <div class="gender-age-input">
+                                <div class="diabetes-gender">
+                                    <div>
+                                        <label for="gender-form-select" class="form-label">Gender</label>
+                                    </div>
+                                    <select name="gender" id="diabetes-gender" class="form-select gender-form-select">
+                                        <option>Select</option>
+                                        <option value="0">Female</option>
+                                        <option value="1">Male</option>
+                                    </select>
+                                </div>
+                                <div class="diabetes-age">
+                                    <div>
+                                        <label for="actual-age" class="form-label diabetes-age">Age</label>
+                                    </div>
+                                    <input name="actual-age" type="number" class="form-control age-form-control"
+                                        id="actual-age" min="0">
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="age-input" class="form-label">Age</label>
-                                <input name="actual-age" type="number" class="form-control" id="age-input">
-                            </div>
+
                             <!-- BMI -->
                             <div class="mb-3">
                                 <label for="height-input" class="form-label">Your height? (cm) </label>
-                                <input name="height-input" type="number" class="form-control" id="height-input">
+                                <input name="height-input" type="number" class="form-control" id="height-input" min="0">
                             </div>
                             <div class="mb-3">
                                 <label for="weight-input" class="form-label">Your weight? (kg) </label>
-                                <input name="weight-input" type="number" class="form-control" id="weight-input">
+                                <input name="weight-input" type="number" class="form-control" id="weight-input" min="0">
                             </div>
+                            <!--  -->
                             <div class="mb-3">
-                                <label class="form-label">Are you smoke?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="smoke" class="form-label">Are you smoke?</label>
+                                <select name="smoke" class="form-select form-select mb-3" aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Did you have stroke before?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="stroke" class="form-label">Did you have stroke before?</label>
+                                <select name="stroke" class="form-select form-select mb-3" aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Did you have heart disease or attack before?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="heart-attack" class="form-label">Did you have heart disease or attack
+                                    before?</label>
+                                <select name="heart-attack" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Did you have cholesterol check within past five years?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="cholesterol-check" class="form-label">Did you have cholesterol check within
+                                    past five years?</label>
+                                <select name="cholesterol-check" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Have you EVER been told by a doctor, nurse or other health
+                                <label for="cholesterol-high" class="form-label">Have you ever been told by a doctor,
+                                    nurse or other health
                                     professional that your blood cholesterol is high?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <select name="cholesterol-high" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Do you have high blood pressure?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="high-blood-pressure" class="form-label">Do you have high blood
+                                    pressure?</label>
+                                <select name="high-blood-pressure" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Do you eat fruit regularly?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="fruit" class="form-label">Do you eat fruit regularly?</label>
+                                <select name="fruit" class="form-select form-select mb-3" aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Do you eat veggies regularly?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="veggies" class="form-label">Do you eat veggies regularly?</label>
+                                <select name="veggies" class="form-select form-select mb-3" aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Do you do physical exercise during the past 30 days?</label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <label for="exercise" class="form-label">Do you do physical exercise during the past 30
+                                    days?</label>
+                                <select name="exercise" class="form-select form-select mb-3" aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="physical-exercise-input" class="form-label">How many day(s) you do physical
+                                <label for="exercise-days" class="form-label">How many day(s) you do physical
                                     exercise during the past 30 days?</label>
-                                <input name="physical-exercise-input" type="number" class="form-control"
-                                    id="physical-exercise-input" placeholder="number of day(s)">
+                                <input name="exercise-days" type="number" class="form-control"
+                                    id="physical-exercise-input" placeholder="number of day(s)" min="0">
                             </div>
                             <div class="mb-3">
-                                <label for="mental-health-input" class="form-label">How many day(s) during the past 30
+                                <label for="mental-health" class="form-label">How many day(s) during the past 30
                                     days was your mental health not good?<br />
                                     (which includes stress, depression, and problems with emotions) </label>
-                                <input name="mental-health-input" type="number" class="form-control"
-                                    id="mental-health-input" placeholder="number of day(s)">
+                                <input name="mental-health" type="number" class="form-control"
+                                    id="mental-health-input" placeholder="number of day(s)" min="0">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Are you a heavy drinker? <br />
-                                    (adult men having more than 14 drinks per week ; adult women having more than 7
+                                <label for="drinker" class="form-label">Are you a heavy drinker? <br />
+                                    (adult men having more than 14 drinks per week ; <br />
+                                    adult women having more than 7
                                     drinks per week)
                                 </label>
-                                <select class="form-select form-select mb-3" aria-label=".form-select ">
-                                    <option selected>Please select</option>
+                                <select name="drinker" class="form-select form-select mb-3" aria-label=".form-select ">
+                                    <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>

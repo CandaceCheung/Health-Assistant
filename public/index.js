@@ -350,39 +350,46 @@ document //form submission: Diabetes
         const form = e.target;
         const saveInfo = form["save-info"].checked ? 1 : 0;
         const name = form["name"].value;
-        const pregnancies = parseFloat(form["pregnancies"].value);
-        const glucose = parseFloat(form["glucose"].value);
-        const bloodPressure = parseFloat(form["blood-pressure"].value);
-        const skinThickness = parseFloat(form["skin-thickness"].value);
-        const insulin = parseFloat(form["insulin"].value);
-        const pedigree = parseFloat(form["pedigree"].value);
+        const actualAge = parseInt(form["actual-age"].value);
         const weight = parseFloat(form["weight-input"].value);
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
-        const actualAge = parseFloat(form["actual-age"].value);
+        const gender = parseInt(form["gender"].value);
+        const smoke = form["smoke"].value;
+        const stroke = form["stroke"].value;
+        const heartAttack = form["heart-attack"].value;
+        const cholesterolCheck = form["cholesterol-check"].value;
+        const cholesterolHigh = form["cholesterol-high"].value;
+        const bloodPressure = form["high-blood-pressure"].value;
+        const fruit = form["fruit"].value;
+        const veggies = form["veggies"].value;
+        const exercise = form["exercise"].value;
+        const exerciseDays = form["exercise-days"].value;
+        const mentalHealth = parseInt(form["mental-health"].value);
+        const drinker = form["drinker"].value;
 
         testData.push(
-            pregnancies,
-            glucose,
-            bloodPressure,
-            skinThickness,
-            insulin,
-            bmi,
-            pedigree,
-            actualAge
+            bloodPressure,cholesterolHigh,cholesterolCheck
         );
+        console.log(testData);
 
         if (saveInfo) {
             const obj = {
                 name: name,
-                glucose: glucose,
-                pregnancies: pregnancies,
-                bloodPressure: bloodPressure,
-                skinThickness: skinThickness,
-                insulin: insulin,
                 bmi: bmi,
-                pedigree: pedigree,
                 actualAge: actualAge,
+                gender: gender,
+                smoke: smoke,
+                stroke: stroke,
+                heartAttack: heartAttack,
+                cholesterolCheck: cholesterolCheck, 
+                cholesterolHigh: cholesterolHigh,
+                fruit: fruit,
+                veggies: veggies,
+                exercise: exercise,
+                exerciseDays: exerciseDays,
+                mentalHealth: mentalHealth,
+                drinker: drinker,
             };
 
             const res = await fetch("/info", {
