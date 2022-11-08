@@ -208,15 +208,19 @@
                     <div class="input-group">
                         <form id="suicide-form" class="form">
                             <div class="form-text">This test is to detect suicidal thoughts and depression through
-                                sematic meaning from text. The length and the context of the text will affect result outcome. In case of
-                                short text (e.g. less than 20 words) or non-social-text (e.g. long quote, stories, instructional manual etc.), result will be less accurate and reliable * Please
+                                sematic meaning from text. The length and the context of the text will affect result
+                                outcome. In case of
+                                short text (e.g. less than 20 words) or non-social-text (e.g. long quote, stories,
+                                instructional manual etc.), result will be less accurate and reliable * Please
                                 note that this test currently only support English, text in other languages will not
                                 yield meaningful result. *
                             </div>
                             <hr>
 
                             <div class="mb-3">
-                                <label for="text" class="form-label">Input Text Message:</label><span class='form-text' id="word-counter">Word Count : </span><span class="form-text" id="word-count"></span>
+                                <label for="text" class="form-label">Input Text Message:</label><span class='form-text'
+                                    id="word-counter">Word Count : </span><span class="form-text"
+                                    id="word-count"></span>
                                 <textarea type="text" class="form-control" name="text" id="suicide-text" rows="10"
                                     value="" required></textarea>
                             </div>
@@ -416,15 +420,20 @@
                                     <input type="checkbox" id="save-info" name="save-info" unchecked />
                                     <label for="save-info">Save My Info</label><br />
                                 </div>
-                                <button id="submit-stroke" type="submit" class="submit-button">
+                                <button id="submit-heart" type="submit" class="submit-button" data-bs-toggle="modal"
+                                    data-bs-target="#stroke-modal">
                                     Submit
                                 </button>
+                                <button id="prefill-stroke" type="submit" class="submit-button">
+                                    Pre-fill Info
+                                </button>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- User Guide Modal -->
@@ -538,7 +547,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
-    </script>
+        </script>
     <script type="module" src="index.js"></script>
 </body>
 
