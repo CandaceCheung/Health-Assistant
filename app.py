@@ -46,17 +46,18 @@ def callHeartModel(request):
     
     predict_dataset = tf.convert_to_tensor(content)
     predictions = heart_model(predict_dataset, training=False)
-    probs = predictions.numpy()[0]
-
+    probs = tf.nn.softmax(predictions)
+    class_indexes = tf.argmax(probs, axis = 1 ).numpy()
     results = []
-
-    if probs[0] > 0.5: 
-        decision = "Yes"
-    else: 
-        decision = "No"
-
-    results.append({"Heart Disease": decision,"probability": str(probs[0])})
- 
+    for i, class_idx in enumerate(class_indexes):
+        p = np.max(probs[i].numpy())
+        if int(class_idx) == 1: 
+            decision = "Yes"
+        else: 
+            decision = "No" 
+        results.append({"Heart Disease": decision,"probability": float(p)})
+    
+    print(results)
     return json({"data":results})
 
 @app.post("/index/test/diabetes")
