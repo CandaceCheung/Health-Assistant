@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/82cdd6042d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./index.css" />
     <title>Health Assistant</title>
 </head>
@@ -26,7 +27,7 @@
 
 
     <div id="content-container">
-        <header>HEALTH ASSISTANT</header>
+        <header><i class="fa-solid fa-syringe"></i> HEALTH ASSISTANT <i class="fa-solid fa-notes-medical"></i></header>
         <div class="row btn-panel">
             <div class="col-md-12 btn-box">
                 <button id="start-button" role="button" class="start-button" data-bs-toggle="modal"
@@ -215,7 +216,7 @@
                             <hr>
 
                             <div class="mb-3">
-                                <label for="text" class="form-label">Input Text Message:</label>
+                                <label for="text" class="form-label">Input Text Message:</label><span class='form-text' id="word-counter">Word Count : </span><span class="form-text" id="word-count"></span>
                                 <textarea type="text" class="form-control" name="text" id="suicide-text" rows="10"
                                     value="" required></textarea>
                             </div>
@@ -430,7 +431,7 @@
 
     <div class="modal fade" id="user-guide-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <div></div>

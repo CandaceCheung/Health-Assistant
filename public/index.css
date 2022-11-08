@@ -2,7 +2,19 @@ html,
 body {
   margin: 0;
   height: 100%;
-  padding-bottom: 70px;
+  padding-bottom: 100px;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+@media only screen and (max-width: 960px) {
+  body {
+    padding: 30px
+  }
+}
+
+#word-counter{
+  padding-left: 30px;
 }
 
 .recommendation-text{
@@ -69,6 +81,7 @@ body {
   font-size: calc(10px + 1vw);
   position: relative;
   max-height: 500px;
+  max-width: 600px;
   display: none;
   padding: 20px;
   padding-bottom: 40px;
