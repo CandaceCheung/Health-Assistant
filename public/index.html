@@ -288,11 +288,13 @@
                             <div class="bmi-box">
                                 <div class="bmi-height mb-3">
                                     <label for="height-input" class="form-label">Your height? (cm) </label>
-                                    <input name="height-input" type="number" class="form-control" id="height-input" min="0">
+                                    <input name="height-input" type="number" class="form-control" id="height-input"
+                                        min="0">
                                 </div>
                                 <div class="bmi-weight mb-3">
                                     <label for="weight-input" class="form-label">Your weight? (kg) </label>
-                                    <input name="weight-input" type="number" class="form-control" id="weight-input" min="0">
+                                    <input name="weight-input" type="number" class="form-control" id="weight-input"
+                                        min="0">
                                 </div>
                             </div>
                             <!--  -->
@@ -377,8 +379,8 @@
                                 <label for="exercise-check" class="form-label">Do you do physical exercise during the
                                     past 30
                                     days?</label>
-                                <select name="exercise-check" id="diabetes-exercise" class="form-select form-select mb-3"
-                                    aria-label=".form-select ">
+                                <select name="exercise-check" id="diabetes-exercise"
+                                    class="form-select form-select mb-3" aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -387,8 +389,8 @@
                             <div class="mb-3">
                                 <label for="exercise-days" class="form-label">How many day(s) you do physical
                                     exercise during the past 30 days?</label>
-                                <input name="exercise-days" type="number" class="form-control"
-                                    id="exercise-days" placeholder="number of day(s)" min="0">
+                                <input name="exercise-days" type="number" class="form-control" id="exercise-days"
+                                    placeholder="number of day(s)" min="0">
                             </div>
                             <div class="mb-3">
                                 <label for="mental-health" class="form-label">How many day(s) during the past 30
@@ -403,7 +405,8 @@
                                     adult women having more than 7
                                     drinks per week)
                                 </label>
-                                <select name="drinker" id="diabetes-alcohol" class="form-select form-select mb-3" aria-label=".form-select ">
+                                <select name="drinker" id="diabetes-alcohol" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -454,7 +457,7 @@
                         <form id="liver-form">
                             <div class="mb-3">
                                 <label for="user-name" class="form-label">Your name?</label>
-                                <input name="name" type="text" class="form-control name" id="user-name"
+                                <input name="name" type="text" class="form-control name" id="lung-name"
                                     placeholder="Input Your Name" value="">
                             </div>
                             <div class="gender-age-input mb-3">
@@ -470,14 +473,14 @@
                                 </div>
                                 <div class="lung-age">
                                     <div>
-                                        <label for="actual-age" class="form-label diabetes-age">Age</label>
+                                        <label for="actual-age" class="form-label">Age</label>
                                     </div>
                                     <input name="actual-age" type="number" class="form-control age-form-control"
-                                        id="actual-age" min="0">
+                                        id="lung-actual-age" min="0">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="smoke" class="form-label">Are you smoke?</label>
+                                <label for="smoke" class="form-label">Do you smoke?</label>
                                 <select name="smoke" id="lung-smoke" class="form-select form-select mb-3"
                                     aria-label=".form-select ">
                                     <option>Please select</option>
@@ -501,8 +504,8 @@
                                         <input type="checkbox" id="save-info" name="save-info" unchecked />
                                         <label for="save-info">Save My Info</label><br />
                                     </div>
-                                    <button id="submit-lung" type="submit" class="submit-button"
-                                        data-bs-toggle="modal" data-bs-target="#liver-modal">
+                                    <button id="submit-lung" type="submit" class="submit-button" data-bs-toggle="modal"
+                                        data-bs-target="#lung-modal">
                                         Submit
                                     </button>
                                     <button id="prefill-lung" type="submit" class="submit-button">
@@ -570,7 +573,8 @@
                                         <label for="save-info">Save My Info</label><br />
                                     </div>
                                     <div class="submit-button-box">
-                                        <button id="submit-stroke" type="submit" class="submit-button" data-bs-toggle="modal" data-bs-target="#stroke-modal">
+                                        <button id="submit-stroke" type="submit" class="submit-button"
+                                            data-bs-toggle="modal" data-bs-target="#stroke-modal">
                                             Submit
                                         </button>
                                         <button id="prefill-stroke" type="button" class="submit-button">
@@ -578,20 +582,12 @@
                                         </button>
                                     </div>
                                 </div>
-                                <button id="submit-stroke" type="submit" class="submit-button" data-bs-toggle="modal"
-                                    data-bs-target="#stroke-modal">
-                                    Submit
-                                </button>
-                                <button id="prefill-stroke" type="submit" class="submit-button">
-                                    Pre-fill Info
-                                </button>
                             </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- User Guide Modal -->
