@@ -2,9 +2,11 @@ from sanic import Sanic
 from sanic.response import json
 import tensorflow as tf
 import numpy as np
+import neattext as nt
 import neattext.functions as nfx
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
+
 
 app = Sanic("Python-Hosted-Model")
 
@@ -16,16 +18,16 @@ stroke_model = tf.saved_model.load('./stroke/notebook/model')
 @app.post("/index/test/suicide")
 def callSuicideModel(request):
     content = request.json
-    
-    print(content)
+    text = nt.TextFrame(text=content)
+    print(text.describe())
 
     cleaned_text=[]
     for str in content :
         str=str.lower()
-        str=nfx.remove_special_characters(str)
-        str=nfx.remove_stopwords(str)
         str=nfx.remove_emails(str)
         str=nfx.remove_urls(str)
+        str=nfx.remove_special_characters(str)
+        str=nfx.remove_stopwords(str)
         cleaned_text.append(str)
 
     tokenizer=Tokenizer()
@@ -46,30 +48,30 @@ def callHeartModel(request):
     
     predict_dataset = tf.convert_to_tensor(content)
     predictions = heart_model(predict_dataset, training=False)
-    probs = tf.nn.softmax(predictions)
-    class_indexes = tf.argmax(probs, axis = 1 ).numpy()
+    probs = predictions.numpy()[0]
+
     results = []
-    for i, class_idx in enumerate(class_indexes):
-        p = np.max(probs[i].numpy())
-        if int(class_idx) == 1: 
-            decision = "Yes"
-        else: 
-            decision = "No" 
-        results.append({"Heart Disease": decision,"probability": float(p)})
-    
-    print(results)
+
+    if probs[0] > 0.5: 
+        decision = "Yes"
+    else: 
+        decision = "No"
+
+    results.append({"Heart Disease": decision,"probability": str(probs[0])})
+ 
     return json({"data":results})
+
 
 @app.post("/index/test/diabetes")
 def callDiabetesModel(request):
     content = request.json
     print (content)
     
-    predict_dataset = tf.convert_to_tensor(content)
+    predict_dataset = tf.convert_to_tensor(content,dtype=tf.float32)
     predictions = diabetes_model(predict_dataset, training=False)
     
-    predictions = predictions.numpy()[0]
-    predictions = str(predictions[0])
+    predictions = np.round(predictions.numpy()[0],2)
+    predictions = str(predictions[0]*100)
 
     print("predictions",predictions, type(predictions))
 
