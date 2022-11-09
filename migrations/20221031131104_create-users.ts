@@ -15,8 +15,6 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('alcohol');
         table.integer('smoke');
         table.integer('actual_age');
-        table.string('session_id');
-        table.integer('smoke_check');
         table.integer('stroke');
         table.integer('heart_attack');
         table.integer('cholesterol_check');
@@ -24,11 +22,10 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('blood_pressure');
         table.integer('fruit');
         table.integer('veggies');
-        table.integer('exercise_check');
         table.integer('exercise_days');
         table.integer('mental_health');
-        table.integer('drinker');
         table.integer('general_health');
+        table.string('session_id');
     })
 
 }

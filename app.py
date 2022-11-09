@@ -59,7 +59,6 @@ def callHeartModel(request):
  
     return json({"data":results})
 
-
 @app.post("/index/test/diabetes")
 def callDiabetesModel(request):
     content = request.json

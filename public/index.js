@@ -32,7 +32,17 @@ async function getUserInfo() {
     const sleep = result.data.sleep;
     const exercise = result.data.exercise;
     const alcohol = result.data.alcohol;
-
+    const actualAge = result.data.actualAge;
+    const stroke = result.data.stroke;
+    const heartAttack = result.data.heartAttack;
+    const cholesterolCheck = result.data.cholesterolCheck;
+    const cholesterolHigh = result.data.cholesterolHigh;
+    const bloodPressure = result.data.bloodPressure;
+    const fruit = result.data.fruit;
+    const veggies = result.data.veggies;
+    const exerciseDays = result.data.exerciseDays;
+    const mentalHealth = result.data.mental_health;
+    
     globalName = name
 
     // Set greeting
@@ -44,6 +54,19 @@ async function getUserInfo() {
 
     const msg = `Welcome, ${name}.`;
     showNotification(msg, 5000);
+
+    //prefill stroke form
+
+    document.querySelector("#prefill-stroke").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.querySelector(`#stroke-name`).value = stroke;
+        document.querySelector(`#stroke-height`).value = height;
+        document.querySelector(`#stroke-weight`).value = weight;
+        document.querySelector("#stoke-age").value = actualAge;
+        document.querySelector(`#stroke-gender`).value = gender;
+
+    });
 
     //prefill heart disease form
 
