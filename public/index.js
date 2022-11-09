@@ -1,6 +1,5 @@
 window.addEventListener("load", async () => {
     await getUserInfo();
-    prefillUserName()
 });
 
 let globalName = '' //Save username globally
@@ -42,8 +41,9 @@ async function getUserInfo() {
     const veggies = result.data.veggies;
     const exerciseDays = result.data.exerciseDays;
     const mentalHealth = result.data.mental_health;
-    
+
     globalName = name
+    prefillUserName()
 
     // Set greeting
     if (name) {
@@ -60,10 +60,10 @@ async function getUserInfo() {
     document.querySelector("#prefill-stroke").addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.querySelector(`#stroke-name`).value = stroke;
+        document.querySelector(`#stroke-name`).value = name;
         document.querySelector(`#stroke-height`).value = height;
         document.querySelector(`#stroke-weight`).value = weight;
-        document.querySelector("#stoke-age").value = actualAge;
+        document.querySelector("#stroke-age").value = actualAge;
         document.querySelector(`#stroke-gender`).value = gender;
 
     });
@@ -84,7 +84,7 @@ async function getUserInfo() {
         document.querySelector("#heart-alcohol").checked = alcohol;
     });
 
-     //prefill diabetes form
+    //prefill diabetes form
 
     document.querySelector(`#prefill-diabetes`).addEventListener("click", (e) => {
         e.preventDefault();
@@ -106,17 +106,6 @@ async function getUserInfo() {
         document.querySelector(`#exercise-days`).value = exerciseDays;
         document.querySelector(`#mental-health`).value = mentalHealth;
     });
-}
-
-function prefillUserName() {
-    if (globalName !== '') {
-        const nameInputBox = document.querySelectorAll('.name')
-        nameInputBox.forEach((box) => {
-            box.value = globalName
-        })
-    } else {
-        document.querySelector('#start-button').click()
-    }
 }
 
 document //form submission: Username only
@@ -508,7 +497,7 @@ document //form submission: Diabetes
         } else {
             const testResult = parseFloat((result.result.data)*100);
 
-            console.log(testResult*100)
+            console.log(testResult * 100)
 
             const probability = formatAsPercent(
                 testResult
@@ -739,3 +728,14 @@ document // word counter
 
         document.querySelector("#word-count").innerHTML = arr.filter(word => word !== '').length;
     })
+
+function prefillUserName() {
+    if (globalName !== '') {
+        const nameInputBox = document.querySelectorAll('.name')
+        nameInputBox.forEach((box) => {
+            box.value = globalName
+        })
+    } else {
+        document.querySelector('#start-button').click()
+    }
+}
