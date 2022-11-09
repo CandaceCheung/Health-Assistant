@@ -285,13 +285,15 @@
                             </div>
 
                             <!-- BMI -->
-                            <div class="mb-3">
-                                <label for="height-input" class="form-label">Your height? (cm) </label>
-                                <input name="height-input" type="number" class="form-control" id="height-input" min="0">
-                            </div>
-                            <div class="mb-3">
-                                <label for="weight-input" class="form-label">Your weight? (kg) </label>
-                                <input name="weight-input" type="number" class="form-control" id="weight-input" min="0">
+                            <div class="bmi-box">
+                                <div class="bmi-height mb-3">
+                                    <label for="height-input" class="form-label">Your height? (cm) </label>
+                                    <input name="height-input" type="number" class="form-control" id="height-input" min="0">
+                                </div>
+                                <div class="bmi-weight mb-3">
+                                    <label for="weight-input" class="form-label">Your weight? (kg) </label>
+                                    <input name="weight-input" type="number" class="form-control" id="weight-input" min="0">
+                                </div>
                             </div>
                             <!--  -->
                             <div class="mb-3">
@@ -409,7 +411,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="general-health" class="form-label">Rate your general health: <br />
-                                    (1:lowest, 5 highest)</label>
+                                    (1: lowest, 5: highest)</label>
                                 <input name="general-health" type="number" class="form-control" id="general-health"
                                     placeholder="1 - 5" min="1" max="5">
                             </div>
@@ -475,8 +477,13 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="pregnancies-input" class="form-label">Pregnancies</label>
-                                <input name="pregnancies" type="number" class="form-control" id="pregnancies-input">
+                                <label for="smoke" class="form-label">Are you smoke?</label>
+                                <select name="smoke" id="lung-smoke" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
+                                    <option>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="blood-pressure-input" class="form-label">Blood Pressure</label>
