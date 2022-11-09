@@ -18,8 +18,6 @@ stroke_model = tf.saved_model.load('./stroke/notebook/model')
 @app.post("/index/test/suicide")
 def callSuicideModel(request):
     content = request.json
-    text = nt.TextFrame(text=content)
-    print(text.describe())
 
     cleaned_text=[]
     for str in content :
@@ -60,7 +58,6 @@ def callHeartModel(request):
     results.append({"Heart Disease": decision,"probability": str(probs[0])})
  
     return json({"data":results})
-
 
 @app.post("/index/test/diabetes")
 def callDiabetesModel(request):

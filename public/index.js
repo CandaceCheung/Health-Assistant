@@ -1,6 +1,5 @@
 window.addEventListener("load", async () => {
     await getUserInfo();
-    prefillUserName()
 });
 
 let globalName = '' //Save username globally
@@ -32,7 +31,19 @@ async function getUserInfo() {
     const sleep = result.data.sleep;
     const exercise = result.data.exercise;
     const alcohol = result.data.alcohol;
+    const actualAge = result.data.actualAge;
+    const stroke = result.data.stroke;
+    const heartAttack = result.data.heartAttack;
+    const cholesterolCheck = result.data.cholesterolCheck;
+    const cholesterolHigh = result.data.cholesterolHigh;
+    const bloodPressure = result.data.bloodPressure;
+    const fruit = result.data.fruit;
+    const veggies = result.data.veggies;
+    const exerciseDays = result.data.exerciseDays;
+    const mentalHealth = result.data.mental_health;
+
     globalName = name
+    prefillUserName()
 
     // Set greeting
     if (name) {
@@ -43,6 +54,19 @@ async function getUserInfo() {
 
     const msg = `Welcome, ${name}.`;
     showNotification(msg, 5000);
+
+    //prefill stroke form
+
+    document.querySelector("#prefill-stroke").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.querySelector(`#stroke-name`).value = name;
+        document.querySelector(`#stroke-height`).value = height;
+        document.querySelector(`#stroke-weight`).value = weight;
+        document.querySelector("#stroke-age").value = actualAge;
+        document.querySelector(`#stroke-gender`).value = gender;
+
+    });
 
     //prefill heart disease form
 
@@ -59,17 +83,29 @@ async function getUserInfo() {
         document.querySelector("#heart-exercise").checked = exercise;
         document.querySelector("#heart-alcohol").checked = alcohol;
     });
-}
 
-function prefillUserName() {
-    if (globalName !== '') {
-        const nameInputBox = document.querySelectorAll('.name')
-        nameInputBox.forEach((box) => {
-            box.value = globalName
-        })
-    } else {
-        document.querySelector('#start-button').click()
-    }
+    //prefill diabetes form
+
+    document.querySelector(`#prefill-diabetes`).addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.querySelector("#diabetes-name").value = name;
+        document.querySelector("#diabetes-gender").value = gender;
+        document.querySelector("#actual-age").value = actualAge;
+        document.querySelector(`#height-input`).value = height;
+        document.querySelector(`#weight-input`).value = weight;
+        document.querySelector(`#diabetes-smoke`).value = smoke;
+        document.querySelector(`#diabetes-stroke`).value = stroke;
+        document.querySelector(`#diabetes-heart`).value = heartAttack;
+        document.querySelector(`#cholesterol`).value = cholesterolCheck;
+        document.querySelector(`#cholesterol-high`).value = cholesterolHigh;
+        document.querySelector(`#blood-pressure`).value = bloodPressure;
+        document.querySelector(`#fruit`).value = fruit;
+        document.querySelector(`#veggies`).value = veggies;
+        document.querySelector(`#diabetes-exercise`).value = exercise;
+        document.querySelector(`#exercise-days`).value = exerciseDays;
+        document.querySelector(`#mental-health`).value = mentalHealth;
+    });
 }
 
 document //form submission: Username only
@@ -459,30 +495,31 @@ document //form submission: Diabetes
             alert("ERR002: Failed to post diabetes test data");
             document.location.reload();
         } else {
-            const testResult = parseFloat(result.result.data);
+            const testResult = parseFloat((result.result.data)*100);
 
-            console.log(testResult)
+            console.log(testResult * 100)
 
             const probability = formatAsPercent(
                 testResult
             );
+
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
             let severity = "";
             if (
-                testResult["probability"] <= 1 &&
-                testResult["probability"] >= 0.6
+                testResult <= 1 &&
+                testResult >= 0.6
             ) {
                 severity = "Highly";
             }
             if (
-                testResult["probability"] < 0.6 &&
-                testResult["probability"] >= 0.4
+                testResult < 0.6 &&
+                testResult >= 0.2
             ) {
                 severity = "Moderately";
             }
-            if (testResult["probability"] < 0.4) {
+            if (testResult < 0.2) {
                 severity = "Mildly";
             }
 
@@ -691,3 +728,14 @@ document // word counter
 
         document.querySelector("#word-count").innerHTML = arr.filter(word => word !== '').length;
     })
+
+function prefillUserName() {
+    if (globalName !== '') {
+        const nameInputBox = document.querySelectorAll('.name')
+        nameInputBox.forEach((box) => {
+            box.value = globalName
+        })
+    } else {
+        document.querySelector('#start-button').click()
+    }
+}
