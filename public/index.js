@@ -490,9 +490,8 @@ document //form submission: Diabetes
             <div id ='result-title'>Here it is!</div>
                 Accordingly to our prediction, <br> 
                 Your risk for developing a Diabetes is : 
-                <div id='test-result'> <h2>${severity}</h2> </div> 
+                <div id='test-result'> <h2>${severity}</h2></div> 
                     with ${probability} probability.
-                <button id='diabetes-explain' class='explain-btn'>Explain</button
             `
 
             resultBox.style.display = "block"
