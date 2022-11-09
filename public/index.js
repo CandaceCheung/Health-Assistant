@@ -32,6 +32,7 @@ async function getUserInfo() {
     const sleep = result.data.sleep;
     const exercise = result.data.exercise;
     const alcohol = result.data.alcohol;
+
     globalName = name
 
     // Set greeting
@@ -58,6 +59,13 @@ async function getUserInfo() {
         document.querySelector(`#heart-smoke`).checked = smoke;
         document.querySelector("#heart-exercise").checked = exercise;
         document.querySelector("#heart-alcohol").checked = alcohol;
+    });
+
+    document.querySelector(`#prefill-diabetes`).value.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.querySelector(`#diabetes-name`).value = name;
+
     });
 }
 
@@ -459,30 +467,31 @@ document //form submission: Diabetes
             alert("ERR002: Failed to post diabetes test data");
             document.location.reload();
         } else {
-            const testResult = parseFloat(result.result.data);
+            const testResult = parseFloat((result.result.data)*1000);
 
-            console.log(testResult)
+            console.log(testResult*100)
 
             const probability = formatAsPercent(
-                testResult
+                testResult*100
             );
+
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
             let severity = "";
             if (
-                testResult["probability"] <= 1 &&
-                testResult["probability"] >= 0.6
+                testResult <= 1 &&
+                testResult >= 0.6
             ) {
                 severity = "Highly";
             }
             if (
-                testResult["probability"] < 0.6 &&
-                testResult["probability"] >= 0.4
+                testResult < 0.6 &&
+                testResult >= 0.3
             ) {
                 severity = "Moderately";
             }
-            if (testResult["probability"] < 0.4) {
+            if (testResult < 0.3) {
                 severity = "Mildly";
             }
 

@@ -33,7 +33,20 @@ async function getInfo(req: Request, res: Response) {
                 sleep: result.sleep,
                 exercise: result.exercise,
                 alcohol: result.alcohol,
-
+                actualAge: result.actual_age,
+                smokeCheck: result.smoke_check,
+                stroke: result.stroke,
+                heartAttack: result.heart_attack,
+                cholesterolCheck: result.cholesterol_check,
+                cholesterolHigh: result.cholesterol_high,
+                bloodPressure: result.blood_pressure,
+                fruit: result.fruit,
+                veggies: result.veggies,
+                exerciseCheck: result.exercise_check,
+                exerciseDays: result.exercise_days,
+                mentalHealth: result.mental_health,
+                drinker: result.drinker,
+                generalHealth: result.general_health,
             }
 
             res.json({
