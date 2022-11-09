@@ -438,7 +438,7 @@
         </div>
     </div>
 
-    <!-- liver modal -->
+    <!-- lung modal -->
     <div class="modal fade" id="liver-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -457,6 +457,25 @@
                                 <label for="user-name" class="form-label">Your name?</label>
                                 <input name="name" type="text" class="form-control name" id="user-name"
                                     placeholder="Input Your Name" value="">
+                            </div>
+                            <div class="gender-age-input mb-3">
+                                <div class="diabetes-gender">
+                                    <div>
+                                        <label for="gender" class="form-label">Gender</label>
+                                    </div>
+                                    <select name="gender" id="lung-gender" class="form-select gender-form-select">
+                                        <option>Select</option>
+                                        <option value="0">Female</option>
+                                        <option value="1">Male</option>
+                                    </select>
+                                </div>
+                                <div class="lung-age">
+                                    <div>
+                                        <label for="actual-age" class="form-label diabetes-age">Age</label>
+                                    </div>
+                                    <input name="actual-age" type="number" class="form-control age-form-control"
+                                        id="actual-age" min="0">
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="pregnancies-input" class="form-label">Pregnancies</label>
