@@ -34,7 +34,6 @@ async function getInfo(req: Request, res: Response) {
                 exercise: result.exercise,
                 alcohol: result.alcohol,
                 actualAge: result.actual_age,
-                smokeCheck: result.smoke_check,
                 stroke: result.stroke,
                 heartAttack: result.heart_attack,
                 cholesterolCheck: result.cholesterol_check,
@@ -42,10 +41,8 @@ async function getInfo(req: Request, res: Response) {
                 bloodPressure: result.blood_pressure,
                 fruit: result.fruit,
                 veggies: result.veggies,
-                exerciseCheck: result.exercise_check,
                 exerciseDays: result.exercise_days,
                 mentalHealth: result.mental_health,
-                drinker: result.drinker,
                 generalHealth: result.general_health,
             }
 
@@ -119,7 +116,6 @@ async function saveInfo(req: Request, res: Response) {
         const exercise = req.body?.exercise
         const alcohol = req.body?.alcohol
         const actualAge = req.body?.actualAge
-        const smokeCheck = req.body?.smokeCheck
         const stroke = req.body?.stroke
         const heartAttack = req.body?.heartAttack
         const cholesterolCheck = req.body?.cholesterolCheck
@@ -127,10 +123,8 @@ async function saveInfo(req: Request, res: Response) {
         const bloodPressure = req.body?.bloodPressure
         const fruit = req.body?.fruit
         const veggies = req.body?.veggies
-        const exerciseCheck = req.body?.exerciseCheck
         const exerciseDays = req.body?.exerciseDays
         const mentalHealth = req.body?.mentalHealth
-        const drinker = req.body?.drinker
         const generalHealth = req.body?.generalHealth
         const cookieID = req.cookies['connect.sid']
 
@@ -149,7 +143,6 @@ async function saveInfo(req: Request, res: Response) {
                 sleep: sleep,
                 alcohol: alcohol,
                 actual_age: actualAge,
-                smoke_check: smokeCheck,
                 stroke: stroke,
                 heart_attack: heartAttack,
                 cholesterol_check: cholesterolCheck, 
@@ -157,10 +150,8 @@ async function saveInfo(req: Request, res: Response) {
                 blood_pressure: bloodPressure,
                 fruit: fruit,
                 veggies: veggies,
-                exercise_check: exerciseCheck,
                 exercise_days: exerciseDays,
                 mental_health: mentalHealth,
-                drinker: drinker,
                 general_health: generalHealth,
 
             }).where('id', userID.id)
@@ -177,7 +168,6 @@ async function saveInfo(req: Request, res: Response) {
                 sleep: sleep,
                 alcohol: alcohol,
                 actual_age: actualAge,
-                smoke_check: smokeCheck,
                 stroke: stroke,
                 heart_attack: heartAttack,
                 cholesterol_check: cholesterolCheck, 
@@ -185,10 +175,8 @@ async function saveInfo(req: Request, res: Response) {
                 blood_pressure: bloodPressure,
                 fruit: fruit,
                 veggies: veggies,
-                exercise_check: exerciseCheck,
                 exercise_days: exerciseDays,
                 mental_health: mentalHealth,
-                drinker: drinker,
                 general_health: generalHealth,
 
             }).into('users')
