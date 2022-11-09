@@ -32,7 +32,7 @@ async function getUserInfo() {
     const sleep = result.data.sleep;
     const exercise = result.data.exercise;
     const alcohol = result.data.alcohol;
-    const actualAge = reqult.data.actualAge;
+    const actualAge = result.data.actualAge;
 
     globalName = name
 
@@ -62,6 +62,8 @@ async function getUserInfo() {
         document.querySelector("#heart-alcohol").checked = alcohol;
     });
 
+     //prefill diabetes form
+     
     document.querySelector(`#prefill-diabetes`).value.addEventListener("click", (e) => {
         e.preventDefault();
 
