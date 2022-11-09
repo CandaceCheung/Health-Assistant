@@ -52,16 +52,13 @@
                 <button id="diabetes" role="button" class="test-button" data-bs-toggle="modal"
                     data-bs-target="#diabetes-modal">DIABETES</button>
             </div>
-            <div class="col-md-4 btn-box">
+            <div class="col-sm-6 btn-box">
                 <button id="mentla-wellness" role="button" class="test-button" data-bs-toggle="modal"
                     data-bs-target="#suicide-modal">SUICIDAL RISK</button>
             </div>
-            <div class="col-md-4 btn-box">
-                <button id="pending1" role="button" class="test-button">PENDING</button>
-            </div>
-            <div class="col-md-4 btn-box">
+            <div class="col-sm-6 btn-box">
                 <button id="liver-disease" role="button" class="test-button" data-bs-toggle="modal"
-                    data-bs-target="#liver-modal">LIVER DISEASE</button>
+                    data-bs-target="#liver-modal">LUNG CANCER</button>
             </div>
 
         </div>
@@ -288,13 +285,15 @@
                             </div>
 
                             <!-- BMI -->
-                            <div class="mb-3">
-                                <label for="height-input" class="form-label">Your height? (cm) </label>
-                                <input name="height-input" type="number" class="form-control" id="height-input" min="0">
-                            </div>
-                            <div class="mb-3">
-                                <label for="weight-input" class="form-label">Your weight? (kg) </label>
-                                <input name="weight-input" type="number" class="form-control" id="weight-input" min="0">
+                            <div class="bmi-box">
+                                <div class="bmi-height mb-3">
+                                    <label for="height-input" class="form-label">Your height? (cm) </label>
+                                    <input name="height-input" type="number" class="form-control" id="height-input" min="0">
+                                </div>
+                                <div class="bmi-weight mb-3">
+                                    <label for="weight-input" class="form-label">Your weight? (kg) </label>
+                                    <input name="weight-input" type="number" class="form-control" id="weight-input" min="0">
+                                </div>
                             </div>
                             <!--  -->
                             <div class="mb-3">
@@ -412,7 +411,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="general-health" class="form-label">Rate your general health: <br />
-                                    (1:lowest, 5 highest)</label>
+                                    (1: lowest, 5: highest)</label>
                                 <input name="general-health" type="number" class="form-control" id="general-health"
                                     placeholder="1 - 5" min="1" max="5">
                             </div>
@@ -438,29 +437,53 @@
         </div>
     </div>
 
-    <!-- liver modal -->
+    <!-- lung modal -->
     <div class="modal fade" id="liver-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <div></div>
-                    <h5 class="modal-title">Liver Disease Prediction</h5>
+                    <h5 class="modal-title">Lung Cancer Prediction</h5>
                     <div class="exit-modal">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group-diabetes">
+                    <div class="input-group-lung">
                         <form id="liver-form">
                             <div class="mb-3">
                                 <label for="user-name" class="form-label">Your name?</label>
                                 <input name="name" type="text" class="form-control name" id="user-name"
                                     placeholder="Input Your Name" value="">
                             </div>
+                            <div class="gender-age-input mb-3">
+                                <div class="lung-gender">
+                                    <div>
+                                        <label for="gender" class="form-label">Gender</label>
+                                    </div>
+                                    <select name="gender" id="lung-gender" class="form-select gender-form-select">
+                                        <option>Select</option>
+                                        <option value="0">Female</option>
+                                        <option value="1">Male</option>
+                                    </select>
+                                </div>
+                                <div class="lung-age">
+                                    <div>
+                                        <label for="actual-age" class="form-label diabetes-age">Age</label>
+                                    </div>
+                                    <input name="actual-age" type="number" class="form-control age-form-control"
+                                        id="actual-age" min="0">
+                                </div>
+                            </div>
                             <div class="mb-3">
-                                <label for="pregnancies-input" class="form-label">Pregnancies</label>
-                                <input name="pregnancies" type="number" class="form-control" id="pregnancies-input">
+                                <label for="smoke" class="form-label">Are you smoke?</label>
+                                <select name="smoke" id="lung-smoke" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
+                                    <option>Please select</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="blood-pressure-input" class="form-label">Blood Pressure</label>
@@ -472,21 +495,17 @@
                                     Function</label>
                                 <input name="pedigree" type="number" class="form-control" id="pedigree-function-input">
                             </div>
-                            <div class="mb-3">
-                                <label for="age-input" class="form-label">Age</label>
-                                <input name="age" type="number" class="form-control" id="age-input">
-                            </div>
                             <div class="modal-footer">
                                 <div class="submit-button-box">
                                     <div class="save-info-box">
                                         <input type="checkbox" id="save-info" name="save-info" unchecked />
                                         <label for="save-info">Save My Info</label><br />
                                     </div>
-                                    <button id="submit-diabetes" type="submit" class="submit-button"
+                                    <button id="submit-lung" type="submit" class="submit-button"
                                         data-bs-toggle="modal" data-bs-target="#liver-modal">
                                         Submit
                                     </button>
-                                    <button id="prefill-diabetes" type="submit" class="submit-button">
+                                    <button id="prefill-lung" type="submit" class="submit-button">
                                         Pre-fill Info
                                     </button>
                                 </div>

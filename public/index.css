@@ -37,7 +37,6 @@ body {
   padding-bottom: 10px;
 }
 
-
 body {
   display: flex;
   justify-content: center;
@@ -178,17 +177,23 @@ body {
   min-width: 120px;
 }
 
-.gender-age-input {
+.gender-age-input,
+.bmi-box {
   display: flex;
 }
 
-.diabetes-age {
- margin-left: 10px;
+.diabetes-age,
+.lung-age {
+  margin-left: 10px;
 }
 
 .gender-form-select,
 .age-form-control {
-  width: 120px;
+  width: 140px;
+}
+
+.bmi-weight {
+  margin-left: 10px;
 }
 
 #delete-button {
