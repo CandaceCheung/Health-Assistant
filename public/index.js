@@ -40,7 +40,8 @@ async function getUserInfo() {
     const fruit = result.data.fruit;
     const veggies = result.data.veggies;
     const exerciseDays = result.data.exerciseDays;
-    const mentalHealth = result.data.mental_health;
+    const mentalHealth = result.data.mentalHealth;
+    const generalHealth = result.data.generalHealth;
 
     globalName = name
     prefillUserName()
@@ -92,19 +93,21 @@ async function getUserInfo() {
         document.querySelector("#diabetes-name").value = name;
         document.querySelector("#diabetes-gender").value = gender;
         document.querySelector("#actual-age").value = actualAge;
-        document.querySelector(`#height-input`).value = height;
-        document.querySelector(`#weight-input`).value = weight;
-        document.querySelector(`#diabetes-smoke`).value = smoke;
-        document.querySelector(`#diabetes-stroke`).value = stroke;
-        document.querySelector(`#diabetes-heart`).value = heartAttack;
-        document.querySelector(`#cholesterol`).value = cholesterolCheck;
-        document.querySelector(`#cholesterol-high`).value = cholesterolHigh;
-        document.querySelector(`#blood-pressure`).value = bloodPressure;
-        document.querySelector(`#fruit`).value = fruit;
-        document.querySelector(`#veggies`).value = veggies;
-        document.querySelector(`#diabetes-exercise`).value = exercise;
-        document.querySelector(`#exercise-days`).value = exerciseDays;
-        document.querySelector(`#mental-health`).value = mentalHealth;
+        document.querySelector("#height-input").value = height;
+        document.querySelector("#weight-input").value = weight;
+        document.querySelector("#diabetes-smoke").value = smoke;
+        document.querySelector("#diabetes-stroke").value = stroke;
+        document.querySelector("#diabetes-heart").value = heartAttack;
+        document.querySelector("#cholesterol").value = cholesterolCheck;
+        document.querySelector("#cholesterol-high").value = cholesterolHigh;
+        document.querySelector("#blood-pressure").value = bloodPressure;
+        document.querySelector("#fruit").value = fruit;
+        document.querySelector("#veggies").value = veggies;
+        document.querySelector("#diabetes-exercise").value = exercise;
+        document.querySelector("#exercise-days").value = exerciseDays;
+        document.querySelector("#mental-health").value = mentalHealth;
+        document.querySelector("#diabetes-alcohol").value = alcohol;
+        document.querySelector("#general-health").value = generalHealth;
     });
 }
 
@@ -408,7 +411,7 @@ document //form submission: Diabetes
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const gender = parseInt(form["gender"].value);
-        const smokeCheck = parseInt(form["smoke"].value);
+        const smoke = parseInt(form["smoke"].value);
         const stroke = parseInt(form["stroke"].value);
         const heartAttack = parseInt(form["heart-attack"].value);
         const cholesterolCheck = parseInt(form["cholesterol-check"].value);
@@ -416,10 +419,10 @@ document //form submission: Diabetes
         const bloodPressure = parseInt(form["high-blood-pressure"].value);
         const fruit = parseInt(form["fruit"].value);
         const veggies = parseInt(form["veggies"].value);
-        const exerciseCheck = parseInt(form["exercise-check"].value);
+        const exercise = parseInt(form["exercise-check"].value);
         const exerciseDays = parseInt(form["exercise-days"].value);
         const mentalHealth = parseInt(form["mental-health"].value);
-        const drinker = parseInt(form["drinker"].value);
+        const alcohol = parseInt(form["drinker"].value);
         const generalHealth = parseInt(form["general-health"].value);
 
         testData.push(
@@ -427,18 +430,18 @@ document //form submission: Diabetes
             cholesterolHigh,
             cholesterolCheck,
             bmi,
-            smokeCheck,
+            smoke,
             stroke,
             heartAttack,
-            exerciseCheck,
+            exercise,
             fruit,
             veggies,
-            drinker,
+            alcohol,
             mentalHealth,
             exerciseDays,
             gender,
             actualAge,
-            generalHealth
+            generalHealth,
         );
         console.log(testData);
 
@@ -448,7 +451,9 @@ document //form submission: Diabetes
                 bmi: bmi,
                 actualAge: actualAge,
                 gender: gender,
-                smokeCheck: smokeCheck,
+                weight: weight,
+                height: height,
+                smoke: smoke,
                 stroke: stroke,
                 heartAttack: heartAttack,
                 cholesterolCheck: cholesterolCheck,
@@ -456,10 +461,10 @@ document //form submission: Diabetes
                 bloodPressure: bloodPressure,
                 fruit: fruit,
                 veggies: veggies,
-                exerciseCheck: exerciseCheck,
+                exercise: exercise,
                 exerciseDays: exerciseDays,
                 mentalHealth: mentalHealth,
-                drinker: drinker,
+                alcohol: alcohol,
                 generalHealth: generalHealth,
             };
 
@@ -495,13 +500,11 @@ document //form submission: Diabetes
             alert("ERR002: Failed to post diabetes test data");
             document.location.reload();
         } else {
-            const testResult = parseFloat((result.result.data)*100);
+            const testResult = parseFloat((result.result.data));
 
-            console.log(testResult * 100)
+            console.log(testResult)
 
-            const probability = formatAsPercent(
-                testResult
-            );
+            const probability = formatAsPercent(testResult*10);
 
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");

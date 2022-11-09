@@ -106,6 +106,7 @@ async function saveInfo(req: Request, res: Response) {
     try {
         logger.debug('before reading DB')
 
+
         const name = req.body?.name
         const height = req.body?.height
         const weight = req.body?.weight
@@ -129,7 +130,8 @@ async function saveInfo(req: Request, res: Response) {
         const cookieID = req.cookies['connect.sid']
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
-
+ console.log(userID,height)
+ 
         if (!!userID) {
             await knex('users').update({
                 session_id: cookieID,

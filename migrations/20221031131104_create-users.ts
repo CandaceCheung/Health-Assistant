@@ -26,7 +26,7 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('mental_health');
         table.integer('general_health');
         table.string('session_id');
-    })
+    });
 
 }
 
