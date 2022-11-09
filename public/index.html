@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="submit-button-box">
                                     <button id="submit-heart" type="submit" class="submit-button" data-bs-toggle="modal"
-                                        data-bs-target="#heart-modal">
+                                        data-bs-target="#stroke-modal">
                                         Submit
                                     </button>
                                     <button id="prefill-heart" type="submit" class="submit-button">
@@ -519,19 +519,25 @@
                                     placeholder="Input Your Name" value="">
                             </div>
                             <div class="mb-3">
+                                <label for="age-input" class="form-label">Your age？</label>
+                                <input name="actual-age" type="number" class="form-control" id="age-input">
                                 <label for="age-input" class="form-label">Age</label>
                                 <input name="actual-age" type="number" class="form-control" id="stroke-age">
                             </div>
                             <div class="mb-3">
+                                <label for="height-input" class="form-label">Your height?</label>
+                                <input name="height-input" type="number" class="form-control" id="height-input">
                                 <label for="height-input" class="form-label">Height</label>
                                 <input name="height-input" type="number" class="form-control" id="stroke-height">
                             </div>
                             <div class="mb-3">
+                                <label for="weight-input" class="form-label">Your weight?</label>
+                                <input name="weight-input" type="number" class="form-control" id="weight-input">
                                 <label for="weight-input" class="form-label">Weight</label>
                                 <input name="weight-input" type="number" class="form-control" id="stroke-weight">
                             </div>
                             <div class="input-panel mb-3">
-                                <div class="form-header">Sex</div>
+                                <div class="form-header">Gender</div>
                                 <select name="gender" id="stroke-gender" class="selection">
                                     <option value="null">Select</option>
                                     <option value="0">Female</option>
@@ -545,7 +551,7 @@
                                         <label for="save-info">Save My Info</label><br />
                                     </div>
                                     <div class="submit-button-box">
-                                        <button id="submit-stroke" type="submit" class="submit-button">
+                                        <button id="submit-stroke" type="submit" class="submit-button" data-bs-toggle="modal" data-bs-target="#stroke-modal">
                                             Submit
                                         </button>
                                         <button id="prefill-stroke" type="button" class="submit-button">
@@ -553,12 +559,20 @@
                                         </button>
                                     </div>
                                 </div>
+                                <button id="submit-stroke" type="submit" class="submit-button" data-bs-toggle="modal"
+                                    data-bs-target="#stroke-modal">
+                                    Submit
+                                </button>
+                                <button id="prefill-stroke" type="submit" class="submit-button">
+                                    Pre-fill Info
+                                </button>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- User Guide Modal -->
