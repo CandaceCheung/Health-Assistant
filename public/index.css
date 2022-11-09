@@ -182,7 +182,8 @@ body {
   display: flex;
 }
 
-.diabetes-age {
+.diabetes-age,
+.lung-age {
  margin-left: 10px;
 }
 
