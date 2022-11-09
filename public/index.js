@@ -86,12 +86,12 @@ async function getUserInfo() {
 
      //prefill diabetes form
 
-    document.querySelector(`#prefill-diabetes`).value.addEventListener("click", (e) => {
+    document.querySelector(`#prefill-diabetes`).addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.querySelector(`#diabetes-name`).value = name;
-        document.querySelector(`#diabetes-gender`).value = gender;
-        document.querySelector(`#actual-age`).value = actualAge;
+        document.querySelector("#diabetes-name").value = name;
+        document.querySelector("#diabetes-gender").value = gender;
+        document.querySelector("#actual-age").value = actualAge;
         document.querySelector(`#height-input`).value = height;
         document.querySelector(`#weight-input`).value = weight;
         document.querySelector(`#diabetes-smoke`).value = smoke;
