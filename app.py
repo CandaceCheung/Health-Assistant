@@ -18,8 +18,6 @@ stroke_model = tf.saved_model.load('./stroke/notebook/model')
 @app.post("/index/test/suicide")
 def callSuicideModel(request):
     content = request.json
-    text = nt.TextFrame(text=content)
-    print(text.describe())
 
     cleaned_text=[]
     for str in content :
