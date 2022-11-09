@@ -367,7 +367,7 @@ document //form submission: Diabetes
         const exerciseDays = parseInt(form["exercise-days"].value);
         const mentalHealth = parseInt(form["mental-health"].value);
         const drinker = parseInt(form["drinker"].value);
-        const generalHealth = form["general-health"].value;
+        const generalHealth = parseInt(form["general-health"].value);
 
         testData.push(
             bloodPressure,
@@ -439,7 +439,7 @@ document //form submission: Diabetes
 
         const result = await res.json();
         if (res.status !== 200) {
-            alert("ERR002: Failed to post test data");
+            alert("ERR002: Failed to post diabetes test data");
             document.location.reload();
         } else {
             const testResult = parseFloat(result.result.data);
@@ -447,7 +447,7 @@ document //form submission: Diabetes
             console.log(testResult)
 
             const probability = formatAsPercent(
-                testResult["probability"] * 100
+                testResult
             );
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
