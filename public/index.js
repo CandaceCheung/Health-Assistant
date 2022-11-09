@@ -355,21 +355,37 @@ document //form submission: Diabetes
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const gender = parseInt(form["gender"].value);
-        const smoke = form["smoke"].value;
-        const stroke = form["stroke"].value;
-        const heartAttack = form["heart-attack"].value;
-        const cholesterolCheck = form["cholesterol-check"].value;
-        const cholesterolHigh = form["cholesterol-high"].value;
-        const bloodPressure = form["high-blood-pressure"].value;
-        const fruit = form["fruit"].value;
-        const veggies = form["veggies"].value;
-        const exercise = form["exercise"].value;
-        const exerciseDays = form["exercise-days"].value;
+        const smokeCheck = parseInt (form["smoke"].value);
+        const stroke = parseInt(form["stroke"].value);
+        const heartAttack = parseInt(form["heart-attack"].value);
+        const cholesterolCheck = parseInt(form["cholesterol-check"].value);
+        const cholesterolHigh = parseInt(form["cholesterol-high"].value);
+        const bloodPressure = parseInt(form["high-blood-pressure"].value);
+        const fruit = parseInt(form["fruit"].value);
+        const veggies = parseInt(form["veggies"].value);
+        const exerciseCheck = parseInt(form["exercise-check"].value);
+        const exerciseDays = parseInt(form["exercise-days"].value);
         const mentalHealth = parseInt(form["mental-health"].value);
-        const drinker = form["drinker"].value;
+        const drinker = parseInt(form["drinker"].value);
+        const generalHealth = form["general-health"].value;
 
         testData.push(
-            bloodPressure,cholesterolHigh,cholesterolCheck
+            bloodPressure,
+            cholesterolHigh,
+            cholesterolCheck,
+            bmi,
+            smokeCheck,
+            stroke,
+            heartAttack,
+            exerciseCheck,
+            fruit,
+            veggies,
+            drinker,
+            mentalHealth,
+            exerciseDays,
+            gender,
+            actualAge,
+            generalHealth
         );
         console.log(testData);
 
@@ -379,17 +395,19 @@ document //form submission: Diabetes
                 bmi: bmi,
                 actualAge: actualAge,
                 gender: gender,
-                smoke: smoke,
+                smokeCheck: smokeCheck,
                 stroke: stroke,
                 heartAttack: heartAttack,
                 cholesterolCheck: cholesterolCheck, 
                 cholesterolHigh: cholesterolHigh,
+                bloodPressure: bloodPressure,
                 fruit: fruit,
                 veggies: veggies,
-                exercise: exercise,
+                exerciseCheck: exerciseCheck,
                 exerciseDays: exerciseDays,
                 mentalHealth: mentalHealth,
                 drinker: drinker,
+                generalHealth: generalHealth,
             };
 
             const res = await fetch("/info", {
@@ -428,56 +446,39 @@ document //form submission: Diabetes
 
             console.log(testResult)
 
-            // const diabetes = testResult["Diabetes"];
-            // const probability = formatAsPercent(
-            //     testResult["probability"] * 100
-            // );
-            // const resultBoard = document.querySelector("#test-result");
-            // const resultBox = document.querySelector("#test-result-container");
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
+            const resultBoard = document.querySelector("#test-result");
+            const resultBox = document.querySelector("#test-result-container");
 
-            // let likelihood = "";
-            // let greet = "";
-            // if (diabetes === "Yes") {
-            //     greet = "Unfortunately"
-            //     likelihood = "Likely";
-            // } else {
-            //     greet = "Good!";
-            //     likelihood = "Unlikely";
-            // }
+            let severity = "";
+            if (
+                testResult["probability"] <= 1 &&
+                testResult["probability"] >= 0.6
+            ) {
+                severity = "Highly";
+            }
+            if (
+                testResult["probability"] < 0.6 &&
+                testResult["probability"] >= 0.4
+            ) {
+                severity = "Moderately";
+            }
+            if (testResult["probability"] < 0.4) {
+                severity = "Mildly";
+            }
 
-            // let severity = "";
-            // if (
-            //     testResult["probability"] <= 1 &&
-            //     testResult["probability"] >= 0.8
-            // ) {
-            //     severity = "Extremely";
-            // }
-            // if (
-            //     testResult["probability"] < 0.8 &&
-            //     testResult["probability"] >= 0.6
-            // ) {
-            //     severity = "Very";
-            // }
-            // if (
-            //     testResult["probability"] < 0.6 &&
-            //     testResult["probability"] >= 0.4
-            // ) {
-            //     severity = "Moderately";
-            // }
-            // if (testResult["probability"] < 0.4) {
-            //     severity = "Mildly";
-            // }
+            resultBoard.innerHTML = `
+            <div id ='result-title'>Here it is!</div>
+                Accordingly to our prediction, <br> 
+                Your risk for developing a Diabetes is : 
+                <div id='test-result'> <h2>${severity}</h2> </div> 
+                    with ${probability} probability.
+                <button id='diabetes-explain' class='explain-btn'>Explain</button
+            `
 
-            // resultBoard.innerHTML = `
-            // <div id ='result-title'>${greet}</div>
-            //     Accordingly to our prediction, <br> 
-            //     Your risk for developing a Diabetes is : 
-            //     <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
-            //     with ${probability} probability.
-            //     <button id='diabetes-explain' class='explain-btn'>Explain</button
-            // `
-
-            // resultBox.style.display = "block"
+            resultBox.style.display = "block"
         }
 });
 

@@ -106,12 +106,19 @@ async function saveInfo(req: Request, res: Response) {
         const exercise = req.body?.exercise
         const alcohol = req.body?.alcohol
         const actualAge = req.body?.actualAge
-        const pregnancies = req.body?.pregnancies
-        const glucose = req.body?.glucose
+        const smokeCheck = req.body?.smokeCheck
+        const stroke = req.body?.stroke
+        const heartAttack = req.body?.heartAttack
+        const cholesterolCheck = req.body?.cholesterolCheck
+        const cholesterolHigh = req.body?.cholesterolHigh
         const bloodPressure = req.body?.bloodPressure
-        const skinThickness = req.body?.skinThickness
-        const insulin = req.body?.insulin
-        const pedigree = req.body?.pedigree
+        const fruit = req.body?.fruit
+        const veggies = req.body?.veggies
+        const exerciseCheck = req.body?.exerciseCheck
+        const exerciseDays = req.body?.exerciseDays
+        const mentalHealth = req.body?.mentalHealth
+        const drinker = req.body?.drinker
+        const generalHealth = req.body?.generalHealth
         const cookieID = req.cookies['connect.sid']
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
@@ -129,12 +136,20 @@ async function saveInfo(req: Request, res: Response) {
                 sleep: sleep,
                 alcohol: alcohol,
                 actual_age: actualAge,
-                pregnancies: pregnancies,
-                glucose: glucose,
+                smokeCheck: smokeCheck,
+                stroke: stroke,
+                heartAttack: heartAttack,
+                cholesterolCheck: cholesterolCheck, 
+                cholesterolHigh: cholesterolHigh,
                 bloodPressure: bloodPressure,
-                skinThickness: skinThickness,
-                insulin: insulin,
-                pedigree: pedigree,
+                fruit: fruit,
+                veggies: veggies,
+                exerciseCheck: exerciseCheck,
+                exerciseDays: exerciseDays,
+                mentalHealth: mentalHealth,
+                drinker: drinker,
+                generalHealth: generalHealth,
+
             }).where('id', userID.id)
         } else {
             await knex.insert({
@@ -149,12 +164,7 @@ async function saveInfo(req: Request, res: Response) {
                 sleep: sleep,
                 alcohol: alcohol,
                 actual_age: actualAge,
-                pregnancies: pregnancies,
-                glucose: glucose,
-                bloodPressure: bloodPressure,
-                skinThickness: skinThickness,
-                insulin: insulin,
-                pedigree: pedigree,
+
             }).into('users')
         }
 
