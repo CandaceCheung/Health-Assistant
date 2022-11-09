@@ -84,6 +84,8 @@ async function getUserInfo() {
         document.querySelector("#heart-alcohol").checked = alcohol;
     });
 
+     //prefill diabetes form
+     
     document.querySelector(`#prefill-diabetes`).value.addEventListener("click", (e) => {
         e.preventDefault();
 
