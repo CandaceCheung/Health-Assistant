@@ -94,7 +94,17 @@ async function getUserInfo() {
         document.querySelector(`#actual-age`).value = actualAge;
         document.querySelector(`#height-input`).value = height;
         document.querySelector(`#weight-input`).value = weight;
-
+        document.querySelector(`#diabetes-smoke`).value = smoke;
+        document.querySelector(`#diabetes-stroke`).value = stroke;
+        document.querySelector(`#diabetes-heart`).value = heartAttack;
+        document.querySelector(`#cholesterol`).value = cholesterolCheck;
+        document.querySelector(`#cholesterol-high`).value = cholesterolHigh;
+        document.querySelector(`#blood-pressure`).value = bloodPressure;
+        document.querySelector(`#fruit`).value = fruit;
+        document.querySelector(`#veggies`).value = veggies;
+        document.querySelector(`#diabetes-exercise`).value = exercise;
+        document.querySelector(`#exercise-days`).value = exerciseDays;
+        document.querySelector(`#mental-health`).value = mentalHealth;
     });
 }
 
@@ -485,12 +495,12 @@ document //form submission: Diabetes
             alert("ERR002: Failed to post diabetes test data");
             document.location.reload();
         } else {
-            const testResult = parseFloat((result.result.data) * 1000);
+            const testResult = parseFloat((result.result.data)*100);
 
             console.log(testResult * 100)
 
             const probability = formatAsPercent(
-                testResult * 100
+                testResult
             );
 
             const resultBoard = document.querySelector("#test-result");
