@@ -131,7 +131,7 @@
                                 </div>
 
                                 <div class="input-panel mb-3">
-                                    <div class="form-header">Sex</div>
+                                    <div class="form-header">Gender</div>
                                     <select name="gender" id="heart-gender" class="selection">
                                         <option value="null">Select</option>
                                         <option value="0">Female</option>
@@ -299,7 +299,8 @@
                             <!--  -->
                             <div class="mb-3">
                                 <label for="smoke" class="form-label">Are you smoke?</label>
-                                <select name="smoke" class="form-select form-select mb-3" aria-label=".form-select ">
+                                <select name="smoke" id="diabetes-smoke" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -307,7 +308,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="stroke" class="form-label">Did you have stroke before?</label>
-                                <select name="stroke" class="form-select form-select mb-3" aria-label=".form-select ">
+                                <select name="stroke" id="diabetes-stroke" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -316,7 +318,7 @@
                             <div class="mb-3">
                                 <label for="heart-attack" class="form-label">Did you have heart disease or attack
                                     before?</label>
-                                <select name="heart-attack" class="form-select form-select mb-3"
+                                <select name="heart-attack" id="diabetes-heart" class="form-select form-select mb-3"
                                     aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
@@ -326,7 +328,7 @@
                             <div class="mb-3">
                                 <label for="cholesterol-check" class="form-label">Did you have cholesterol check within
                                     past five years?</label>
-                                <select name="cholesterol-check" class="form-select form-select mb-3"
+                                <select name="cholesterol-check" id="cholesterol" class="form-select form-select mb-3"
                                     aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
@@ -337,8 +339,8 @@
                                 <label for="cholesterol-high" class="form-label">Have you ever been told by a doctor,
                                     nurse or other health
                                     professional that your blood cholesterol is high?</label>
-                                <select name="cholesterol-high" class="form-select form-select mb-3"
-                                    aria-label=".form-select ">
+                                <select name="cholesterol-high" id="cholesterol-high"
+                                    class="form-select form-select mb-3" aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -347,8 +349,8 @@
                             <div class="mb-3">
                                 <label for="high-blood-pressure" class="form-label">Do you have high blood
                                     pressure?</label>
-                                <select name="high-blood-pressure" class="form-select form-select mb-3"
-                                    aria-label=".form-select ">
+                                <select name="high-blood-pressure" id="high-blood-pressure"
+                                    class="form-select form-select mb-3" aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -356,7 +358,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="fruit" class="form-label">Do you eat fruit regularly?</label>
-                                <select name="fruit" class="form-select form-select mb-3" aria-label=".form-select ">
+                                <select name="fruit" id="fruit" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -364,7 +367,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="veggies" class="form-label">Do you eat veggies regularly?</label>
-                                <select name="veggies" class="form-select form-select mb-3" aria-label=".form-select ">
+                                <select name="veggies" id="veggies" class="form-select form-select mb-3"
+                                    aria-label=".form-select ">
                                     <option>Please select</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -478,8 +482,8 @@
                                         <input type="checkbox" id="save-info" name="save-info" unchecked />
                                         <label for="save-info">Save My Info</label><br />
                                     </div>
-                                    <button id="submit-diabetes" type="submit" class="submit-button" data-bs-toggle="modal"
-                                        data-bs-target="#liver-modal">
+                                    <button id="submit-diabetes" type="submit" class="submit-button"
+                                        data-bs-toggle="modal" data-bs-target="#liver-modal">
                                         Submit
                                     </button>
                                     <button id="prefill-diabetes" type="submit" class="submit-button">

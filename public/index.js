@@ -32,6 +32,7 @@ async function getUserInfo() {
     const sleep = result.data.sleep;
     const exercise = result.data.exercise;
     const alcohol = result.data.alcohol;
+    const actualAge = reqult.data.actualAge;
 
     globalName = name
 
@@ -65,6 +66,10 @@ async function getUserInfo() {
         e.preventDefault();
 
         document.querySelector(`#diabetes-name`).value = name;
+        document.querySelector(`#diabetes-gender`).value = gender;
+        document.querySelector(`#actual-age`).value = actualAge;
+        document.querySelector(`#height-input`).value = height;
+        document.querySelector(`#weight-input`).value = weight;
 
     });
 }
@@ -487,11 +492,11 @@ document //form submission: Diabetes
             }
             if (
                 testResult < 0.6 &&
-                testResult >= 0.3
+                testResult >= 0.2
             ) {
                 severity = "Moderately";
             }
-            if (testResult < 0.3) {
+            if (testResult < 0.2) {
                 severity = "Mildly";
             }
 
