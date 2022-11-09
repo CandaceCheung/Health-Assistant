@@ -6,6 +6,7 @@ import neattext.functions as nfx
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 
+
 app = Sanic("Python-Hosted-Model")
 
 suicide_model = tf.saved_model.load('./suicide-detection/notebook/model')
@@ -65,11 +66,11 @@ def callDiabetesModel(request):
     content = request.json
     print (content)
     
-    predict_dataset = tf.convert_to_tensor(content)
+    predict_dataset = tf.convert_to_tensor(content,dtype=tf.float32)
     predictions = diabetes_model(predict_dataset, training=False)
     
-    predictions = predictions.numpy()[0]
-    predictions = str(predictions[0])
+    predictions = np.round(predictions.numpy()[0],2)
+    predictions = str(predictions[0]*100)
 
     print("predictions",predictions, type(predictions))
 
