@@ -33,4 +33,3 @@ result = model.fit(X_train, y_train, epochs = 8, batch_size=10, validation_data=
 
 model.evaluate(X_test, y_test)
 
-model.save('./model',overwrite=True)
