@@ -5,7 +5,6 @@ import path from 'path';
 import dontenv from 'dotenv';
 import Knex from 'knex';
 import { infoRoutes } from './routes/infoRoutes';
-import { testRoutes } from './routes/testRoutes';
 import { testRoutes2 } from './routes/testRoutes2';
 
 dontenv.config();
