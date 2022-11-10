@@ -391,9 +391,9 @@ document //form submission: Suicide detection
                         <div>Dataset Detail : </div>
                         <div>
                             <ul>
-                                <li class="form-text">Train-data Size : 309 ( 270 : 30 ) </li>
-                                <li class="form-text">Accuracy :        85.48%</li>
-                                <li class="form-text">Loss :            0.4405</li>
+                                <li class="form-text">Train-data Size : 559 ( 289 : 270 ) </li>
+                                <li class="form-text">Accuracy :        76.79%</li>
+                                <li class="form-text">Loss :            0.5139</li>
                             </ul>
                         </div> 
                         <hr><img src="/asset/graphs/lung_accuracy.png" alt="" width="400" height="350">

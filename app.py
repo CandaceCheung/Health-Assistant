@@ -15,7 +15,6 @@ heart_model = tf.saved_model.load('./heart/notebook/model')
 diabetes_model = tf.saved_model.load('./diabetes/notebook/model')
 stroke_model = tf.saved_model.load('./stroke/notebook/model')
 
-
 @app.post("/index/test/lung")
 def callLungModel(request):
     content = request.json

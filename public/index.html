@@ -67,7 +67,6 @@
 
     <!-- Heart Disease Modal -->
 
-
     <div class="modal fade" id="heart-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -107,7 +106,7 @@
                             <div id="split-container">
                                 <div class="input-panel mb-3">
                                     <div class="form-header">Age Group</div>
-                                    <select name="age" id="heart-age" class="selection">
+                                    <select name="age" id="heart-age" class="selection" required>
                                         <option value="null">Select</option>
                                         <option value="0">0 - 17</option>
                                         <option value="1">18 - 24</option>
@@ -171,7 +170,7 @@
                                 </div>
                                 <div class="submit-button-box">
                                     <button id="submit-heart" type="submit" class="submit-button" data-bs-toggle="modal"
-                                        data-bs-target="#stroke-modal">
+                                        data-bs-target="#heart-modal">
                                         Submit
                                     </button>
                                     <button id="prefill-heart" type="submit" class="submit-button">
@@ -498,7 +497,7 @@
                                     <input type="checkbox" id="lung-anxiety" name="anxiety" unchecked />
                                     <label for="anxiety">Anxiety</label>
                                 </span>
-                                
+
                                 <span class="checkbox-box col-6">
                                     <input type="checkbox" id="lung-fatigue" name="fatigue" unchecked />
                                     <label for="fatigue">Fatigue</label>
@@ -508,7 +507,7 @@
                                     <input type="checkbox" id="lung-cough" name="cough" unchecked />
                                     <label for="cough">Coughing</label>
                                 </span>
-                                
+
                                 <span class="checkbox-box col-6">
                                     <input type="checkbox" id="lung-short-breath" name="short-breath" unchecked />
                                     <label for="short-breath">Short Breath</label>
@@ -518,7 +517,7 @@
                                     <input type="checkbox" id="lung-swallow" name="swallow" unchecked />
                                     <label for="swallow">Swallowing Difficulty</label>
                                 </span>
-                                
+
                                 <span class="checkbox-box col-6">
                                     <input type="checkbox" id="lung-chest-pain" name="chest-pain" unchecked />
                                     <label for="chest-pain">Chest Pain</label>
@@ -564,26 +563,22 @@
                     <div class="input-group-stroke">
                         <form id="stroke-form">
                             <div class="mb-3">
-                                <label for="user-name" class="form-label">Your name?</label>
+                                <label for="name" class="form-label">Your name?</label>
                                 <input name="name" type="text" class="form-control name" id="stroke-name"
                                     placeholder="Input Your Name" value="">
                             </div>
                             <div class="mb-3">
-                                <!-- <label for="age-input" class="form-label">Your age？</label>
-                                <input name="actual-age" type="number" class="form-control" id="age-input"> -->
-                                <label for="age-input" class="form-label">Age</label>
+                                <label for="actual-age" class="form-label">Your age？</label>
                                 <input name="actual-age" type="number" class="form-control" id="stroke-age">
+
                             </div>
                             <div class="mb-3">
-                                <!-- <label for="height-input" class="form-label">Your height?</label>
-                                <input name="height-input" type="number" class="form-control" id="height-input"> -->
-                                <label for="height-input" class="form-label">Height</label>
+                                <label for="height-input" class="form-label">Your height?</label>
                                 <input name="height-input" type="number" class="form-control" id="stroke-height">
+                         
                             </div>
                             <div class="mb-3">
-                                <!-- <label for="weight-input" class="form-label">Your weight?</label>
-                                <input name="weight-input" type="number" class="form-control" id="weight-input"> -->
-                                <label for="weight-input" class="form-label">Weight</label>
+                                <label for="weight-input" class="form-label">Your weight?</label>
                                 <input name="weight-input" type="number" class="form-control" id="stroke-weight">
                             </div>
                             <div class="input-panel mb-3">
@@ -631,20 +626,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
-                <div id="greeting" class="form-text">Welcome to our AI powered Health Assistant!
+                <div id="guide-content">
+                    <div id="greeting" class="form-text">Welcome to our AI powered Health Assistant!
+                    </div>
+                    <hr>
+                    <div class="form-text">Please choose and click one of the tests below and input the information
+                        required. Our AI powered machine will calculate a score which will be translated into a
+                        likelihood
+                        of getting that condition in later part of lives. Please note that the purpose of this programme
+                        is
+                        purely academic. The result should in no way be taken consideration as formal diagnoses. More
+                        explanation
+                        for test result can be found under the "(test result) --> Explanation"
+                    </div>
+                    <hr>
+                    <p class="form-text">Please note that none of your information will be saved without your
+                        permission,
+                        however it is optional by checking "save my info" before submitting your information for
+                        testing.
+                    </p>
                 </div>
-                <hr>
-                <div class="form-text">Please choose and click one of the tests below and input the information
-                    required. Our AI powered machine will calculate a score which will be translated into a likelihood
-                    of getting that condition in later part of lives. Please note that the purpose of this programme is
-                    purely academic. The result should in no way be taken consideration as formal diagnoses. More
-                    explanation
-                    for test result can be found under the "(test result) --> Explanation"
-                </div>
-                <hr>
-                <p class="form-text">Please note that none of your information will be saved without your permission,
-                    however it is optional by checking "save my info" before submitting your information for testing.
-                </p>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Understood</button>
                 </div>
