@@ -25,6 +25,12 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('exercise_days');
         table.integer('mental_health');
         table.integer('general_health');
+        table.integer('anxiety');
+        table.integer('fatigue');
+        table.integer('cough');
+        table.integer('short_breath');
+        table.integer('swallow');
+        table.integer('chest_pain');
         table.string('session_id');
     });
 

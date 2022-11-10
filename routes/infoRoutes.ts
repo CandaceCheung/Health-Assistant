@@ -44,6 +44,11 @@ async function getInfo(req: Request, res: Response) {
                 exerciseDays: result.exercise_days,
                 mentalHealth: result.mental_health,
                 generalHealth: result.general_health,
+                anxiety: result.anxiety,
+                fatigue: result.fatigue,
+                shortBreath: result.short_breath,
+                swallow: result.swallow,
+                chestPain: result.chest_pain
             }
 
             res.json({
@@ -106,7 +111,6 @@ async function saveInfo(req: Request, res: Response) {
     try {
         logger.debug('before reading DB')
 
-
         const name = req.body?.name
         const height = req.body?.height
         const weight = req.body?.weight
@@ -128,9 +132,15 @@ async function saveInfo(req: Request, res: Response) {
         const mentalHealth = req.body?.mentalHealth
         const generalHealth = req.body?.generalHealth
         const cookieID = req.cookies['connect.sid']
+        const anxiety = req.body?.anxiety
+        const fatigue = req. body?.fatigue
+        const cough = req.body?.cough
+        const shortBreath = req.body?.shortBreath
+        const swallow = req.body?.swallow
+        const chestPain = req.body?.chestPain
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
- console.log(userID,height)
+        console.log(userID,height)
  
         if (!!userID) {
             await knex('users').update({
@@ -155,6 +165,12 @@ async function saveInfo(req: Request, res: Response) {
                 exercise_days: exerciseDays,
                 mental_health: mentalHealth,
                 general_health: generalHealth,
+                anxiety: anxiety,
+                fatigue: fatigue,
+                cough: cough,
+                short_breath: shortBreath,
+                swallow: swallow,
+                chest_pain: chestPain
 
             }).where('id', userID.id)
         } else {
@@ -180,6 +196,12 @@ async function saveInfo(req: Request, res: Response) {
                 exercise_days: exerciseDays,
                 mental_health: mentalHealth,
                 general_health: generalHealth,
+                anxiety: anxiety,
+                fatigue: fatigue,
+                cough: cough,
+                short_breath: shortBreath,
+                swallow: swallow,
+                chest_pain: chestPain
 
             }).into('users')
         }

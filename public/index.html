@@ -57,10 +57,9 @@
                     data-bs-target="#suicide-modal">SUICIDAL RISK</button>
             </div>
             <div class="col-sm-6 btn-box">
-                <button id="liver-disease" role="button" class="test-button" data-bs-toggle="modal"
-                    data-bs-target="#liver-modal">LUNG CANCER</button>
+                <button id="lung-cancer" role="button" class="test-button" data-bs-toggle="modal"
+                    data-bs-target="#lung-modal">LUNG CANCER</button>
             </div>
-
         </div>
     </div>
 
@@ -441,20 +440,20 @@
     </div>
 
     <!-- lung modal -->
-    <div class="modal fade" id="liver-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="lung-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div></div>
-                    <h5 class="modal-title">Lung Cancer Prediction</h5>
+                    <h5 class="modal-title">Lung Cancer Risk Prediction</h5>
                     <div class="exit-modal">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="modal-body">
                     <div class="input-group-lung">
-                        <form id="liver-form">
+                        <form id="lung-form">
                             <div class="mb-3">
                                 <label for="user-name" class="form-label">Your name?</label>
                                 <input name="name" type="text" class="form-control name" id="lung-name"
@@ -465,7 +464,8 @@
                                     <div>
                                         <label for="gender" class="form-label">Gender</label>
                                     </div>
-                                    <select name="gender" id="lung-gender" class="form-select gender-form-select">
+                                    <select name="gender" id="lung-gender" class="form-select gender-form-select"
+                                        required>
                                         <option>Select</option>
                                         <option value="0">Female</option>
                                         <option value="1">Male</option>
@@ -476,28 +476,56 @@
                                         <label for="actual-age" class="form-label">Age</label>
                                     </div>
                                     <input name="actual-age" type="number" class="form-control age-form-control"
-                                        id="lung-actual-age" min="0">
+                                        id="lung-actual-age" min="0" max="100" required>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="smoke" class="form-label">Do you smoke?</label>
-                                <select name="smoke" id="lung-smoke" class="form-select form-select mb-3"
-                                    aria-label=".form-select ">
-                                    <option>Please select</option>
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
+
+                            <div class="input-panel mb-3"></div>
+                            <input type="checkbox" id="lung-alcohol" name="alcohol" unchecked />
+                            <label for="alcohol"
+                                title="Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week">Are
+                                you a heavy drinker?</label><br />
+
+                            <div class="input-panel mb-3"></div>
+                            <input type="checkbox" id="lung-smoke" name="smoke" unchecked />
+                            <label for="smoke" title="[Note: 5 packs = 100 cigarettes]">Do you smoke?</label>
+
+                            <div class="input-panel mb-3"></div>
+                            <div class="condition-box row">
+                                <div class="form-text col-12">Check the box if you have following conditions:</div>
+                                <div class="input-panel mb-3"></div>
+                                <span class="checkbox-box col-6">
+                                    <input type="checkbox" id="lung-anxiety" name="anxiety" unchecked />
+                                    <label for="anxiety">Anxiety</label>
+                                </span>
+                                
+                                <span class="checkbox-box col-6">
+                                    <input type="checkbox" id="lung-fatigue" name="fatigue" unchecked />
+                                    <label for="fatigue">Fatigue</label>
+                                </span>
+                                <div class="input-panel mb-3"></div>
+                                <span class="checkbox-box col-6">
+                                    <input type="checkbox" id="lung-cough" name="cough" unchecked />
+                                    <label for="cough">Coughing</label>
+                                </span>
+                                
+                                <span class="checkbox-box col-6">
+                                    <input type="checkbox" id="lung-short-breath" name="short-breath" unchecked />
+                                    <label for="short-breath">Short Breath</label>
+                                </span>
+                                <div class="input-panel mb-3"></div>
+                                <span class="checkbox-box col-6">
+                                    <input type="checkbox" id="lung-swallow" name="swallow" unchecked />
+                                    <label for="swallow">Swallowing Difficulty</label>
+                                </span>
+                                
+                                <span class="checkbox-box col-6">
+                                    <input type="checkbox" id="lung-chest-pain" name="chest-pain" unchecked />
+                                    <label for="chest-pain">Chest Pain</label>
+                                </span>
+                                <div class="input-panel mb-3"></div>
                             </div>
-                            <div class="mb-3">
-                                <label for="blood-pressure-input" class="form-label">Blood Pressure</label>
-                                <input name="blood-pressure" type="number" class="form-control"
-                                    id="blood-pressure-input">
-                            </div>
-                            <div class="mb-3">
-                                <label for="pedigree-function-input" class="form-label">Pedigree
-                                    Function</label>
-                                <input name="pedigree" type="number" class="form-control" id="pedigree-function-input">
-                            </div>
+
                             <div class="modal-footer">
                                 <div class="submit-button-box">
                                     <div class="save-info-box">

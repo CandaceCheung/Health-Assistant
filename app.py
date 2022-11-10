@@ -7,13 +7,34 @@ import neattext.functions as nfx
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 
-
 app = Sanic("Python-Hosted-Model")
 
+lung_model = tf.saved_model.load('./lung-cancer/notebook/model')
 suicide_model = tf.saved_model.load('./suicide-detection/notebook/model')
 heart_model = tf.saved_model.load('./heart/notebook/model')
 diabetes_model = tf.saved_model.load('./diabetes/notebook/model')
 stroke_model = tf.saved_model.load('./stroke/notebook/model')
+
+
+@app.post("/index/test/lung")
+def callLungModel(request):
+    content = request.json
+    print (content)
+    
+    predict_dataset = tf.convert_to_tensor(content, dtype=tf.float32)
+    predictions = lung_model(predict_dataset, training=False)
+    probs = predictions.numpy()[0]
+
+    results = []
+
+    if probs[0] > 0.5: 
+        decision = "Yes"
+    else: 
+        decision = "No"
+
+    results.append({"Lung Cancer": decision,"probability": str(probs[0])})
+ 
+    return json({"data":results})
 
 @app.post("/index/test/suicide")
 def callSuicideModel(request):

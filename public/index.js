@@ -19,6 +19,7 @@ async function getUserInfo() {
         document.querySelector("#name-greet").innerHTML = `
             Hello ! Which Test Would You Like To Take ?
         `;
+        prefillUserName()
         return;
     }
 
@@ -42,6 +43,12 @@ async function getUserInfo() {
     const exerciseDays = result.data.exerciseDays;
     const mentalHealth = result.data.mentalHealth;
     const generalHealth = result.data.generalHealth;
+    const anxiety = result.data.anxiety;
+    const fatigue = result.data.fatigue;
+    const cough = result.data.cough;
+    const shortBreath = result.data.shortBreath;
+    const swallow = result.data.swallow;
+    const chestPain = result.data.chestPain;
 
     globalName = name
     prefillUserName()
@@ -83,6 +90,24 @@ async function getUserInfo() {
         document.querySelector(`#heart-smoke`).checked = smoke;
         document.querySelector("#heart-exercise").checked = exercise;
         document.querySelector("#heart-alcohol").checked = alcohol;
+    });
+
+    //prefill lung cancer form
+
+    document.querySelector("#prefill-lung").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.querySelector(`#lung-name`).value = name;
+        document.querySelector("#lung-actual-age").value = actualAge;
+        document.querySelector(`#lung-gender`).value = gender;
+        document.querySelector(`#lung-smoke`).checked = smoke;
+        document.querySelector("#lung-alcohol").checked = alcohol;
+        document.querySelector("#lung-anxiety").checked = anxiety;
+        document.querySelector("#lung-fatigue").checked = fatigue;
+        document.querySelector("#lung-cough").checked = cough;
+        document.querySelector("#lung-short-breath").checked = shortBreath;
+        document.querySelector("#lung-swallow").checked = swallow;
+        document.querySelector("#lung-chest-pain").checked = chestPain;
     });
 
     //prefill diabetes form
@@ -202,6 +227,180 @@ document //form submission: Suicide detection
                 <button id='suicide-explain' class='explain-btn' data-bs-toggle="modal"
                 data-bs-target="#explain-modal">Explain</button>
             `;
+            resultBox.style.display = "block";
+        }
+    });
+
+    document //form submission: Lung Cancer 
+    .querySelector("#lung-form")
+    .addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const testData = [];
+        const form = e.target;
+        const saveInfo = form["save-info"].checked ? 1 : 0;
+        const name = form["name"].value;
+        const gender = parseInt(form["gender"].value);
+        const actualAge = parseInt(form["actual-age"].value);
+        const smoke = form["smoke"].checked ? 1 : 0;
+        const alcohol = form["alcohol"].checked ? 1 : 0;
+        const anxiety = form["anxiety"].checked ? 1 : 0;
+        const fatigue = form["fatigue"].checked ? 1 : 0;
+        const cough = form["cough"].checked ? 1 : 0;
+        const shortBreath = form["short-breath"].checked ? 1 : 0;
+        const swallow = form["swallow"].checked ? 1 : 0;
+        const chestPain = form["chest-pain"].checked ? 1 : 0;
+
+        testData.push(gender,actualAge,smoke,anxiety,fatigue,alcohol,cough,shortBreath,swallow,chestPain);
+        console.log(testData);
+
+        if (saveInfo) {
+            const obj = {
+                name: name,
+                gender: gender,
+                actualAge: actualAge,
+                gender: gender,
+                smoke: smoke,
+                alcohol: alcohol,
+                anxiety: anxiety,
+                fatigue: fatigue,
+                cough: cough,
+                shortBreath: shortBreath,
+                swallow: swallow,
+                chestPain: chestPain
+            };
+            const res = await fetch("/info", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(obj),
+            });
+
+            const result = await res.json()
+
+            if (res.status !== 200) {
+                console.log(result)
+                alert(res.msg);
+            } else {
+                const msg = "User Info Saved";
+                showNotification(msg, 5000);
+            }
+        }
+
+        const res = await fetch(`/test/lung`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(testData),
+        });
+
+        const result = await res.json();
+        if (res.status !== 200) {
+            alert("ERR001: Failed to post test data");
+            document.location.reload();
+        } else {
+            const testResult = result.result.data[0];
+            const heartDisease = testResult["Lung Cancer"];
+            const probability = formatAsPercent(testResult["probability"] * 100);
+            const resultBoard = document.querySelector("#test-result");
+            const resultBox = document.querySelector("#test-result-container");
+            const recommendationBoard = document.querySelector("#recommendation-text")
+            const explanationBoard = document.querySelector("#explain-text")
+            recommendationBoard.innerHTML = ''
+            explanationBoard.innerHTML = ''
+
+            let likelihood = "";
+            let greet = "";
+            if (heartDisease == "Yes") {
+                greet = "Oops...";
+                likelihood = "Likely";
+            } else {
+                greet = "Congratulation!";
+                likelihood = "Unlikely";
+            }
+
+            let severity = "";
+            if (
+                testResult["probability"] >= 0.9 ||
+                testResult["probability"] <= 0.1
+            ) {
+                severity = "Extremely";
+            }
+            if (
+                testResult["probability"] >= 0.8 && testResult["probability"] < 0.9 ||
+                testResult["probability"] <= 0.3 && testResult["probability"] > 0.1
+            ) {
+                severity = "Very";
+            }
+            if (
+                testResult["probability"] >= 0.6 && testResult["probability"] < 0.8 ||
+                testResult["probability"] <= 0.4 && testResult["probability"] > 0.3
+            ) {
+                severity = "Moderately";
+            }
+            if (testResult["probability"] > 0.4 && testResult["probability"] < 0.6) {
+                severity = "Mildly";
+            }
+
+            const recommendations = []
+            const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
+            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`
+            const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
+            <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed';"> Link </button>
+            `
+            const noWorries = `<label for="exercise-recommendation" class="form-label">You Are Good to Go !</label>
+            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`
+
+
+            if (smoke) {
+                recommendations.push(smokerRecommendation)
+            }
+            if (alcohol) {
+                recommendations.push(drinkerRecommendation)
+            }
+            if (recommendations.length < 1) {
+                recommendations.push(noWorries)
+            }
+
+            for (let i = 0; i < recommendations.length; i++) {
+                if (i === 0) {
+                    recommendationBoard.innerHTML += recommendations[i]
+                } else {
+                    recommendationBoard.innerHTML += '<hr>' + recommendations[i]
+                }
+            }
+            document.querySelector('#recommendation-text').style.overflow = 'auto'
+
+            resultBoard.innerHTML = `
+            <div id ='result-title'>${greet}</div>
+            Accordingly to our prediction, <br> 
+                Your risk for developing Lung Cancer is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> <div class='probability-result'> with ${probability} probability.</div>
+                <div>Click to see our recommendations below!</div>
+                <button id='lung-explain' class='explain-btn' data-bs-toggle="modal"
+                data-bs-target="#explain-modal">Explain</button>
+                <button id='lung-recommendation' class='recommendation-btn' data-bs-toggle="modal"
+                data-bs-target="#recommendation-modal">Recommendation</button>
+                `;
+            document // add explanation 
+                .querySelector('#lung-explain').addEventListener('click', () => {
+                    e.preventDefault()
+                    console.log('TEST')
+                    document.querySelector('#explain-text').innerHTML = `
+                        <div>Dataset Detail : </div>
+                        <div>
+                            <ul>
+                                <li class="form-text">Train-data Size : 309 ( 270 : 30 ) </li>
+                                <li class="form-text">Accuracy :        85.48%</li>
+                                <li class="form-text">Loss :            0.4405</li>
+                            </ul>
+                        </div> 
+                        <hr><img src="/asset/graphs/lung_accuracy.png" alt="" width="400" height="350">
+                        <hr><img src="/asset/graphs/lung_loss.png" alt="" width="400" height="350">
+                    `
+                    document.querySelector('#explain-text').style.overflow = 'auto'
+                })
             resultBox.style.display = "block";
         }
     });
