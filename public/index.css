@@ -248,7 +248,7 @@ header {
   min-height: 50px;
   min-width: 200px;
   font-weight: 800;
-  font-size: calc(10px + 0.8vw);
+  font-size: calc(10px + 0.9vw);
   --b: 3px;
   /* border thickness */
   --s: .45em;
