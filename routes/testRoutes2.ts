@@ -2,20 +2,20 @@ import express, { Request, Response } from "express";
 import fetch from 'cross-fetch'
 import { logger } from "../util/logger";
 
-export const testRoutes = express.Router();
+export const testRoutes2 = express.Router();
 
-testRoutes.post('/suicide', testSuicide)
-testRoutes.post('/heart', testHeartDisease)
-testRoutes.post('/diabetes', testDiabetes)
-testRoutes.post('/stroke', testStroke)
-testRoutes.post('/lung', testLung)
+testRoutes2.post('/suicide', testSuicide)
+testRoutes2.post('/heart', testHeartDisease)
+testRoutes2.post('/diabetes', testDiabetes)
+testRoutes2.post('/stroke', testStroke)
+testRoutes2.post('/lung', testLung)
 
 async function testLung(req: Request, res: Response) {
     try {
         logger.debug('before sending test data')
         const testData = req.body
         
-        const fetchRes = await fetch('http://localhost:8000/index/test/lung', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/lung', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -55,7 +55,7 @@ async function testSuicide(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body.text
         
-        const fetchRes = await fetch('http://localhost:8000/index/test/suicide', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/suicide', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -95,7 +95,7 @@ async function testHeartDisease(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
         
-        const fetchRes = await fetch('http://localhost:8000/index/test/heart', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/heart', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -128,7 +128,7 @@ async function testDiabetes(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
 
-        const fetchRes = await fetch('http://localhost:8000/index/test/diabetes', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/diabetes', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

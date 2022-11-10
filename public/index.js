@@ -232,6 +232,7 @@ document //form submission: Suicide detection
                 <button id='suicide-explain' class='explain-btn' data-bs-toggle="modal"
                 data-bs-target="#explain-modal">Explain</button>
             `;
+            resultBox.style.overflow = "auto";
             resultBox.style.display = "block";
         }
     });

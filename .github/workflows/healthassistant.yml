@@ -27,11 +27,10 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
         command: |
-          cd healthassistant
-          git pull origin main
-          yarn jest
+          cd Health-Assistant
+          git pull
           yarn install
           forever restart -c 'yarn start' .
-        host: healthassistant.frankieyip.world
+        host: health-assistant.frankieyip.world
         user: ubuntu
         key: ${{secrets.SSH_PRIVATE_KEY}}
