@@ -297,7 +297,7 @@ document //form submission: Suicide detection
 
         const result = await res.json();
         if (res.status !== 200) {
-            alert("ERR001: Failed to post test data");
+            alert("ERR001: Failed to post lung test data");
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
@@ -791,7 +791,7 @@ document //form submission: strokes
 
         const result = await res.json();
         if (res.status !== 200) {
-            alert("ERR002: Failed to post test data");
+            alert("ERR002: Failed to post stroke test data");
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
