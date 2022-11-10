@@ -297,7 +297,7 @@ document //form submission: Suicide detection
 
         const result = await res.json();
         if (res.status !== 200) {
-            alert("ERR001: Failed to post test data");
+            alert("ERR001: Failed to post lung test data");
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
@@ -731,6 +731,8 @@ document //form submission: Diabetes
                 Your risk for developing a Diabetes is : 
                 <div id='test-result'> <h2>${severity}</h2></div> 
                     with ${probability} probability.
+                <button id='diabetes-explain' class='explain-btn' data-bs-toggle="modal"
+                    data-bs-target="#explain-modal">Explain</button>
             `
 
             resultBox.style.display = "block"
@@ -791,7 +793,7 @@ document //form submission: strokes
 
         const result = await res.json();
         if (res.status !== 200) {
-            alert("ERR002: Failed to post test data");
+            alert("ERR002: Failed to post stroke test data");
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
@@ -799,6 +801,10 @@ document //form submission: strokes
             const probability = formatAsPercent(testResult["probability"] * 100);
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
+            const recommendationBoard = document.querySelector("#recommendation-text")
+            const explanationBoard = document.querySelector("#explain-text")
+            recommendationBoard.innerHTML = ''
+            explanationBoard.innerHTML = ''
 
             let likelihood = "";
             let greet = "";
@@ -836,10 +842,11 @@ document //form submission: strokes
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
                 Accordingly to our prediction, <br> 
-                Your risk for developing Stroke is : 
-                <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
-                with ${probability} probability.
-                <button id='diabetes-explain' class='explain-btn'>Explain</button
+                Your risk for developing Stroke is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability.
+                <button id='stroke-explain' class='explain-btn' data-bs-toggle="modal"
+                data-bs-target="#explain-modal">Explain</button>
+                <button id='heart-recommendation' class='recommendation-btn' data-bs-toggle="modal"
+                data-bs-target="#recommendation-modal">Recommendation</button>
             `;
 
             resultBox.style.display = "block"
