@@ -15,7 +15,7 @@ async function testLung(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
         
-        const fetchRes = await fetch('http://localhost:8000/index/test/lung', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/lung', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -55,7 +55,7 @@ async function testSuicide(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body.text
         
-        const fetchRes = await fetch('http://localhost:8000/index/test/suicide', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/suicide', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -95,7 +95,7 @@ async function testHeartDisease(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
         
-        const fetchRes = await fetch('http://localhost:8000/index/test/heart', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/heart', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -128,7 +128,7 @@ async function testDiabetes(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
 
-        const fetchRes = await fetch('http://localhost:8000/index/test/diabetes', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/diabetes', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -161,7 +161,7 @@ async function testStroke(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
 
-        const fetchRes = await fetch('http://localhost:8000/index/test/stroke', {
+        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/stroke', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
