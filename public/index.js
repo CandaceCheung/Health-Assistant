@@ -2,7 +2,7 @@ window.addEventListener("load", async () => {
     await getUserInfo();
 });
 
-let globalName = '' //Save username globally
+let globalName = ""; //Save username globally
 
 async function getUserInfo() {
     const res = await fetch("/info", {
@@ -19,7 +19,7 @@ async function getUserInfo() {
         document.querySelector("#name-greet").innerHTML = `
             Hello ! Which Test Would You Like To Take ?
         `;
-        prefillUserName()
+        prefillUserName();
         return;
     }
 
@@ -50,8 +50,8 @@ async function getUserInfo() {
     const swallow = result.data.swallow;
     const chestPain = result.data.chestPain;
 
-    globalName = name
-    prefillUserName()
+    globalName = name;
+    prefillUserName();
 
     // Set greeting
     if (name) {
@@ -73,7 +73,6 @@ async function getUserInfo() {
         document.querySelector(`#stroke-weight`).value = weight;
         document.querySelector("#stroke-age").value = actualAge;
         document.querySelector(`#stroke-gender`).value = gender;
-
     });
 
     //prefill heart disease form
@@ -112,40 +111,41 @@ async function getUserInfo() {
 
     //prefill diabetes form
 
-    document.querySelector(`#prefill-diabetes`).addEventListener("click", (e) => {
-        e.preventDefault();
+    document
+        .querySelector(`#prefill-diabetes`)
+        .addEventListener("click", (e) => {
+            e.preventDefault();
 
-        document.querySelector("#diabetes-name").value = name;
-        document.querySelector("#diabetes-gender").value = gender;
-        document.querySelector("#actual-age").value = actualAge;
-        document.querySelector("#height-input").value = height;
-        document.querySelector("#weight-input").value = weight;
-        document.querySelector("#diabetes-smoke").value = smoke;
-        document.querySelector("#diabetes-stroke").value = stroke;
-        document.querySelector("#diabetes-heart").value = heartAttack;
-        document.querySelector("#cholesterol").value = cholesterolCheck;
-        document.querySelector("#cholesterol-high").value = cholesterolHigh;
-        document.querySelector("#blood-pressure").value = bloodPressure;
-        document.querySelector("#fruit").value = fruit;
-        document.querySelector("#veggies").value = veggies;
-        document.querySelector("#diabetes-exercise").value = exercise;
-        document.querySelector("#exercise-days").value = exerciseDays;
-        document.querySelector("#mental-health").value = mentalHealth;
-        document.querySelector("#diabetes-alcohol").value = alcohol;
-        document.querySelector("#general-health").value = generalHealth;
-    });
+            document.querySelector("#diabetes-name").value = name;
+            document.querySelector("#diabetes-gender").value = gender;
+            document.querySelector("#actual-age").value = actualAge;
+            document.querySelector("#height-input").value = height;
+            document.querySelector("#weight-input").value = weight;
+            document.querySelector("#diabetes-smoke").value = smoke;
+            document.querySelector("#diabetes-stroke").value = stroke;
+            document.querySelector("#diabetes-heart").value = heartAttack;
+            document.querySelector("#cholesterol").value = cholesterolCheck;
+            document.querySelector("#cholesterol-high").value = cholesterolHigh;
+            document.querySelector("#blood-pressure").value = bloodPressure;
+            document.querySelector("#fruit").value = fruit;
+            document.querySelector("#veggies").value = veggies;
+            document.querySelector("#diabetes-exercise").value = exercise;
+            document.querySelector("#exercise-days").value = exerciseDays;
+            document.querySelector("#mental-health").value = mentalHealth;
+            document.querySelector("#diabetes-alcohol").value = alcohol;
+            document.querySelector("#general-health").value = generalHealth;
+        });
 }
 
 document //form submission: Username only
     .querySelector("#name-form")
     .addEventListener("submit", async (e) => {
-
         const form = e.target;
         const name = form["name"].value;
 
         const obj = {
-            name: name
-        }
+            name: name,
+        };
 
         const res = await fetch(`/info/name`, {
             method: "POST",
@@ -155,27 +155,27 @@ document //form submission: Username only
             body: JSON.stringify(obj),
         });
 
-        const result = await res.json()
+        const result = await res.json();
 
         if (res.status !== 200) {
-            console.log(result)
-            alert(res.msg)
+            console.log(result);
+            alert(res.msg);
         }
-    })
+    });
 
 document //form submission: Suicide detection
     .querySelector("#suicide-form")
     .addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        console.log('123')
+        console.log("123");
 
         const form = e.target;
         const text = form["text"].value;
 
         const obj = {
-            text: text
-        }
+            text: text,
+        };
 
         const res = await fetch(`/test/suicide`, {
             method: "POST",
@@ -195,28 +195,33 @@ document //form submission: Suicide detection
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
-            let risk = '';
-            let recommendation = ''
-            let url = ''
+            let risk = "";
+            let recommendation = "";
+            let url = "";
             if (probabilityInFloat >= 0.9) {
                 risk = "High";
-                recommendation = "Our program detects that the text contains a hugh amount of words were also used in suicide notes, results show significant correlation between the text and our suicide notes database. You may click on the link below to look for emergency services in your area."
-                url = 'https://www.google.com/search?q=emergency+services+for+suicide'
-
+                recommendation =
+                    "Our program detects that the text contains a hugh amount of words were also used in suicide notes, results show significant correlation between the text and our suicide notes database. You may click on the link below to look for emergency services in your area.";
+                url =
+                    "https://www.google.com/search?q=emergency+services+for+suicide";
             } else if (probabilityInFloat >= 0.7 && probabilityInFloat < 0.9) {
                 risk = "Medium";
-                recommendation = "Our program detects a relative large amount of words in this text were also used in suicide notes, result suggests a high correlation between the text and our suicide notes data. You may click the link below to look for more support."
-                url = 'https://suicideprevention.ca/im-concerned-about-someone/'
-
+                recommendation =
+                    "Our program detects a relative large amount of words in this text were also used in suicide notes, result suggests a high correlation between the text and our suicide notes data. You may click the link below to look for more support.";
+                url =
+                    "https://suicideprevention.ca/im-concerned-about-someone/";
             } else if (probabilityInFloat < 0.7 && probabilityInFloat >= 0.5) {
                 risk = "Low";
-                recommendation = "Our programs detects that the text is containing some sematic similarities to suicide notes, but statistically the result shows insignificant correlation to suicidal thoughts. You may click the link below to look for more support."
-                url = 'https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html'
-
+                recommendation =
+                    "Our programs detects that the text is containing some sematic similarities to suicide notes, but statistically the result shows insignificant correlation to suicidal thoughts. You may click the link below to look for more support.";
+                url =
+                    "https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html";
             } else {
-                risk = 'None'
-                recommendation = 'Our programs detects few of the words in this text was sometime used by people who committed suicide in their suicide notes, but statistically the result shows no correlation to suicidal thoughts. You could try and find more text for us to analyze or click on the link below to see some available supports.'
-                url = 'https://www.samhsa.gov/find-help/disaster-distress-helpline/warning-signs-risk-factors'
+                risk = "None";
+                recommendation =
+                    "Our programs detects few of the words in this text was sometime used by people who committed suicide in their suicide notes, but statistically the result shows no correlation to suicidal thoughts. You could try and find more text for us to analyze or click on the link below to see some available supports.";
+                url =
+                    "https://www.samhsa.gov/find-help/disaster-distress-helpline/warning-signs-risk-factors";
             }
 
             resultBoard.innerHTML = `
@@ -231,7 +236,7 @@ document //form submission: Suicide detection
         }
     });
 
-    document //form submission: Lung Cancer 
+document //form submission: Lung Cancer
     .querySelector("#lung-form")
     .addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -250,7 +255,18 @@ document //form submission: Suicide detection
         const swallow = form["swallow"].checked ? 1 : 0;
         const chestPain = form["chest-pain"].checked ? 1 : 0;
 
-        testData.push(gender,actualAge,smoke,anxiety,fatigue,alcohol,cough,shortBreath,swallow,chestPain);
+        testData.push(
+            gender,
+            actualAge,
+            smoke,
+            anxiety,
+            fatigue,
+            alcohol,
+            cough,
+            shortBreath,
+            swallow,
+            chestPain
+        );
         console.log(testData);
 
         if (saveInfo) {
@@ -266,7 +282,7 @@ document //form submission: Suicide detection
                 cough: cough,
                 shortBreath: shortBreath,
                 swallow: swallow,
-                chestPain: chestPain
+                chestPain: chestPain,
             };
             const res = await fetch("/info", {
                 method: "POST",
@@ -276,10 +292,10 @@ document //form submission: Suicide detection
                 body: JSON.stringify(obj),
             });
 
-            const result = await res.json()
+            const result = await res.json();
 
             if (res.status !== 200) {
-                console.log(result)
+                console.log(result);
                 alert(res.msg);
             } else {
                 const msg = "User Info Saved";
@@ -302,13 +318,17 @@ document //form submission: Suicide detection
         } else {
             const testResult = result.result.data[0];
             const heartDisease = testResult["Lung Cancer"];
-            const probability = formatAsPercent(testResult["probability"] * 100);
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
-            const recommendationBoard = document.querySelector("#recommendation-text")
-            const explanationBoard = document.querySelector("#explain-text")
-            recommendationBoard.innerHTML = ''
-            explanationBoard.innerHTML = ''
+            const recommendationBoard = document.querySelector(
+                "#recommendation-text"
+            );
+            const explanationBoard = document.querySelector("#explain-text");
+            recommendationBoard.innerHTML = "";
+            explanationBoard.innerHTML = "";
 
             let likelihood = "";
             let greet = "";
@@ -328,50 +348,58 @@ document //form submission: Suicide detection
                 severity = "Extremely";
             }
             if (
-                testResult["probability"] >= 0.8 && testResult["probability"] < 0.9 ||
-                testResult["probability"] <= 0.3 && testResult["probability"] > 0.1
+                (testResult["probability"] >= 0.8 &&
+                    testResult["probability"] < 0.9) ||
+                (testResult["probability"] <= 0.3 &&
+                    testResult["probability"] > 0.1)
             ) {
                 severity = "Very";
             }
             if (
-                testResult["probability"] >= 0.6 && testResult["probability"] < 0.8 ||
-                testResult["probability"] <= 0.4 && testResult["probability"] > 0.3
+                (testResult["probability"] >= 0.6 &&
+                    testResult["probability"] < 0.8) ||
+                (testResult["probability"] <= 0.4 &&
+                    testResult["probability"] > 0.3)
             ) {
                 severity = "Moderately";
             }
-            if (testResult["probability"] > 0.4 && testResult["probability"] < 0.6) {
+            if (
+                testResult["probability"] > 0.4 &&
+                testResult["probability"] < 0.6
+            ) {
                 severity = "Mildly";
             }
 
-            const recommendations = []
+            const recommendations = [];
             const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
-            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`
+            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`;
             const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
             <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
             <button type="button" class='link' onclick="window.location.href = 'https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed';"> Link </button>
-            `
+            `;
             const noWorries = `<label for="exercise-recommendation" class="form-label">You Are Good to Go !</label>
-            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`
-
+            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`;
 
             if (smoke) {
-                recommendations.push(smokerRecommendation)
+                recommendations.push(smokerRecommendation);
             }
             if (alcohol) {
-                recommendations.push(drinkerRecommendation)
+                recommendations.push(drinkerRecommendation);
             }
             if (recommendations.length < 1) {
-                recommendations.push(noWorries)
+                recommendations.push(noWorries);
             }
 
             for (let i = 0; i < recommendations.length; i++) {
                 if (i === 0) {
-                    recommendationBoard.innerHTML += recommendations[i]
+                    recommendationBoard.innerHTML += recommendations[i];
                 } else {
-                    recommendationBoard.innerHTML += '<hr>' + recommendations[i]
+                    recommendationBoard.innerHTML +=
+                        "<hr>" + recommendations[i];
                 }
             }
-            document.querySelector('#recommendation-text').style.overflow = 'auto'
+            document.querySelector("#recommendation-text").style.overflow =
+                "auto";
 
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
@@ -383,11 +411,12 @@ document //form submission: Suicide detection
                 <button id='lung-recommendation' class='recommendation-btn' data-bs-toggle="modal"
                 data-bs-target="#recommendation-modal">Recommendation</button>
                 `;
-            document // add explanation 
-                .querySelector('#lung-explain').addEventListener('click', () => {
-                    e.preventDefault()
-                    console.log('TEST')
-                    document.querySelector('#explain-text').innerHTML = `
+            document // add explanation
+                .querySelector("#lung-explain")
+                .addEventListener("click", () => {
+                    e.preventDefault();
+                    console.log("TEST");
+                    document.querySelector("#explain-text").innerHTML = `
                         <div>Dataset Detail : </div>
                         <div>
                             <ul>
@@ -398,9 +427,10 @@ document //form submission: Suicide detection
                         </div> 
                         <hr><img src="/asset/graphs/lung_accuracy.png" alt="" width="400" height="350">
                         <hr><img src="/asset/graphs/lung_loss.png" alt="" width="400" height="350">
-                    `
-                    document.querySelector('#explain-text').style.overflow = 'auto'
-                })
+                    `;
+                    document.querySelector("#explain-text").style.overflow =
+                        "auto";
+                });
             resultBox.style.display = "block";
         }
     });
@@ -446,10 +476,10 @@ document //form submission: Heart Disease
                 body: JSON.stringify(obj),
             });
 
-            const result = await res.json()
+            const result = await res.json();
 
             if (res.status !== 200) {
-                console.log(result)
+                console.log(result);
                 alert(res.msg);
             } else {
                 const msg = "User Info Saved";
@@ -472,13 +502,17 @@ document //form submission: Heart Disease
         } else {
             const testResult = result.result.data[0];
             const heartDisease = testResult["Heart Disease"];
-            const probability = formatAsPercent(testResult["probability"] * 100);
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
-            const recommendationBoard = document.querySelector("#recommendation-text")
-            const explanationBoard = document.querySelector("#explain-text")
-            recommendationBoard.innerHTML = ''
-            explanationBoard.innerHTML = ''
+            const recommendationBoard = document.querySelector(
+                "#recommendation-text"
+            );
+            const explanationBoard = document.querySelector("#explain-text");
+            recommendationBoard.innerHTML = "";
+            explanationBoard.innerHTML = "";
 
             let likelihood = "";
             let greet = "";
@@ -498,72 +532,82 @@ document //form submission: Heart Disease
                 severity = "Extremely";
             }
             if (
-                testResult["probability"] >= 0.8 && testResult["probability"] < 0.9 ||
-                testResult["probability"] <= 0.3 && testResult["probability"] > 0.1
+                (testResult["probability"] >= 0.8 &&
+                    testResult["probability"] < 0.9) ||
+                (testResult["probability"] <= 0.3 &&
+                    testResult["probability"] > 0.1)
             ) {
                 severity = "Very";
             }
             if (
-                testResult["probability"] >= 0.6 && testResult["probability"] < 0.8 ||
-                testResult["probability"] <= 0.4 && testResult["probability"] > 0.3
+                (testResult["probability"] >= 0.6 &&
+                    testResult["probability"] < 0.8) ||
+                (testResult["probability"] <= 0.4 &&
+                    testResult["probability"] > 0.3)
             ) {
                 severity = "Moderately";
             }
-            if (testResult["probability"] > 0.4 && testResult["probability"] < 0.6) {
+            if (
+                testResult["probability"] > 0.4 &&
+                testResult["probability"] < 0.6
+            ) {
                 severity = "Mildly";
             }
 
-            const recommendations = []
+            const recommendations = [];
             const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
-            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`
+            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`;
             const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
             <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
             <button type="button" class='link' onclick="window.location.href = 'https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed';"> Link </button>
-            `
+            `;
 
             const sleepRecommendation = `<label for="sleep-recommendation" class="form-label">Sleep Habit :</label>
             <div name='sleep-recommendation' class='form-text'>It seems that you hour of sleep is not enough, check the link below to see some recommendation for sleep from Sleep Foundation.</div>
             <button type="button" class='link' onclick="window.location.href = 'https://www.sleepfoundation.org/how-sleep-works/how-much-sleep-do-we-really-need';"> Link </button>
-            `
+            `;
 
             const exerciseRecommendation = `<label for="exercise-recommendation" class="form-label">Exercise Habit :</label>
-            <div name='exercise-recommendation' class='form-text'>Regular, daily physical activity can lower the risk of heart disease. Physical activity helps control your weight. It also reduces the chances of developing other conditions that may put a strain on the heart, such as high blood pressure, high cholesterol and type 2 diabetes. Try running the test again at different age group and see the result!</div>`
+            <div name='exercise-recommendation' class='form-text'>Regular, daily physical activity can lower the risk of heart disease. Physical activity helps control your weight. It also reduces the chances of developing other conditions that may put a strain on the heart, such as high blood pressure, high cholesterol and type 2 diabetes. Try running the test again at different age group and see the result!</div>`;
 
             const weightRecommendation = `<label for="exercise-recommendation" class="form-label">Weight Control :</label>
-            <div name='exercise-recommendation' class='form-text'>According to your input, your BMI(Body mass index) is ${BMI}, which is consider ${BMIClassifier(BMI)}. Click link below to see how your weight affect your health.</div>
+            <div name='exercise-recommendation' class='form-text'>According to your input, your BMI(Body mass index) is ${BMI}, which is consider ${BMIClassifier(
+                BMI
+            )}. Click link below to see how your weight affect your health.</div>
             <button type="button" class='link' onclick="window.location.href = 'https://www.hopkinsmedicine.org/health/wellness-and-prevention/weight-a-silent-heart-risk';"> Link </button>
-            `
+            `;
             const noWorries = `<label for="exercise-recommendation" class="form-label">You Are Good to Go !</label>
-            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`
-
+            <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`;
 
             if (smoke) {
-                recommendations.push(smokerRecommendation)
+                recommendations.push(smokerRecommendation);
             }
             if (alcohol) {
-                recommendations.push(drinkerRecommendation)
+                recommendations.push(drinkerRecommendation);
             }
             if (sleep < 6) {
-                recommendations.push(sleepRecommendation)
+                recommendations.push(sleepRecommendation);
             }
             if (BMI >= 30 || BMI <= 18.5) {
-                recommendations.push(weightRecommendation)
+                recommendations.push(weightRecommendation);
             }
             if (exercise === 0) {
-                recommendations.push(exerciseRecommendation)
+                recommendations.push(exerciseRecommendation);
             }
             if (recommendations.length < 1) {
-                recommendations.push(noWorries)
+                recommendations.push(noWorries);
             }
 
             for (let i = 0; i < recommendations.length; i++) {
                 if (i === 0) {
-                    recommendationBoard.innerHTML += recommendations[i]
+                    recommendationBoard.innerHTML += recommendations[i];
                 } else {
-                    recommendationBoard.innerHTML += '<hr>' + recommendations[i]
+                    recommendationBoard.innerHTML +=
+                        "<hr>" + recommendations[i];
                 }
             }
-            document.querySelector('#recommendation-text').style.overflow = 'auto'
+            document.querySelector("#recommendation-text").style.overflow =
+                "auto";
 
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
@@ -575,11 +619,12 @@ document //form submission: Heart Disease
                 <button id='heart-recommendation' class='recommendation-btn' data-bs-toggle="modal"
                 data-bs-target="#recommendation-modal">Recommendation</button>
                 `;
-            document // add explanation 
-                .querySelector('#heart-explain').addEventListener('click', () => {
-                    e.preventDefault()
-                    console.log('TEST')
-                    document.querySelector('#explain-text').innerHTML = `
+            document // add explanation
+                .querySelector("#heart-explain")
+                .addEventListener("click", () => {
+                    e.preventDefault();
+                    console.log("TEST");
+                    document.querySelector("#explain-text").innerHTML = `
                         <div>Dataset Detail : </div>
                         <div>
                             <ul>
@@ -590,9 +635,10 @@ document //form submission: Heart Disease
                         </div> 
                         <hr><img src="/asset/graphs/heart_accuracy.png" alt="" width="400" height="350">
                         <hr><img src="/asset/graphs/heart_loss.png" alt="" width="400" height="350">
-                    `
-                    document.querySelector('#explain-text').style.overflow = 'auto'
-                })
+                    `;
+                    document.querySelector("#explain-text").style.overflow =
+                        "auto";
+                });
             resultBox.style.display = "block";
         }
     });
@@ -640,7 +686,7 @@ document //form submission: Diabetes
             exerciseDays,
             gender,
             actualAge,
-            generalHealth,
+            generalHealth
         );
         console.log(testData);
 
@@ -675,10 +721,10 @@ document //form submission: Diabetes
                 body: JSON.stringify(obj),
             });
 
-            const result = await res.json()
+            const result = await res.json();
 
             if (res.status !== 200) {
-                console.log(result)
+                console.log(result);
                 alert(res.msg);
             } else {
                 const msg = "User Info Saved";
@@ -699,26 +745,20 @@ document //form submission: Diabetes
             alert("ERR002: Failed to post diabetes test data");
             document.location.reload();
         } else {
-            const testResult = parseFloat((result.result.data));
+            const testResult = parseFloat(result.result.data);
 
-            console.log(testResult)
+            console.log(testResult);
 
-            const probability = formatAsPercent(testResult*10);
+            const probability = formatAsPercent(testResult * 10);
 
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
             let severity = "";
-            if (
-                testResult <= 1 &&
-                testResult >= 0.6
-            ) {
+            if (testResult <= 1 && testResult >= 0.6) {
                 severity = "Highly";
             }
-            if (
-                testResult < 0.6 &&
-                testResult >= 0.2
-            ) {
+            if (testResult < 0.6 && testResult >= 0.2) {
                 severity = "Moderately";
             }
             if (testResult < 0.2) {
@@ -733,18 +773,29 @@ document //form submission: Diabetes
                     with ${probability} probability.
                 <button id='diabetes-explain' class='explain-btn' data-bs-toggle="modal"
                     data-bs-target="#explain-modal">Explain</button>
-            `
+            `;
 
-            document 
-            .querySelector('#diabetes-explain').addEventListener('click', () => {
-                e.preventDefault()
-                document.querySelector('#explain-text').innerHTML = `
-                
-                `
-            });
+            document
+                .querySelector("#diabetes-explain")
+                .addEventListener("click", () => {
+                    e.preventDefault();
+                    document.querySelector("#explain-text").innerHTML = `
+                    <div>Dataset Detail : </div>
+                    <div>
+                        <ul>
+                            <li class="form-text">Train-data Size : 75346 ( 35346 : 40000 ) </li>
+                            <li class="form-text">Accuracy :        74.43%</li>
+                            <li class="form-text">Loss :            0.5117</li>
+                        </ul>
+                    </div> 
+                    <hr><img src="/asset/graphs/diabetes_accuracy.png" alt="" width="400" height="350">
+                    <hr><img src="/asset/graphs/diabetes_loss.png" alt="" width="400" height="350">
+                `;
+                    document.querySelector("#explain-text").style.overflow =
+                        "auto";
+                });
 
-
-            resultBox.style.display = "block"
+            resultBox.style.display = "block";
         }
     });
 
@@ -781,10 +832,10 @@ document //form submission: strokes
                 body: JSON.stringify(obj),
             });
 
-            const result = await res.json()
+            const result = await res.json();
 
             if (res.status !== 200) {
-                console.log(result)
+                console.log(result);
                 alert(res.msg);
             } else {
                 const msg = "User Info Saved";
@@ -807,18 +858,22 @@ document //form submission: strokes
         } else {
             const testResult = result.result.data[0];
             const strokes = testResult["Strokes"];
-            const probability = formatAsPercent(testResult["probability"] * 100);
+            const probability = formatAsPercent(
+                testResult["probability"] * 100
+            );
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
-            const recommendationBoard = document.querySelector("#recommendation-text")
-            const explanationBoard = document.querySelector("#explain-text")
-            recommendationBoard.innerHTML = ''
-            explanationBoard.innerHTML = ''
+            const recommendationBoard = document.querySelector(
+                "#recommendation-text"
+            );
+            const explanationBoard = document.querySelector("#explain-text");
+            recommendationBoard.innerHTML = "";
+            explanationBoard.innerHTML = "";
 
             let likelihood = "";
             let greet = "";
             if (strokes === "Yes") {
-                greet = "Unfortunately"
+                greet = "Unfortunately";
                 likelihood = "highly";
             } else {
                 greet = "Good!";
@@ -858,7 +913,7 @@ document //form submission: strokes
                 data-bs-target="#recommendation-modal">Recommendation</button>
             `;
 
-            resultBox.style.display = "block"
+            resultBox.style.display = "block";
         }
     });
 
@@ -874,10 +929,10 @@ document //Delete user info from DB
             document.location.reload();
         }, 5000);
 
-        const result = await res.json()
+        const result = await res.json();
 
         if (res.status !== 200) {
-            console.log(result)
+            console.log(result);
             alert(res.msg);
         } else {
             const msg = "User Info Deleted";
@@ -893,24 +948,23 @@ document //Close test result panel
     });
 
 document //Clear suicide detection text box
-    .querySelector('#clear-suicide')
-    .addEventListener('click', (e) => {
-        e.preventDefault()
-        document.getElementById('suicide-text').value = ''
-    })
+    .querySelector("#clear-suicide")
+    .addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("suicide-text").value = "";
+    });
 
 function formatAsPercent(num) {
-    return new Intl.NumberFormat('default', {
-        style: 'percent',
+    return new Intl.NumberFormat("default", {
+        style: "percent",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
     }).format(num / 100);
 }
 
 function BMIClassifier(BMI) {
-
-    let bmi = parseFloat(BMI)
-    let category
+    let bmi = parseFloat(BMI);
+    let category;
 
     if (bmi < 18.5) {
         category = "Underweight";
@@ -926,7 +980,7 @@ function BMIClassifier(BMI) {
         category = "Class 3 Obesity";
     }
 
-    return category
+    return category;
 }
 
 function showNotification(msg, time) {
@@ -939,21 +993,24 @@ function showNotification(msg, time) {
 }
 
 document // word counter
-    .querySelector('#suicide-text').addEventListener('input', (e) => {
-        e.preventDefault()
-        const str = e.target.value
-        const arr = str.replace(/[.,\/#!$%@\^&\*;:{}=\-_`~()]/g, "").split(' ')
+    .querySelector("#suicide-text")
+    .addEventListener("input", (e) => {
+        e.preventDefault();
+        const str = e.target.value;
+        const arr = str.replace(/[.,\/#!$%@\^&\*;:{}=\-_`~()]/g, "").split(" ");
 
-        document.querySelector("#word-count").innerHTML = arr.filter(word => word !== '').length;
-    })
+        document.querySelector("#word-count").innerHTML = arr.filter(
+            (word) => word !== ""
+        ).length;
+    });
 
 function prefillUserName() {
-    if (globalName !== '') {
-        const nameInputBox = document.querySelectorAll('.name')
+    if (globalName !== "") {
+        const nameInputBox = document.querySelectorAll(".name");
         nameInputBox.forEach((box) => {
-            box.value = globalName
-        })
+            box.value = globalName;
+        });
     } else {
-        document.querySelector('#start-button').click()
+        document.querySelector("#start-button").click();
     }
 }
