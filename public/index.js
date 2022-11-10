@@ -735,6 +735,15 @@ document //form submission: Diabetes
                     data-bs-target="#explain-modal">Explain</button>
             `
 
+            document 
+            .querySelector('#diabetes-explain').addEventListener('click', () => {
+                e.preventDefault()
+                document.querySelector('#explain-text').innerHTML = `
+                
+                `
+            });
+
+
             resultBox.style.display = "block"
         }
     });
