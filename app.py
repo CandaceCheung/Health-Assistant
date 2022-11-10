@@ -64,7 +64,7 @@ def callHeartModel(request):
     content = request.json
     print (content)
     
-    predict_dataset = tf.convert_to_tensor(content)
+    predict_dataset = tf.convert_to_tensor(content, dtype=tf.float32)
     predictions = heart_model(predict_dataset, training=False)
     probs = predictions.numpy()[0]
 
