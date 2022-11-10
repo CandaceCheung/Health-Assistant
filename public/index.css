@@ -7,10 +7,15 @@ body {
   padding-right: 5vw;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (min-width: 900px) {
   body {
     padding: 30px
   }
+
+  .test-button{
+    min-width: 276px;
+  }
+
 }
 
 #guide-content{
@@ -241,7 +246,7 @@ header {
   width: 20vw;
   max-height: 100px;
   min-height: 50px;
-  min-width: 276px;
+  min-width: 150px;
   font-weight: 800;
   font-size: calc(12px + 1vw);
   --b: 3px;
