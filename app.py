@@ -68,6 +68,8 @@ def callHeartModel(request):
     predictions = heart_model(predict_dataset, training=False)
     probs = predictions.numpy()[0]
 
+    print ("probability = ", probs)
+
     results = []
 
     if probs[0] > 0.5: 
