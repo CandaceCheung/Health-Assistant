@@ -731,6 +731,8 @@ document //form submission: Diabetes
                 Your risk for developing a Diabetes is : 
                 <div id='test-result'> <h2>${severity}</h2></div> 
                     with ${probability} probability.
+                <button id='diabetes-explain' class='explain-btn' data-bs-toggle="modal"
+                    data-bs-target="#explain-modal">Explain</button>
             `
 
             resultBox.style.display = "block"
