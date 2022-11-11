@@ -957,12 +957,12 @@ document //form submission: strokes
                 <div>
                     <ul>
                         <li class="form-text">Train-data Size : 891( 209 : 682 ) </li>
-                        <li class="form-text">Accuracy :        78.23%</li>
-                        <li class="form-text">Loss :            0.517</li>
+                        <li class="form-text">Accuracy :        79.92%</li>
+                        <li class="form-text">Loss :            0.3993</li>
                     </ul>
                 </div> 
-                <hr><img src="/asset/graphs/stroke_accuracy.png" alt="" width="400" height="350">
-                <hr><img src="/asset/graphs/stroke_loss.png" alt="" width="400" height="350">
+                <hr><img src="/asset/graphs/stroke-output-accuracy.png" alt="" width="400" height="350">
+                <hr><img src="/asset/graphs/stroke-output-loss.png" alt="" width="400" height="350">
             `;
                 document.querySelector("#explain-text").style.overflow =
                     "auto";
