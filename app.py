@@ -101,20 +101,21 @@ def callStrokeModel(request):
     content = request.json
     print (content)
     
-    predict_dataset = tf.convert_to_tensor(content)
+    predict_dataset = tf.convert_to_tensor(content, dtype=tf.float32)
     predictions = stroke_model(predict_dataset, training=False)
-    probs = tf.nn.softmax(predictions)
-    class_indexes = tf.argmax(probs, axis = 1 ).numpy()
+    probs = predictions.numpy()[0]
+
+    print ("probability = ", probs)
+
     results = []
-    for i, class_idx in enumerate(class_indexes):
-        p = np.max(probs[i].numpy())
-        if int(class_idx) == 1: 
-            decision = "Yes"
-        else: 
-            decision = "No" 
-        results.append({"Stroke": decision,"probability": float(p)})
-    
-    print(results)
+
+    if probs[0] > 0.5: 
+        decision = "Yes"
+    else: 
+        decision = "No"
+
+    results.append({"Stroke": decision,"probability": str(probs[0])})
+ 
     return json({"data":results})
 
 if __name__ == "__main__":
