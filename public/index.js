@@ -1066,6 +1066,6 @@ function prefillUserName() {
             box.value = globalName;
         });
     } else {
-        document.querySelector("#start-button").click();
+        document.querySelector("#start-button").click() ;
     }
 }
