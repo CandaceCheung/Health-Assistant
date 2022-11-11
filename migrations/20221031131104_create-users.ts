@@ -31,6 +31,9 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('short_breath');
         table.integer('swallow');
         table.integer('chest_pain');
+        table.integer('hypertension');
+        table.integer('heartDisease');
+        table.integer('smokingStatus');
         table.string('session_id');
     });
 

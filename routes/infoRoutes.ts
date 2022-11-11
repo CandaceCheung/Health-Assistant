@@ -48,7 +48,10 @@ async function getInfo(req: Request, res: Response) {
                 fatigue: result.fatigue,
                 shortBreath: result.short_breath,
                 swallow: result.swallow,
-                chestPain: result.chest_pain
+                chestPain: result.chest_pain,
+                hypertension: result.hypertension,
+                heartDisease: result.heartDisease,
+                smokingStatus: result.smokingStatus
             }
 
             res.json({
@@ -138,6 +141,9 @@ async function saveInfo(req: Request, res: Response) {
         const shortBreath = req.body?.shortBreath
         const swallow = req.body?.swallow
         const chestPain = req.body?.chestPain
+        const hypertension = req.body?.hypertension
+        const heartDisease =  req.body?.heartDisease
+        const smokingStatus =  req.body?.smokingStatus
 
         const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
         console.log(userID,height)
@@ -170,7 +176,10 @@ async function saveInfo(req: Request, res: Response) {
                 cough: cough,
                 short_breath: shortBreath,
                 swallow: swallow,
-                chest_pain: chestPain
+                chest_pain: chestPain,
+                hypertension: hypertension,
+                heartDisease: heartDisease,
+                smokingStatus: smokingStatus
 
             }).where('id', userID.id)
         } else {
@@ -201,7 +210,10 @@ async function saveInfo(req: Request, res: Response) {
                 cough: cough,
                 short_breath: shortBreath,
                 swallow: swallow,
-                chest_pain: chestPain
+                chest_pain: chestPain,
+                hypertension: hypertension,
+                heartDisease: heartDisease,
+                smokingStatus: smokingStatus
 
             }).into('users')
         }

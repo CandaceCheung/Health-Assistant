@@ -49,6 +49,9 @@ async function getUserInfo() {
     const shortBreath = result.data.shortBreath;
     const swallow = result.data.swallow;
     const chestPain = result.data.chestPain;
+    const hypertension = result.data.hypertension;
+    const heartDisease = result.data.heartDisease;
+    const smokingStatus = result.data.smokingStatus;
 
     globalName = name;
     prefillUserName();
@@ -830,10 +833,15 @@ document //form submission: strokes
         const gender = parseInt(form["gender"].value);
         const weight = parseFloat(form["weight-input"].value);
         const height = parseFloat(form["height-input"].value);
+        const hypertension = parseInt(form["hypertension-input"].value);
+        const heartDisease = parseInt(form["heartDisease-input"].value);
+        const smokingStatus = parseInt(form["smokingStatus-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
         const actualAge = parseFloat(form["actual-age"].value);
 
-        testData.push(gender, actualAge, bmi);
+        testData.push(gender, actualAge, hypertension, heartDisease, bmi, smokingStatus);
+
+        console.log(testData);
 
         if (saveInfo) {
             const obj = {
@@ -902,24 +910,31 @@ document //form submission: strokes
 
             let severity = "";
             if (
-                testResult["probability"] <= 1 &&
-                testResult["probability"] >= 0.8
+                testResult["probability"] >= 0.9 ||
+                testResult["probability"] <= 0.1
             ) {
                 severity = "Extremely";
             }
             if (
-                testResult["probability"] < 0.8 &&
-                testResult["probability"] >= 0.6
+                (testResult["probability"] >= 0.8 &&
+                    testResult["probability"] < 0.9) ||
+                (testResult["probability"] <= 0.3 &&
+                    testResult["probability"] > 0.1)
             ) {
                 severity = "Very";
             }
             if (
-                testResult["probability"] < 0.6 &&
-                testResult["probability"] >= 0.4
+                (testResult["probability"] >= 0.6 &&
+                    testResult["probability"] < 0.8) ||
+                (testResult["probability"] <= 0.4 &&
+                    testResult["probability"] > 0.3)
             ) {
                 severity = "Moderately";
             }
-            if (testResult["probability"] < 0.4) {
+            if (
+                testResult["probability"] > 0.4 &&
+                testResult["probability"] < 0.6
+            ) {
                 severity = "Mildly";
             }
 
@@ -946,7 +961,8 @@ document //form submission: strokes
                         <li class="form-text">Loss :            0.517</li>
                     </ul>
                 </div> 
-                <hr><img src="/asset/graphs/storkes_accuracy.png" alt="" width="400" height="350">
+                <hr><img src="/asset/graphs/stroke_accuracy.png" alt="" width="400" height="350">
+                <hr><img src="/asset/graphs/stroke_loss.png" alt="" width="400" height="350">
             `;
                 document.querySelector("#explain-text").style.overflow =
                     "auto";
