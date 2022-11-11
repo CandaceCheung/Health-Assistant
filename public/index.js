@@ -934,7 +934,7 @@ document //form submission: strokes
             `;
 
             document
-            .querySelector("#strokes-explain")
+            .querySelector("#stroke-explain")
             .addEventListener("click", () => {
                 e.preventDefault();
                 document.querySelector("#explain-text").innerHTML = `
