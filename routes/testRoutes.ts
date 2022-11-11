@@ -161,7 +161,7 @@ async function testStroke(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
 
-        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/stroke', {
+        const fetchRes = await fetch('http://localhost:8000/index/test/stroke', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -170,7 +170,7 @@ async function testStroke(req: Request, res: Response) {
         })
         
         if (fetchRes.status >= 400) {
-            throw new Error('"Bad response from test server"')
+            throw new Error('"Bad response from test server(stroke)"')
         }
 
         const result = await fetchRes.json()
@@ -184,7 +184,7 @@ async function testStroke(req: Request, res: Response) {
         logger.error(e)
         res.status(400).json({
             status: false,
-            msg: 'ERR006: Error of sending test data.'
+            msg: 'ERR007: Error of sending stroke test data.'
         })
     }
 }

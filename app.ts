@@ -5,7 +5,8 @@ import path from 'path';
 import dontenv from 'dotenv';
 import Knex from 'knex';
 import { infoRoutes } from './routes/infoRoutes';
-import { testRoutes2 } from './routes/testRoutes2';
+import { testRoutes } from './routes/testRoutes';
+// import { testRoutes2 } from './routes/testRoutes2';
 
 dontenv.config();
 
@@ -23,7 +24,7 @@ const sessionMiddleware = expressSession({
 
 app.use(cookieParser(), express.json(), sessionMiddleware, express.static('public'));
 app.use('/info', infoRoutes);
-app.use('/test', testRoutes2)
+app.use('/test', testRoutes)
 
 app.use((req, res) => {
 	res.status(404).sendFile(path.resolve('./public/404.html'));

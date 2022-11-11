@@ -184,7 +184,7 @@ async function testStroke(req: Request, res: Response) {
         logger.error(e)
         res.status(400).json({
             status: false,
-            msg: 'ERR006: Error of sending test data.'
+            msg: 'ERR007: Error of sending test data.'
         })
     }
 }
