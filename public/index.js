@@ -232,6 +232,26 @@ document //form submission: Suicide detection
                 <button id='suicide-explain' class='explain-btn' data-bs-toggle="modal"
                 data-bs-target="#explain-modal">Explain</button>
             `;
+            
+            document // add explanation
+                .querySelector("#suicide-explain")
+                .addEventListener("click", () => {
+                    e.preventDefault();
+                    document.querySelector("#explain-text").innerHTML = `
+                        <div>Dataset Detail : </div>
+                        <div>
+                            <ul>
+                                <li class="form-text">Train-data Size : 232074 ( 116037 : 116037 ) </li>
+                                <li class="form-text">Accuracy :        92.93%</li>
+                                <li class="form-text">Loss :            0.1859</li>
+                            </ul>
+                        </div> 
+                        <hr><img src="/asset/graphs/suicide_accuracy.png" alt="" width="400" height="350">
+                        <hr><img src="/asset/graphs/suicide_loss.png" alt="" width="400" height="350">
+                    `;
+                    document.querySelector("#explain-text").style.overflow =
+                        "auto";
+                });
             resultBox.style.display = "block";
         }
     });
@@ -629,12 +649,12 @@ document //form submission: Heart Disease
                         <div>
                             <ul>
                                 <li class="form-text">Train-data Size : 57373 ( 30000 : 27373 ) </li>
-                                <li class="form-text">Accuracy :        71.86%</li>
-                                <li class="form-text">Loss :            0.5502</li>
+                                <li class="form-text">Accuracy :        96.79%</li>
+                                <li class="form-text">Loss :            0.0802</li>
                             </ul>
                         </div> 
-                        <hr><img src="/asset/graphs/heart_accuracy.png" alt="" width="400" height="350">
-                        <hr><img src="/asset/graphs/heart_loss.png" alt="" width="400" height="350">
+                        <hr><img src="/asset/graphs/suicide_accuracy.png" alt="" width="400" height="350">
+                        <hr><img src="/asset/graphs/suicide_loss.png" alt="" width="400" height="350">
                     `;
                     document.querySelector("#explain-text").style.overflow =
                         "auto";
