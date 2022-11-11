@@ -161,7 +161,7 @@ async function testStroke(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
 
-        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/stroke', {
+        const fetchRes = await fetch('http://localhost:8000/index/test/stroke', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
