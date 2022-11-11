@@ -934,7 +934,7 @@ document //form submission: strokes
             `;
 
             document
-            .querySelector("#strokes-explain")
+            .querySelector("#stroke-explain")
             .addEventListener("click", () => {
                 e.preventDefault();
                 document.querySelector("#explain-text").innerHTML = `
@@ -946,7 +946,7 @@ document //form submission: strokes
                         <li class="form-text">Loss :            0.517</li>
                     </ul>
                 </div> 
-                <hr><img src="/asset/graphs/storkes_accuracy.png" alt="" width="400" height="350">
+                <hr><img src="/asset/graphs/output.png" alt="" width="400" height="350">
             `;
                 document.querySelector("#explain-text").style.overflow =
                     "auto";
