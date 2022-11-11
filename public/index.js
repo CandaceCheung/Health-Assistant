@@ -121,7 +121,7 @@ async function getUserInfo() {
 
             document.querySelector("#diabetes-name").value = name;
             document.querySelector("#diabetes-gender").value = gender;
-            document.querySelector("#actual-age").value = actualAge;
+            document.querySelector("#diabetes-age").value = ageGroup;
             document.querySelector("#height-input").value = height;
             document.querySelector("#weight-input").value = weight;
             document.querySelector("#diabetes-smoke").value = smoke;
@@ -674,7 +674,7 @@ document //form submission: Diabetes
         const form = e.target;
         const saveInfo = form["save-info"].checked ? 1 : 0;
         const name = form["name"].value;
-        const actualAge = parseInt(form["actual-age"].value);
+        const ageGroup = parseInt(form["age"].value);
         const weight = parseFloat(form["weight-input"].value);
         const height = parseFloat(form["height-input"].value);
         const bmi = parseFloat((weight / (height / 100) ** 2).toFixed(2));
@@ -709,7 +709,7 @@ document //form submission: Diabetes
             mentalHealth,
             exerciseDays,
             gender,
-            actualAge,
+            ageGroup,
         );
         console.log(testData);
 
@@ -717,7 +717,7 @@ document //form submission: Diabetes
             const obj = {
                 name: name,
                 bmi: bmi,
-                actualAge: actualAge,
+                ageGroup: ageGroup,
                 gender: gender,
                 weight: weight,
                 height: height,
