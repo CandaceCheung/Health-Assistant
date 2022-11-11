@@ -7,15 +7,17 @@ body {
   padding-right: 5vw;
 }
 
-@media only screen and (min-width: 900px) {
+@media (min-width: 900px) {
   body {
     padding: 30px
   }
-
   .test-button{
     min-width: 276px;
   }
+}
 
+#recommendation{
+  overflow: auto;
 }
 
 #guide-content{
@@ -89,7 +91,7 @@ body {
   font-size: calc(10px + 1vw);
   position: relative;
   max-height: 500px;
-  max-width: 600px;
+  max-width: 700px;
   display: none;
   padding: 20px;
   padding-bottom: 40px;
@@ -124,7 +126,6 @@ body {
 }
 
 #test-result {
-  overflow: auto;
   max-height: 100%;
   padding: 20px;
   text-align: center;

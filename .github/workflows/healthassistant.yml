@@ -29,7 +29,7 @@ jobs:
       with:
         command: |
           cd Health-Assistant
-          git pull
+          git pull origin production
           yarn install
           forever restart -c 'yarn start' .
         host: health-assistant.frankieyip.world
