@@ -705,11 +705,11 @@ document //form submission: Diabetes
             fruit,
             veggies,
             alcohol,
+            generalHealth,
             mentalHealth,
             exerciseDays,
             gender,
             actualAge,
-            generalHealth
         );
         console.log(testData);
 
@@ -772,7 +772,7 @@ document //form submission: Diabetes
 
             console.log(testResult);
 
-            const probability = formatAsPercent(testResult * 10);
+            const probability = formatAsPercent(testResult);
 
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
