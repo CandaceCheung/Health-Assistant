@@ -683,11 +683,11 @@ document //form submission: Diabetes
             fruit,
             veggies,
             alcohol,
-            generalHealth,
             mentalHealth,
             exerciseDays,
             gender,
             actualAge,
+            generalHealth
         );
         console.log(testData);
 
@@ -750,19 +750,19 @@ document //form submission: Diabetes
 
             console.log(testResult);
 
-            const probability = formatAsPercent(testResult);
+            const probability = formatAsPercent(testResult * 10);
 
             const resultBoard = document.querySelector("#test-result");
             const resultBox = document.querySelector("#test-result-container");
 
             let severity = "";
-            if (testResult <= 100 && testResult >= 60) {
+            if (testResult <= 1 && testResult >= 0.6) {
                 severity = "Highly";
             }
-            if (testResult < 60 && testResult >= 30) {
+            if (testResult < 0.6 && testResult >= 0.2) {
                 severity = "Moderately";
             }
-            if (testResult < 30) {
+            if (testResult < 0.2) {
                 severity = "Mildly";
             }
 
@@ -907,12 +907,31 @@ document //form submission: strokes
             resultBoard.innerHTML = `
             <div id ='result-title'>${greet}</div>
                 Accordingly to our prediction, <br> 
-                Your risk for developing Stroke is : <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> with ${probability} probability.
+                Your risk for developing Stroke is : 
+                <div id='test-result'> <h2>${severity} ${likelihood}</h2> </div> 
+                     with ${probability} probability.
                 <button id='stroke-explain' class='explain-btn' data-bs-toggle="modal"
                 data-bs-target="#explain-modal">Explain</button>
-                <button id='heart-recommendation' class='recommendation-btn' data-bs-toggle="modal"
-                data-bs-target="#recommendation-modal">Recommendation</button>
             `;
+
+            document
+            .querySelector("#strokes-explain")
+            .addEventListener("click", () => {
+                e.preventDefault();
+                document.querySelector("#explain-text").innerHTML = `
+                <div>Dataset Detail : </div>
+                <div>
+                    <ul>
+                        <li class="form-text">Train-data Size : 891( 209 : 682 ) </li>
+                        <li class="form-text">Accuracy :        78.23%</li>
+                        <li class="form-text">Loss :            0.517</li>
+                    </ul>
+                </div> 
+                <hr><img src="/asset/graphs/storkes_accuracy.png" alt="" width="400" height="350">
+            `;
+                document.querySelector("#explain-text").style.overflow =
+                    "auto";
+            });
 
             resultBox.style.display = "block";
         }
