@@ -778,13 +778,13 @@ document //form submission: Diabetes
             const resultBox = document.querySelector("#test-result-container");
 
             let severity = "";
-            if (testResult <= 1 && testResult >= 0.6) {
+            if (testResult <= 100 && testResult >= 60) {
                 severity = "Highly";
             }
-            if (testResult < 0.6 && testResult >= 0.2) {
+            if (testResult < 60 && testResult >= 20) {
                 severity = "Moderately";
             }
-            if (testResult < 0.2) {
+            if (testResult < 20) {
                 severity = "Mildly";
             }
 
