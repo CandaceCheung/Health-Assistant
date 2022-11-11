@@ -6,10 +6,6 @@ import dontenv from 'dotenv';
 import Knex from 'knex';
 import { infoRoutes } from './routes/infoRoutes';
 import { testRoutes } from './routes/testRoutes';
-<<<<<<< HEAD
-// import { testRoutes2 } from './routes/testRoutes2';
-=======
->>>>>>> 0088317c33a1e9f07768fc05a0802f598e009124
 
 dontenv.config();
 
