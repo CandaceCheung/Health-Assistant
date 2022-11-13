@@ -405,7 +405,7 @@ document //form submission: Lung Cancer
             <button type="button" class='link' onclick="window.location.href = 'https://www.cancer.net/coping-with-cancer/managing-emotions/anxiety#:~:text=Many%20people%20with%20cancer%20have,returning%20or%20spreading%20after%20treatment';"> Link </button>
             `;
             const symptomsRecommendation = `<label for="symptoms-recommendation" class="form-label">Persistent physical symptoms :</label>
-            <div name='symptoms-recommendation' class='form-text'>If you have been suffering from persistent physical symptoms such as chest pain, fatigue, short breath etx., it is highly recommended to seek help from your family doctor and perform regular medical examination to actively monitor your health. Click the link below to see some common warning signs for lung cancer : </div>
+            <div name='symptoms-recommendation' class='form-text'>If you have been suffering from persistent physical symptoms such as chest pain, fatigue, short breath etc., it is highly recommended to seek help from your family doctor and perform regular medical examination to actively monitor your health status. Click the link below to see some common warning signs for lung cancer : </div>
             <button type="button" class='link' onclick="window.location.href = 'https://www.hopkinsmedicine.org/kimmel_cancer_center/cancers_we_treat/lung_cancer_program/warning_signs.html#:~:text=Chest%20pain%3A%20When%20a%20lung,breathing%20deeply%2C%20coughing%20or%20laughing';"> Link </button>
             `;
             
