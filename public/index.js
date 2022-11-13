@@ -885,7 +885,7 @@ document //form submission: strokes
             document.location.reload();
         } else {
             const testResult = result.result.data[0];
-            const strokes = testResult["Strokes"];
+            const strokes = testResult["Stroke"];
             const probability = formatAsPercent(
                 testResult["probability"] * 100
             );
@@ -900,11 +900,11 @@ document //form submission: strokes
 
             let likelihood = "";
             let greet = "";
-            if (strokes === "Yes") {
+            if (strokes == "Yes") {
                 greet = "Unfortunately";
-                likelihood = "highly";
+                likelihood = "Likely";
             } else {
-                greet = "Good!";
+                greet = "Great!";
                 likelihood = "Unlikely";
             }
 
