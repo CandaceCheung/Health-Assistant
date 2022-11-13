@@ -89,10 +89,12 @@ def callDiabetesModel(request):
     predict_dataset = tf.convert_to_tensor(content,dtype=tf.float32)
     predictions = diabetes_model(predict_dataset, training=False)
     
+    print("predictions",predictions, type(predictions))
     predictions = np.round(predictions.numpy()[0],2)
+    print("predictions",predictions)
     predictions = str(predictions[0]*100)
 
-    print("predictions",predictions, type(predictions))
+    print("predictions",predictions)
 
     return json({"data": predictions})
     

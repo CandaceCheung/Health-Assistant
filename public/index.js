@@ -395,11 +395,20 @@ document //form submission: Lung Cancer
 
             const recommendations = [];
             const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
-            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`;
+            <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of developing lung cancer significantly as you age. Run the test again with different age group and altering smoking habit to find out.`;
             const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
-            <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
-            <button type="button" class='link' onclick="window.location.href = 'https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed';"> Link </button>
+            <div name='drinker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.verywellhealth.com/alcohol-and-lung-cancer-risk-2248986';"> Link </button>
             `;
+            const anxietyRecommendation = `<label for="anxiety-recommendation" class="form-label">Coping with Anxiety :</label>
+            <div name='anxiety-recommendation' class='form-text'>If you have been suffering from long-term anxiety, it is highly recommended to seek help from psychiatrist or other psychological related profession. Click the link below to see more information: </div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.cancer.net/coping-with-cancer/managing-emotions/anxiety#:~:text=Many%20people%20with%20cancer%20have,returning%20or%20spreading%20after%20treatment';"> Link </button>
+            `;
+            const symptomsRecommendation = `<label for="symptoms-recommendation" class="form-label">Persistent physical symptoms :</label>
+            <div name='symptoms-recommendation' class='form-text'>If you have been suffering from persistent physical symptoms such as chest pain, fatigue, short breath etx., it is highly recommended to seek help from your family doctor and perform regular medical examination to actively monitor your health. Click the link below to see some common warning signs for lung cancer : </div>
+            <button type="button" class='link' onclick="window.location.href = 'https://www.hopkinsmedicine.org/kimmel_cancer_center/cancers_we_treat/lung_cancer_program/warning_signs.html#:~:text=Chest%20pain%3A%20When%20a%20lung,breathing%20deeply%2C%20coughing%20or%20laughing';"> Link </button>
+            `;
+            
             const noWorries = `<label for="exercise-recommendation" class="form-label">You Are Good to Go !</label>
             <div name='no-recommendation' class='form-text'>It seems that you don't have anything to worry about! Try another test or doing the test again to see different result!</div>`;
 
@@ -409,6 +418,13 @@ document //form submission: Lung Cancer
             if (alcohol) {
                 recommendations.push(drinkerRecommendation);
             }
+            if (anxiety) {
+                recommendations.push(anxietyRecommendation);
+            } 
+            if (fatigue || shortBreath || chestPain || cough || swallow) {
+                recommendations.push(symptomsRecommendation)
+            }
+
             if (recommendations.length < 1) {
                 recommendations.push(noWorries);
             }
@@ -581,7 +597,7 @@ document //form submission: Heart Disease
             const smokerRecommendation = `<label for="smoker-recommendation" class="form-label">Smoking Habit :</label>
             <div name='smoker-recommendation' class='form-text'>You may want to consider quite smoking! Smoking increases your chance of having heart related disease significantly as you age. Run the test again with different age group and altering smoking habit to find out.`;
             const drinkerRecommendation = `<label for="drinker-recommendation" class="form-label">Drinking Habit :</label>
-            <div name='smoker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
+            <div name='drinker-recommendation' class='form-text'>Adjust your drinking habit! Click link below to see recommendation.</div>
             <button type="button" class='link' onclick="window.location.href = 'https://www.cdc.gov/alcohol/fact-sheets/moderate-drinking.htm#:~:text=To%20reduce%20the%20risk%20of,days%20when%20alcohol%20is%20consumed';"> Link </button>
             `;
 
