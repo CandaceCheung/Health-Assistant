@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { knex } from "../app";
+import { InfoService } from "../service/InfoService";
 import { logger } from "../util/logger";
+import ErrorCode from "../error-code.json";
 
 export const infoRoutes = express.Router();
 
@@ -9,14 +11,17 @@ infoRoutes.post('/', saveInfo)
 infoRoutes.post('/name', saveNameOnly)
 infoRoutes.delete('/', deleteInfo)
 
+const infoService = new InfoService(knex);
+
 async function getInfo(req: Request, res: Response) {
     try {
         logger.debug('before reading DB')
 
         const cookieID = req.cookies['connect.sid']
-        const userID = (await knex.select('id').from('users').where('session_id', cookieID))[0]
+        console.log("cookieID", cookieID)
+        const userID = await infoService.get(cookieID)
 
-        if (!!userID) {
+        if (userID !== undefined) {
             const result = (await knex.select('*')
                 .from('users')
                 .where('id', userID.id))[0]
@@ -59,7 +64,7 @@ async function getInfo(req: Request, res: Response) {
                 data: obj
             })
         } else {
-            res.status(400).json({
+            res.status(404).json({
                 status: false,
                 msg: 'No Saved Info'
             })
@@ -245,9 +250,8 @@ async function deleteInfo(req: Request, res: Response) {
         logger.error(e)
         res.status(500).json({
             status: false,
-            msg: 'ERR004: Unable to Delete User Info'
+            msg: `ERR004: ${ErrorCode.ERR004}`
         })
     }
-
 }
 

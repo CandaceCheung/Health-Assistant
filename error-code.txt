@@ -1,8 +1,0 @@
-ERR001: Failed to Post Test Data // infoRoutes/ saveInfo
-ERR002: Failed Save User Info // infoRoutes/ saveInfo
-ERR003: Cannot Find User Data // infoRoutes/ deleteInfo
-ERR004: Unable to Delete User Info // infoRoutes/ deleteInfo
-ERR005: Something Went Wrong When Sending Test Data to Server //testRoutes / heart
-ERR006: Failed to Get User Info
-ERR007: Unable to Save User Name
-ERR008: Something Went Wrong When Sending Test Data to Model

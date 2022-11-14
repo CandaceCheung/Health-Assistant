@@ -15,7 +15,7 @@ async function testLung(req: Request, res: Response) {
         logger.debug('before sending test data')
         const testData = req.body
         
-        const fetchRes = await fetch('https://health-assistant-ai.frankieyip.world/index/test/lung', {
+        const fetchRes = await fetch(`${process.env.API_GATEWAY}/index/test/lung`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

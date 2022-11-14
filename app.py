@@ -31,9 +31,9 @@ def callLungModel(request):
     else: 
         decision = "No"
 
-    results.append({"Lung Cancer": decision,"probability": str(probs[0])})
+    results.append({"lungCancer": decision,"probability": str(probs[0])})
  
-    return json({"data":results})
+    return json({"data": results})
 
 @app.post("/index/test/suicide")
 def callSuicideModel(request):

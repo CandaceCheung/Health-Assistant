@@ -4,8 +4,6 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import dontenv from 'dotenv';
 import Knex from 'knex';
-import { infoRoutes } from './routes/infoRoutes';
-import { testRoutes } from './routes/testRoutes';
 
 dontenv.config();
 
@@ -13,6 +11,9 @@ const knexConfig = require('./knexfile');
 const configMode = process.env.NODE_ENV || 'development';
 export const knex = Knex(knexConfig[configMode]);
 const app = express();
+
+import { infoRoutes } from './routes/infoRoutes';
+import { testRoutes } from './routes/testRoutes';
 
 const sessionMiddleware = expressSession({
 	secret: process.env.SESSION_SECRET || '',
